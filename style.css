@@ -18,7 +18,7 @@
     width: 90%;
     max-width: 450px;
     position: absolute;
-    top: -15%;
+    top: -16%;
     left: 50%;
     transform: translate(-50%,50%);
     background: #fff;
@@ -100,12 +100,3 @@ form p a {
     color: #555;
 }
 
-a.button-style {
-    display: inline-block;
-    background-color: #3c00a0;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
