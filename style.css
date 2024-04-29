@@ -18,7 +18,7 @@
     width: 90%;
     max-width: 450px;
     position: absolute;
-    top: -16%;
+    top: -21%;
     left: 50%;
     transform: translate(-50%,50%);
     background: #fff;
@@ -100,3 +100,28 @@ form p a {
     color: #555;
 }
 
+.submit-field {
+    margin-top: 18px;
+    width: 100%;
+    display: flex; /* Menggunakan flexbox */
+    align-items: center; /* Menengahkan secara vertikal */
+    justify-content: center; /* Menengahkan secara horizontal */
+    flex-basis: 40%;
+    background: #3c00a0;
+    color: #fff;
+    height: 45px;
+    border-radius: 8px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.submit-field button {
+    height: 45px;
+    width: 100%;
+    background: #3c00a0;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+}

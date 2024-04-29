@@ -71,9 +71,7 @@ if (isset($_POST['submit-btn'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -84,22 +82,21 @@ if (isset($_POST['submit-btn'])){
             <form action="sign-up.php" method="POST">
                 <div class="input-group">
                     <div class="input-field" id="emailField">
-                        <i class="fa-solid fa-envelope"></i>
+                        <i class='bx bx-envelope' ></i>
                         <input type="email" placeholder="Email" name="email">
                     </div>
-
                     <div class="input-field" id="usernameField">
-                        <i class="fa-solid fa-user"></i>
+                        <i class='bx bxs-user' ></i>    
                         <input type="text" placeholder="username" name="username">
                     </div>
 
                     <div class="input-field">
-                        <i class="fa-solid fa-key"></i>
-                        <input type="password" placeholder="Password" name="passkey">
+                        <i class='bx bxs-key'></i>    
+                        <input type="password" placeholder="Password" name="passkey">                        
                     </div>
 
                     <div class="input-field" id="addressField">
-                        <i class="fa-solid fa-map"></i>
+                        <i class='bx bx-current-location'></i>    
                         <input type="text" placeholder="Alamat rumah" name="alamat">
                     </div>
                 </div>
@@ -107,9 +104,9 @@ if (isset($_POST['submit-btn'])){
                     <button type="button" id="signupBtn">Sign up</button>
                     <button type="button" id="signinBtn" class="disable">Sign in</button>
                 </div>
-                <button>
-                    <input type="submit" id="submit-btn" name="submit-btn">
-                </button>
+                <div class="submit-field">
+                    <button type="submit" name="submit-btn" id="submit-btn">Submit</button>
+                </div>
             </form>
         </div>
     </div>
@@ -121,6 +118,9 @@ if (isset($_POST['submit-btn'])){
         let emailField = document.getElementById("emailField");
         let title = document.getElementById("title");
         let addressField = document.getElementById("addressField");
+        let emailInput = document.getElementsByName("email");
+        let addressInput = document.getElementsByName("alamat")
+
 
         signinBtn.onclick = function() {
             emailField.style.maxHeight = "0";
@@ -129,8 +129,20 @@ if (isset($_POST['submit-btn'])){
             signupBtn.classList.add("disable");
             signinBtn.classList.remove("disable");
         }
+
+        document.getElementById("signinBtn").addEventListener("click", function() {
+            // Mengambil elemen input untuk email dan alamat rumah
+            var emailInput = document.getElementsByName("email")[0];
+            var alamatInput = document.getElementsByName("alamat")[0];
+            // Mengosongkan nilai input
+            emailInput.value = "";
+            alamatInput.value = "";
+        });
+
+
         signupBtn.onclick = function() {
             emailField.style.maxHeight = "60px";
+            title.innerHTML = "Sign-Up";
             addressField.style.maxHeight = "60px";
             signupBtn.classList.remove("disable");
             signinBtn.classList.add("disable");
