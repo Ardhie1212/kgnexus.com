@@ -8,7 +8,7 @@
 .container{
     width: s;
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 50, 0.6), rgba(0, 0, 50, 0.6)), url(images/SignUp.jpg);
+    background-image: linear-gradient(rgba(12, 0, 0, 0.6), rgba(12, 0, 0, 0.6)), url(images/SignUp.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
