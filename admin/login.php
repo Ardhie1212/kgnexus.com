@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include('server/connection.php');
+include('../server/connection.php');
 
 if (isset($_SESSION['logged_in'])) {
 	header('location: homepage.php');
@@ -45,7 +45,7 @@ if (isset($_POST['submit-field'])) {
 
 <head>
 	<title>Admin Login</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="../style/login.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,10 +53,8 @@ if (isset($_POST['submit-field'])) {
 
 <body>
 	<div class="container">
-		<div class="img">
-			<img src="/images/Logo.jpg">
-		</div>
 		<div class="login-content">
+			<img src="../images/Logo.jpeg">
 			<form action="login.php" method="POST">
 				<h2 class="title">Admin Login</h2>
 				<div class="input-div one">

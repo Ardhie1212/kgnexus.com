@@ -7,33 +7,39 @@
 body{
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
-	background-color: #000000;
+	background-color: #222831;
 }
-
 .container{
     width: 100vw;
     height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap :7rem;
-    padding: 0 2rem;
-}
-
-.img{
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-content{
+	padding: 20px;
 	display: flex;
-	justify-content: flex-start;
+	flex-direction: column;
+	justify-content:center;
 	align-items: center;
 	text-align: center;
+	background-color: #252A34;
+	border-radius: 10px;
+	border: 1px solid #EEEEEE;
 }
 
-.img img{
-	width: 500px;
+
+.logo {
+	margin-bottom: 1rem;
+}
+
+.login-form {
+	width: 100%;
+}
+
+.login-content img {
+	width: auto;
 }
 
 form{
@@ -41,14 +47,14 @@ form{
 }
 
 .login-content img{
-    height: 100px;
+    height: 125px;
 }
 
 .login-content h2{
 	margin: 15px 0;
 	color: #FF2E63;
 	text-transform: uppercase;
-	font-size: 2.9rem;
+	font-size: 1.85rem;
 }
 
 .login-content .input-div{
@@ -132,15 +138,16 @@ form{
 	background: none;
 	padding: 0.5rem 0.7rem;
 	font-size: 1.2rem;
-	color: #555;
+	color: white;
 	font-family: 'poppins', sans-serif;
 }
 
 .input-div.pass{
-	margin-bottom: 4px;
+	margin-bottom: 50px;
 }
 
 .btn{
+	margin-top: 15px;
 	display: block;
 	width: 100%;
 	height: 50px;
