@@ -108,8 +108,8 @@ if (isset($_POST['submit-btn'])){
                     <button type="submit" name="submit-btn" id="submit-btn">Submit</button>
                 </div>
             </form>
-            </div>
         </div>
+    </div>
 
         <script>
             let signinBtn = document.getElementById("signinBtn");

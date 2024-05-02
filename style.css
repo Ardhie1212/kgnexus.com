@@ -125,4 +125,5 @@ form p a {
     border: none;
     outline: none;
     border-radius: 8px;
+    cursor: pointer;
 }
