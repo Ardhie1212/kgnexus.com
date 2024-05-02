@@ -142,6 +142,15 @@ form{
 	font-family: 'poppins', sans-serif;
 }
 
+.input-div > div > input:-webkit-autofill,
+.input-div > div > input:-webkit-autofill:hover, 
+.input-div > div > input:-webkit-autofill:focus, 
+.input-div > div > input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #252A34 inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+
 .input-div.pass{
 	margin-bottom: 50px;
 }

@@ -127,3 +127,15 @@ form p a {
     border-radius: 8px;
     cursor: pointer;
 }
+
+.input-field > input:-webkit-autofill,
+.input-field > input:-webkit-autofill:hover, 
+.input-field > input:-webkit-autofill:focus, 
+.input-field > input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #252A34 inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+.input-field > input[type="password"]::after {
+    color: white;
+}
