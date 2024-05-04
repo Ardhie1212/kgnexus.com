@@ -13,15 +13,16 @@
     <!-- Navigation Bar and Sidebar -->
     <header>
         <nav class="navbar">
-            <div class="logo">
-                <i class='bx bx-menu' ></i>
+            <i class='bx bx-menu' id="menu"></i>
+            <div class="search-box">
+                <i class='bx bx-search' id="search-icon"></i>
+                <input type="search" placeholder="Search">
             </div>
             <ul class="links">
-                <li><a href="#">Home</a></li>
+                <li><a href="#" id="Home">Home</a></li>
                 <li><a href="#">Kategori</a></li>
-                <li><a href="#">Wallet</a></li>
                 <li><a href="#">Wishlist</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Cart</a></li>
             </ul>
             <i class='bx bxs-user-circle'></i>
         </nav>

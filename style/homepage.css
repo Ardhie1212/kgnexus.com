@@ -1,35 +1,31 @@
+/* Inisialisasi */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
     text-decoration: none;
+    border: none;
+    outline: none;
 }
 
 body {
-    height: 100vh;
+    height: 1000vh;
     background-color: #252A34;
     background-size: cover;
     background-position: center;
+    overflow-y: hidden;
 }
 
 li {
     list-style: none;
 }
 
-a {
-    color: #fff;
-    font-size: 1rem;
-    align-items: center;
-}
-
-a:hover {
-    color: #222831;
-}
+/* Navbar styling */
 
 header {
     width: 100%;
-    position: relative;
+    position: fixed;
     padding: 0 2rem;
     background-color: #FF2E63;
 }
@@ -42,33 +38,71 @@ header {
     justify-content: space-between;
 }
 
-.navbar .logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
 .links {
     justify-content: center;
     display: flex;
     gap: 2rem;
 }
 
+/* Navbar element styling */
+.links a {
+    color: #fff;
+    font-size: 1rem;
+    align-items: center;
+}
+
+.links a:hover {
+    color: #222831;
+}
+
+
+/* Navbar icon styling */
 .navbar i {
     color: #fff;
     font-size: 2rem;
-    margin-left: 25px;
 }
 
-.logo i {
+i {
     color: #fff;
     font-size: 2rem;
-}
-
-.logo i:hover {
-    color: #222831;
 }
 
 .navbar i:hover {
     color: #222831;
     cursor: pointer;
+}
+
+/* Navbar search-box styling */
+.search-box {
+    background-color: #fff;
+    border-radius: 2rem;
+    padding: 0.5rem 0.5rem;
+    display: flex;
+    align-items: center;
+    width: 20vw;
+}
+
+.search-box i {
+    color: #252A34;
+    font-size: 1.2rem;
+}
+
+
+.navbar #search-icon {
+    margin-left: 10px;
+}
+
+.navbar input[type="search"] {
+    background: transparent;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+    color: hsl(252,30%,17%);
+    border: none;
+    outline: none;
+    width: 100%; 
+}
+
+.navbar #menu {
+    margin-left: 10px;
 }
