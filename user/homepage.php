@@ -14,16 +14,16 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="#">
-                    K G N E X U S
-                </a>
+                <i class='bx bx-menu' ></i>
             </div>
             <ul class="links">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Kategori</a></li>
                 <li><a href="#">Wallet</a></li>
+                <li><a href="#">Wishlist</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
-            <a href="#"><i class='bx bxs-user-circle'></i></a>
+            <i class='bx bxs-user-circle'></i>
         </nav>
     </header>
 

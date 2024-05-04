@@ -8,7 +8,7 @@
 
 body {
     height: 100vh;
-    background-color: #222831;
+    background-color: #252A34;
     background-size: cover;
     background-position: center;
 }
@@ -20,17 +20,18 @@ li {
 a {
     color: #fff;
     font-size: 1rem;
+    align-items: center;
 }
 
 a:hover {
-    color: #FF2E63;
+    color: #222831;
 }
 
 header {
     width: 100%;
     position: relative;
     padding: 0 2rem;
-    background-color: #222831;
+    background-color: #FF2E63;
 }
 
 .navbar {
@@ -52,7 +53,22 @@ header {
     gap: 2rem;
 }
 
-.navbar a i {
-    font-size: 2em;
-    margin-left: 75px;
+.navbar i {
+    color: #fff;
+    font-size: 2rem;
+    margin-left: 25px;
+}
+
+.logo i {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.logo i:hover {
+    color: #222831;
+}
+
+.navbar i:hover {
+    color: #222831;
+    cursor: pointer;
 }
