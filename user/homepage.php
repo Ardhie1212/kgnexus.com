@@ -14,7 +14,7 @@
     <!-- Navigation Bar -->
     <header>
         <nav class="navbar">
-            <i class='bx bx-menu' id="menu"></i>
+            <h2 color="#eaeaea">KGNEXUS</h2>
             <div class="search-box">
                 <i class='bx bx-search' id="search-icon"></i>
                 <input type="search" placeholder="Search">
@@ -33,7 +33,7 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="#"><i class='bx bx-home-alt-2'></i>Menu 1</a></li>
+            <li><a href="#">Menu 1</a></li>
             <li><a href="#">Menu 2</a></li>
             <li><a href="#">Menu 3</a></li>
             <li><a href="#">Menu 4</a></li>

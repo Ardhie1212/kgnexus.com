@@ -29,7 +29,7 @@ header {
     width: 100%;
     position: fixed;
     padding: 0 2rem;
-    background-color: #FF2E63;
+    background-color: #252A34;
     z-index: 2;
 }
 
@@ -58,19 +58,20 @@ header {
 }
 
 .links a:hover {
-    color: #fff !important;
+    color: #FF2E63 !important;
 }
 
-.links:hover a:not(hover) {
-    color: #252A34;
+.navbar h2 {
+    color: #FF2E63;
+    cursor: default;
+    user-select: none;
 }
-
 /* End of Navbar element styling */
 
 /* Navbar icon styling */
 .navbar i {
     color: #fff;
-    font-size: 2rem;
+    font-size: 2.2rem;
     transition: color 0.3s ease;
 }
 
@@ -80,7 +81,7 @@ i {
 }
 
 .navbar i.bxs-user-circle:hover {
-    color: #222831;
+    color: #FF2E63;
     cursor: pointer;
 }
 
@@ -128,13 +129,12 @@ i {
 /* End of Navbar search-box styling */
 
 /* Sidebar styling */
-
 .sidebar {
     width: 200px;
     height: 100%;
-    background-color: #222831;
+    background-color: #FF2E63;
     position: fixed;
-    top: 60px; /* Menggeser sidebar dari posisi navbar */
+    /* Menggeser sidebar dari posisi navbar */
     left: -200px; /* Sembunyikan sidebar secara default */
     transition: left 0.3s ease; /* Animasi ketika menampilkan/menyembunyikan sidebar */
 }
@@ -159,16 +159,28 @@ i {
 .bx-x {
     transform: rotate(90deg);
 }
-
 /* End of Search-box styling */
 
-/* Main content */
 
+
+
+
+
+
+/* Main content */
 main {
     padding-left: 200px; /* Sesuaikan dengan lebar sidebar */
     transition: padding-left 0.3s ease; /* Animasi saat sidebar muncul */
 }
 
+/* Special offer content */
+/* End of Special offer content */
+
+/* Most downloaded content */
+/* End of Most downloaded content */
+
 .show-sidebar main {
     padding-left: 0; /* Kembalikan padding ke 0 saat sidebar tidak ditampilkan */
 }
+/* End of Main Content */
+
