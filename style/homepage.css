@@ -1,4 +1,5 @@
-/* Inisialisasi */
+/* Initialize */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +11,7 @@
 }
 
 body {
-    height: 1000vh;
+    height: 100vh;
     background-color: #252A34;
     background-size: cover;
     background-position: center;
@@ -20,6 +21,7 @@ body {
 li {
     list-style: none;
 }
+/* End of Initialize */
 
 /* Navbar styling */
 
@@ -28,6 +30,7 @@ header {
     position: fixed;
     padding: 0 2rem;
     background-color: #FF2E63;
+    z-index: 2;
 }
 
 .navbar {
@@ -43,23 +46,32 @@ header {
     display: flex;
     gap: 2rem;
 }
+/* End of Navbar Styling */
 
 /* Navbar element styling */
 .links a {
+    position: relative; /* Tambahkan posisi relatif */
     color: #fff;
     font-size: 1rem;
     align-items: center;
+    transition: color 0.3s; /* Transisi untuk warna teks */
 }
 
 .links a:hover {
-    color: #222831;
+    color: #fff !important;
 }
 
+.links:hover a:not(hover) {
+    color: #252A34;
+}
+
+/* End of Navbar element styling */
 
 /* Navbar icon styling */
 .navbar i {
     color: #fff;
     font-size: 2rem;
+    transition: color 0.3s ease;
 }
 
 i {
@@ -67,12 +79,18 @@ i {
     font-size: 2rem;
 }
 
-.navbar i:hover {
+.navbar i.bxs-user-circle:hover {
     color: #222831;
     cursor: pointer;
 }
 
+.navbar i.bx-menu:hover {
+    cursor: pointer;
+}
+/* End of Navbar icon styling */
+
 /* Navbar search-box styling */
+
 .search-box {
     background-color: #fff;
     border-radius: 2rem;
@@ -105,4 +123,52 @@ i {
 
 .navbar #menu {
     margin-left: 10px;
+}
+
+/* End of Navbar search-box styling */
+
+/* Sidebar styling */
+
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #222831;
+    position: fixed;
+    top: 60px; /* Menggeser sidebar dari posisi navbar */
+    left: -200px; /* Sembunyikan sidebar secara default */
+    transition: left 0.3s ease; /* Animasi ketika menampilkan/menyembunyikan sidebar */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+}
+
+.show-sidebar {
+    left: 0; /* Menampilkan sidebar */
+}
+
+.bx-x {
+    transform: rotate(90deg);
+}
+
+/* End of Search-box styling */
+
+/* Main content */
+
+main {
+    padding-left: 200px; /* Sesuaikan dengan lebar sidebar */
+    transition: padding-left 0.3s ease; /* Animasi saat sidebar muncul */
+}
+
+.show-sidebar main {
+    padding-left: 0; /* Kembalikan padding ke 0 saat sidebar tidak ditampilkan */
 }
