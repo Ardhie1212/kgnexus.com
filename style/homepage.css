@@ -15,9 +15,7 @@ body {
     background-position: center;
     overflow-y: hidden;
 }
-li {
-    list-style: none;
-}
+
 /* End of Initialize */
 
 /* Navbar styling */
@@ -26,7 +24,6 @@ header {
     position: fixed;
     padding: 0 2rem;
     background-color: #252A34;
-    z-index: 2;
 }
 .navbar {
     width: 100%;
@@ -57,6 +54,12 @@ header {
     color: #FF2E63;
     cursor: default;
     user-select: none;
+}
+
+
+.navbar li {
+    list-style: none;
+    position: relative;
 }
 /* End of Navbar element styling */
 
@@ -110,59 +113,7 @@ i {
 }
 /* End of Navbar search-box styling */
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8147f14bb9ca00fafe0df69953e629d9a9fcbef0
-/* Sidebar styling */
-.sidebar {
-    width: 200px;
-    height: 100%;
-    background-color: #FF2E63;
-    position: fixed;
-    /* Menggeser sidebar dari posisi navbar */
-    left: -200px; /* Sembunyikan sidebar secara default */
-    transition: left 0.3s ease; /* Animasi ketika menampilkan/menyembunyikan sidebar */
-}
-<<<<<<< HEAD
-
-=======
->>>>>>> 8147f14bb9ca00fafe0df69953e629d9a9fcbef0
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-<<<<<<< HEAD
-
-.sidebar ul li {
-    padding: 10px;
-}
-
-.sidebar ul li a {
-    color: #fff;
-}
-
-.show-sidebar {
-    left: 0; /* Menampilkan sidebar */
-}
-
-=======
-.sidebar ul li {
-    padding: 10px;
-}
-.sidebar ul li a {
-    color: #fff;
-}
-.show-sidebar {
-    left: 0; /* Menampilkan sidebar */
-}
->>>>>>> 8147f14bb9ca00fafe0df69953e629d9a9fcbef0
-.bx-x {
-    transform: rotate(90deg);
-}
-/* End of Search-box styling */
-<<<<<<< HEAD
-
+/* Navbar dropdown styling */
 .navbar .bx.bxs-user-circle {
     font-size: 2rem;
 }
@@ -176,27 +127,43 @@ i {
     margin-top: 0.2rem;
     margin-left: 0.5rem;
 }
-
-=======
->>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
-=======
->>>>>>> 8147f14bb9ca00fafe0df69953e629d9a9fcbef0
-
-.navbar .bx.bxs-user-circle {
-    font-size: 2rem;
+.dropyourstore,
+.genres,
+.special {
+    display: none; /* Semua dropdown defaultnya tidak terlihat */
+    position: absolute;
+    background-color: #252A34;
+    width: 10rem;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.dropyourstore li,
+.genres li,
+.special li {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+.dropyourstore li a,
+.genres li a,
+.special li a {
+    color: #fff;
+}
+.dropyourstore li a:hover,
+.genres li a:hover,
+.special li a:hover {
+    color: #FF2E63;
+}
+.navbar li:hover .dropyourstore,
+.navbar li:hover .genres,
+.navbar li:hover .special {
+    display: block; /* Tampilkan dropdown saat li hover */
 }
 
-.navbar #Home {
-    margin-right: 0.5rem;
-}
-
-.navbar #dropdown {
-    font-size: 1.2rem;
-    margin-top: 0.2rem;
-    margin-left: 0.5rem;
-}
-
-
+/* End of Navbar dropdown styling */
 
 
 /* Main content */

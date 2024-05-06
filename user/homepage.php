@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <header>
@@ -18,25 +20,54 @@
                 <input type="search" placeholder="Search">
             </div>
             <ul class="links">
-                <li><a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
-                <li><a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
-                <li><a href="#">Wishlist<i class="fa fa-heart fa-sm" id="dropdown" aria-hidden="true"></i></a></li>
-                <li><a href="#">Cart<i class="fa fa-shopping-cart" id="dropdown" aria-hidden="true"></i></a></li>
+                <li>
+                    <a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
+                    <ul class="dropyourstore" id="yourstoreclick">
+                        <li><a href="#">Store</a></li>
+                        <li><a href="#">Library</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
+                    <ul class="genres" id="genres">
+                        <li><a href="">Action</a></li>
+                        <li><a href="">Adventure</a></li>
+                        <li><a href="">Role-playing</a></li>
+                        <li><a href="">Simulation</a></li>
+                        <li><a href="">Strategy</a></li>
+                        <li><a href="">Sports & Racing</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
             </ul>
             <i class='bx bxs-user-circle'></i>
         </nav>
+    </header>
+    <!-- End of navigatrion -->
+
+    <!-- Javascript Dropdown -->
     <script>
-        const menuBtn = document.getElementById('menu');
-        const sidebar = document.getElementById('sidebar');
-        
-        menuBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('show-sidebar');
-            // Kalau div id="sidebar" punya class 'show-sidebar', maka class dihapus. Jika tidak, maka class 'show-sidebar' akan ditambahkan.
-            menuBtn.classList.toggle('bx-x');
-            // Kalau i dgn id="menu" punya class 'bx-x', class dihapus. Kalau ga punya, class nya ditambah. 
+        let yourStore = document.getElementById('yourstoreclick');
+        let genres = document.getElementById('genres');
+        let special = document.getElementById('special')
+
+        yourStore.previousElementSibling.addEventListener('click', () => {
+            yourStore.classList.toggle('dropyourstore-show');
         });
+
+        genres.previousElementSibling.addEventListener('click', () => {
+            genres.classList.toggle('genres-show');
+        });
+
+        special.previousElementSibling.addEventListener('click', () => {
+            genres.classList.toggle('special-show');
+        }); 
     </script>
-    <!-- End of JavaScript Sidebar -->
+    <!-- End of javascript dropdown -->
+
     <!-- Main content -->
     <main>
     </main>
@@ -46,4 +77,5 @@
     </footer>
     <!-- End of footer -->
 </body>
+
 </html>
