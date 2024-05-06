@@ -1,5 +1,4 @@
 /* Initialize */
-
 * {
     margin: 0;
     padding: 0;
@@ -90,7 +89,6 @@ i {
 /* End of Navbar icon styling */
 
 /* Navbar search-box styling */
-
 .search-box {
     background-color: #fff;
     border-radius: 2rem;
@@ -124,7 +122,6 @@ i {
 .navbar #menu {
     margin-left: 10px;
 }
-
 /* End of Navbar search-box styling */
 
 
