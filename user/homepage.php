@@ -16,7 +16,7 @@
     <!-- Navigation Bar -->
     <header>
         <nav class="navbar">
-            <i class="bx bx-menu" id="menu"></i>
+            <h2>KGNEXUS</h2>
             <div class="search-box">
                 <i class='bx bx-search' id="search-icon"></i>
                 <input type="search" placeholder="Search">
