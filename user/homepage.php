@@ -7,6 +7,8 @@
     <title>KGNexus</title>
     <link rel="stylesheet" href="../style/homepage.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -20,10 +22,10 @@
                 <input type="search" placeholder="Search">
             </div>
             <ul class="links">
-                <li><a href="#" id="Home">Home</a></li>
-                <li><a href="#">Kategori</a></li>
-                <li><a href="#">Wishlist</a></li>
-                <li><a href="#">Cart</a></li>
+                <li><a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Wishlist<i class="fa fa-heart fa-sm" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Cart<i class="fa fa-shopping-cart" id="dropdown" aria-hidden="true"></i></a></li>
             </ul>
             <i class='bx bxs-user-circle'></i>
         </nav>
@@ -45,7 +47,7 @@
     <script>
         const menuBtn = document.getElementById('menu');
         const sidebar = document.getElementById('sidebar');
-        
+
 
 
         menuBtn.addEventListener('click', () => {

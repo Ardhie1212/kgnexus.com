@@ -161,6 +161,20 @@ i {
 }
 /* End of Search-box styling */
 
+.navbar .bx.bxs-user-circle {
+    font-size: 2rem;
+}
+
+.navbar #Home {
+    margin-right: 0.5rem;
+}
+
+.navbar #dropdown {
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    margin-left: 0.5rem;
+}
+
 
 
 
