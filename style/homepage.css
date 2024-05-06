@@ -1,36 +1,36 @@
+/* Initialize */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
     text-decoration: none;
+    border: none;
+    outline: none;
 }
 
 body {
     height: 100vh;
-    background-color: #222831;
+    background-color: #252A34;
     background-size: cover;
     background-position: center;
+    overflow-y: hidden;
 }
 
 li {
     list-style: none;
 }
+/* End of Initialize */
 
-a {
-    color: #fff;
-    font-size: 1rem;
-}
-
-a:hover {
-    color: #FF2E63;
-}
+/* Navbar styling */
 
 header {
     width: 100%;
-    position: relative;
+    position: fixed;
     padding: 0 2rem;
-    background-color: #222831;
+    background-color: #252A34;
+    z-index: 2;
 }
 
 .navbar {
@@ -41,18 +41,146 @@ header {
     justify-content: space-between;
 }
 
-.navbar .logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
 .links {
     justify-content: center;
     display: flex;
     gap: 2rem;
 }
+/* End of Navbar Styling */
 
-.navbar a i {
-    font-size: 2em;
-    margin-left: 75px;
+/* Navbar element styling */
+.links a {
+    position: relative; /* Tambahkan posisi relatif */
+    color: #fff;
+    font-size: 1rem;
+    align-items: center;
+    transition: color 0.3s; /* Transisi untuk warna teks */
 }
+
+.links a:hover {
+    color: #FF2E63 !important;
+}
+
+.navbar h2 {
+    color: #FF2E63;
+    cursor: default;
+    user-select: none;
+}
+/* End of Navbar element styling */
+
+/* Navbar icon styling */
+.navbar i {
+    color: #fff;
+    font-size: 2.2rem;
+    transition: color 0.3s ease;
+}
+
+i {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.navbar i.bxs-user-circle:hover {
+    color: #FF2E63;
+    cursor: pointer;
+}
+
+.navbar i.bx-menu:hover {
+    cursor: pointer;
+}
+/* End of Navbar icon styling */
+
+/* Navbar search-box styling */
+
+.search-box {
+    background-color: #fff;
+    border-radius: 2rem;
+    padding: 0.5rem 0.5rem;
+    display: flex;
+    align-items: center;
+    width: 20vw;
+}
+
+.search-box i {
+    color: #252A34;
+    font-size: 1.2rem;
+}
+
+
+.navbar #search-icon {
+    margin-left: 10px;
+}
+
+.navbar input[type="search"] {
+    background: transparent;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+    color: hsl(252,30%,17%);
+    border: none;
+    outline: none;
+    width: 100%; 
+}
+
+.navbar #menu {
+    margin-left: 10px;
+}
+
+/* End of Navbar search-box styling */
+
+/* Sidebar styling */
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #FF2E63;
+    position: fixed;
+    /* Menggeser sidebar dari posisi navbar */
+    left: -200px; /* Sembunyikan sidebar secara default */
+    transition: left 0.3s ease; /* Animasi ketika menampilkan/menyembunyikan sidebar */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+}
+
+.show-sidebar {
+    left: 0; /* Menampilkan sidebar */
+}
+
+.bx-x {
+    transform: rotate(90deg);
+}
+/* End of Search-box styling */
+
+
+
+
+
+
+
+/* Main content */
+main {
+    padding-left: 200px; /* Sesuaikan dengan lebar sidebar */
+    transition: padding-left 0.3s ease; /* Animasi saat sidebar muncul */
+}
+
+/* Special offer content */
+/* End of Special offer content */
+
+/* Most downloaded content */
+/* End of Most downloaded content */
+
+.show-sidebar main {
+    padding-left: 0; /* Kembalikan padding ke 0 saat sidebar tidak ditampilkan */
+}
+/* End of Main Content */
+
