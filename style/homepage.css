@@ -1,5 +1,4 @@
 /* Initialize */
-
 * {
     margin: 0;
     padding: 0;
@@ -54,7 +53,7 @@ header {
     color: #fff;
     font-size: 1rem;
     align-items: center;
-    transition: color 0.3s; /* Transisi untuk warna teks */
+    transition: color 0.1s; /* Transisi untuk warna teks */
 }
 
 .links a:hover {
@@ -72,7 +71,6 @@ header {
 .navbar i {
     color: #fff;
     font-size: 2.2rem;
-    transition: color 0.3s ease;
 }
 
 i {
@@ -91,7 +89,6 @@ i {
 /* End of Navbar icon styling */
 
 /* Navbar search-box styling */
-
 .search-box {
     background-color: #fff;
     border-radius: 2rem;
@@ -125,9 +122,9 @@ i {
 .navbar #menu {
     margin-left: 10px;
 }
-
 /* End of Navbar search-box styling */
 
+<<<<<<< HEAD
 /* Sidebar styling */
 .sidebar {
     width: 200px;
@@ -175,6 +172,8 @@ i {
     margin-left: 0.5rem;
 }
 
+=======
+>>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
 
 
 
@@ -193,8 +192,6 @@ main {
 /* Most downloaded content */
 /* End of Most downloaded content */
 
-.show-sidebar main {
-    padding-left: 0; /* Kembalikan padding ke 0 saat sidebar tidak ditampilkan */
-}
+
 /* End of Main Content */
 
