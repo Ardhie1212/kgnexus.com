@@ -8,12 +8,18 @@
     border: none;
     outline: none;
 }
+
 body {
     height: 100vh;
     background-color: #252A34;
     background-size: cover;
     background-position: center;
     overflow-y: hidden;
+}
+
+
+li {
+    list-style: none;
 }
 
 /* End of Initialize */
@@ -25,31 +31,38 @@ header {
     padding: 0 2rem;
     background-color: #252A34;
 }
+
 .navbar {
     width: 100%;
     height: 60px;
-    display:inline-flex;
+    display: inline-flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .links {
     justify-content: center;
     display: flex;
     gap: 2rem;
 }
+
 /* End of Navbar Styling */
 
 /* Navbar element styling */
 .links a {
-    position: relative; /* Tambahkan posisi relatif */
+    position: relative;
+    /* Tambahkan posisi relatif */
     color: #fff;
     font-size: 1rem;
     align-items: center;
-    transition: color 0.3s; /* Transisi untuk warna teks */
+    transition: color 0.3s;
+    /* Transisi untuk warna teks */
 }
+
 .links a:hover {
     color: #FF2E63 !important;
 }
+
 .navbar h2 {
     color: #FF2E63;
     cursor: default;
@@ -61,6 +74,7 @@ header {
     list-style: none;
     position: relative;
 }
+
 /* End of Navbar element styling */
 
 /* Navbar icon styling */
@@ -69,17 +83,21 @@ header {
     font-size: 2.2rem;
     transition: color 0.3s ease;
 }
+
 i {
     color: #fff;
     font-size: 2rem;
 }
+
 .navbar i.bxs-user-circle:hover {
     color: #FF2E63;
     cursor: pointer;
 }
+
 .navbar i.bx-menu:hover {
     cursor: pointer;
 }
+
 /* End of Navbar icon styling */
 
 /* Navbar search-box styling */
@@ -91,29 +109,36 @@ i {
     align-items: center;
     width: 20vw;
 }
+
 .search-box i {
     color: #252A34;
     font-size: 1.2rem;
 }
+
 .navbar #search-icon {
     margin-left: 10px;
 }
+
 .navbar input[type="search"] {
     background: transparent;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     font-size: 0.9rem;
-    color: hsl(252,30%,17%);
+    color: hsl(252, 30%, 17%);
     border: none;
     outline: none;
-    width: 100%; 
+    width: 100%;
 }
+
 .navbar #menu {
     margin-left: 10px;
 }
-/* End of Navbar search-box styling */
+
 
 /* Navbar dropdown styling */
+
+/* End of Navbar search-box styling */
+
 .navbar .bx.bxs-user-circle {
     font-size: 2rem;
 }
@@ -167,15 +192,176 @@ i {
 
 
 /* Main content */
-main {
-    padding-left: 200px; /* Sesuaikan dengan lebar sidebar */
-    transition: padding-left 0.3s ease; /* Animasi saat sidebar muncul */
+main {}
+
+.section {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider{
+    width: 800px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.slide{
+    width: 500%;
+    height: 500px;
+    display: flex;
+}
+
+.slide input{
+    display: none;
+}
+
+.st{
+    width: 20%;
+    transition: 2s;
+}
+
+.st img{
+    width: 800px;
+    height: 500px;
+}
+
+.nav-m{
+    position: absolute;
+    width: 800px;
+    margin-top: -40px;
+    justify-content: center;
+    display: flex;
+}
+
+.m-btn{
+    border: 2px solid #23e3c2;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.m-btn:not(:last-child){
+    margin-right: 30px;
+}
+
+.m-btn:hover{
+    background-color: #252A34;
+}
+
+#radio1:checked ~.first{
+    margin-left: 0;
+}
+
+#radio2:checked ~.first{
+    margin-left: -20%;
+}
+
+#radio3:checked ~.first{
+    margin-left: -40%;
+}
+
+#radio4:checked ~.first{
+    margin-left: -60%;
+}
+
+#radio5:checked ~.first{
+    margin-left: -80%;
+}
+
+#radio6:checked ~.first{
+    margin-left: -100%;
+}
+
+#radio7:checked ~.first{
+    margin-left: -120%;
+}
+
+#radio8:checked ~.first{
+    margin-left: -140%;
+}
+
+#radio9:checked ~.first{
+    margin-left: -160%;
+}
+
+#radio10:checked ~.first{
+    margin-left: -180%;
+}
+
+.nav-auto{
+    position: absolute;
+    width: 800px;
+    margin-top: 460px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-auto div{
+    border: 2px solid #23e3c2;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.nav-auto div:not(:last-child){
+    margin-right: 30px;
+    justify-content: center;
+}
+
+#radio1:checked ~ .nav-auto .a-b1{
+    background-color: #252A34;
+}
+
+#radio2:checked ~ .nav-auto .a-b2{
+    background-color: #252A34;
+}
+
+#radio3:checked ~ .nav-auto .a-b3{
+    background-color: #252A34;
+}
+
+#radio4:checked ~ .nav-auto .a-b4{
+    background-color: #252A34;
+}
+
+#radio5:checked ~ .nav-auto .a-b5{
+    background-color: #252A34;
+}
+
+#radio6:checked ~ .nav-auto .a-b6{
+    background-color: #252A34;
+}
+
+#radio7:checked ~ .nav-auto .a-b7{
+    background-color: #252A34;
+}
+
+#radio8:checked ~ .nav-auto .a-b8{
+    background-color: #252A34;
+}
+
+#radio9:checked ~ .nav-auto .a-b9{
+    background-color: #252A34;
+}
+
+#radio10:checked ~ .nav-auto .a-b10{
+    background-color: #252A34;
 }
 /* Special offer content */
 /* End of Special offer content */
 /* Most downloaded content */
 /* End of Most downloaded content */
 .show-sidebar main {
-    padding-left: 0; /* Kembalikan padding ke 0 saat sidebar tidak ditampilkan */
+    padding-left: 0;
+    /* Kembalikan padding ke 0 saat sidebar tidak ditampilkan */
 }
+
+/* End of Main Content */
+
 /* End of Main Content */
