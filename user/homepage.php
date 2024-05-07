@@ -20,13 +20,64 @@
                 <input type="search" placeholder="Search">
             </div>
             <ul class="links">
-                <li><a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
-                <li><a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
-                <li><a href="#">Wishlist<i class="fa fa-heart fa-sm" id="dropdown" aria-hidden="true"></i></a></li>
-                <li><a href="#">Cart<i class="fa fa-shopping-cart" id="dropdown" aria-hidden="true"></i></a></li>
+                <li>
+                    <a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
+                    <ul class="dropyourstore" id="yourstoreclick">
+                        <li><a href="#">Store</a></li>
+                        <li><a href="#">Library</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
+                    <ul class="genres" id="genres">
+                        <li><a href="">Action</a></li>
+                        <li><a href="">Adventure</a></li>
+                        <li><a href="">Role-playing</a></li>
+                        <li><a href="">Simulation</a></li>
+                        <li><a href="">Strategy</a></li>
+                        <li><a href="">Sports & Racing</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
             </ul>
             <i class='bx bxs-user-circle'></i>
         </nav>
+
+    </header>
+    <!-- End of navigatrion -->
+
+    <!-- Javascript Dropdown -->
+    <script>
+        let yourStore = document.getElementById('yourstoreclick');
+        let genres = document.getElementById('genres');
+        let special = document.getElementById('special')
+
+        yourStore.previousElementSibling.addEventListener('click', () => {
+            yourStore.classList.toggle('dropyourstore-show');
+        });
+
+        genres.previousElementSibling.addEventListener('click', () => {
+            genres.classList.toggle('genres-show');
+        });
+
+        special.previousElementSibling.addEventListener('click', () => {
+            genres.classList.toggle('special-show');
+        }); 
+    </script>
+    <!-- End of javascript dropdown -->
+
+    <!-- Main content -->
+    <main>
+    </main>
+    <!-- End of Main content -->
+    <!-- Footer -->
+    <footer>
+    </footer>
+    <!-- End of footer -->
+
         <script>
             const menuBtn = document.getElementById('menu');
             const sidebar = document.getElementById('sidebar');

@@ -17,6 +17,7 @@ body {
     overflow-y: hidden;
 }
 
+
 li {
     list-style: none;
 }
@@ -29,7 +30,6 @@ header {
     position: fixed;
     padding: 0 2rem;
     background-color: #252A34;
-    z-index: 2;
 }
 
 .navbar {
@@ -67,6 +67,12 @@ header {
     color: #FF2E63;
     cursor: default;
     user-select: none;
+}
+
+
+.navbar li {
+    list-style: none;
+    position: relative;
 }
 
 /* End of Navbar element styling */
@@ -128,6 +134,9 @@ i {
     margin-left: 10px;
 }
 
+
+/* Navbar dropdown styling */
+
 /* End of Navbar search-box styling */
 
 .navbar .bx.bxs-user-circle {
@@ -143,8 +152,43 @@ i {
     margin-top: 0.2rem;
     margin-left: 0.5rem;
 }
+.dropyourstore,
+.genres,
+.special {
+    display: none; /* Semua dropdown defaultnya tidak terlihat */
+    position: absolute;
+    background-color: #252A34;
+    width: 10rem;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.dropyourstore li,
+.genres li,
+.special li {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+.dropyourstore li a,
+.genres li a,
+.special li a {
+    color: #fff;
+}
+.dropyourstore li a:hover,
+.genres li a:hover,
+.special li a:hover {
+    color: #FF2E63;
+}
+.navbar li:hover .dropyourstore,
+.navbar li:hover .genres,
+.navbar li:hover .special {
+    display: block; /* Tampilkan dropdown saat li hover */
+}
 
-
+/* End of Navbar dropdown styling */
 
 
 /* Main content */
@@ -317,5 +361,7 @@ main {}
     padding-left: 0;
     /* Kembalikan padding ke 0 saat sidebar tidak ditampilkan */
 }
+
+/* End of Main Content */
 
 /* End of Main Content */
