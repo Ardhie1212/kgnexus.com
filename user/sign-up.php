@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include('server/connection.php');
+include('../server/connection.php');
 
 if (isset($_SESSION['logged_in'])) {
     header('location: homepage.php');
@@ -72,7 +72,7 @@ if (isset($_POST['submit-btn'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style/sign-up.css">
 </head>
 
 <body>
@@ -87,7 +87,7 @@ if (isset($_POST['submit-btn'])){
                     </div>
                     <div class="input-field" id="usernameField">
                         <i class='bx bxs-user' ></i>    
-                        <input type="text" placeholder="username" name="username">
+                        <input type="text" placeholder="Username" name="username">
                     </div>
 
                     <div class="input-field">
@@ -97,12 +97,12 @@ if (isset($_POST['submit-btn'])){
 
                     <div class="input-field" id="addressField">
                         <i class='bx bx-current-location'></i>    
-                        <input type="text" placeholder="Alamat rumah" name="alamat">
+                        <input type="text" placeholder="Address" name="alamat">
                     </div>
                 </div>
                 <div class="btn-field">
-                    <button type="button" id="signupBtn">Sign up</button>
-                    <button type="button" id="signinBtn" class="disable">Sign in</button>
+                    <button type="button" id="signupBtn">Sign Up</button>
+                    <button type="button" id="signinBtn" class="disable">Sign In</button>
                 </div>
                 <div class="submit-field">
                     <button type="submit" name="submit-btn" id="submit-btn">Submit</button>
@@ -111,26 +111,26 @@ if (isset($_POST['submit-btn'])){
         </div>
     </div>
 
-    <script>
-        let signinBtn = document.getElementById("signinBtn");
-        let signupBtn = document.getElementById("signupBtn");
-        let usernameField = document.getElementById("usernameField");
-        let emailField = document.getElementById("emailField");
-        let title = document.getElementById("title");
-        let addressField = document.getElementById("addressField");
-        let emailInput = document.getElementsByName("email");
-        let addressInput = document.getElementsByName("alamat")
+        <script>
+            let signinBtn = document.getElementById("signinBtn");
+            let signupBtn = document.getElementById("signupBtn");
+            let usernameField = document.getElementById("usernameField");
+            let emailField = document.getElementById("emailField");
+            let title = document.getElementById("title");
+            let addressField = document.getElementById("addressField");
+            let emailInput = document.getElementsByName("email");
+            let addressInput = document.getElementsByName("alamat")
 
 
-        signinBtn.onclick = function() {
-            emailField.style.maxHeight = "0";
-            addressField.style.maxHeight = "0";
-            title.innerHTML = "Sign-In"
-            signupBtn.classList.add("disable");
-            signinBtn.classList.remove("disable");
-        }
+            signinBtn.onclick = function() {
+                emailField.style.maxHeight = "0";
+                addressField.style.maxHeight = "0";
+                title.innerHTML = "Sign-In"
+                signupBtn.classList.add("disable");
+                signinBtn.classList.remove("disable");
+            }
 
-        document.getElementById("signinBtn").addEventListener("click", function() {
+            document.getElementById("signinBtn").addEventListener("click", function() {
             // Mengambil elemen input untuk email dan alamat rumah
             var emailInput = document.getElementsByName("email")[0];
             var alamatInput = document.getElementsByName("alamat")[0];
