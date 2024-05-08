@@ -49,6 +49,7 @@
                 <a href="sign-up.php">Logout</a>
             </div>
         </nav>
+
     </header>
 
     <!-- End of navigatrion -->
@@ -89,6 +90,120 @@
     <footer>
     </footer>
     <!-- End of footer -->
+
+        <script>
+            const menuBtn = document.getElementById('menu');
+            const sidebar = document.getElementById('sidebar');
+
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('show-sidebar');
+                // Kalau div id="sidebar" punya class 'show-sidebar', maka class dihapus. Jika tidak, maka class 'show-sidebar' akan ditambahkan.
+                menuBtn.classList.toggle('bx-x');
+                // Kalau i dgn id="menu" punya class 'bx-x', class dihapus. Kalau ga punya, class nya ditambah. 
+            });
+        </script>
+        <!-- End of JavaScript Sidebar -->
+        <!-- Main content -->
+        <main>
+            <section class="section">
+                <div class="slider">
+                    <div class="slide">
+                        <input type="radio" name="radio-btn" id="radio1">
+                        <input type="radio" name="radio-btn" id="radio2">
+                        <input type="radio" name="radio-btn" id="radio3">
+                        <input type="radio" name="radio-btn" id="radio4">
+                        <input type="radio" name="radio-btn" id="radio5">
+                        <input type="radio" name="radio-btn" id="radio6">
+                        <input type="radio" name="radio-btn" id="radio7">
+                        <input type="radio" name="radio-btn" id="radio8">
+                        <input type="radio" name="radio-btn" id="radio9">
+                        <input type="radio" name="radio-btn" id="radio10">
+
+                        <div class="st first">
+                            <img src="../images/Balatro.jpg" alt="">
+                        </div>
+
+                        <div class="st">
+                            <img src="../images/Battlefield1.jpg" alt="">
+                        </div>
+
+                        <div class="st">
+                            <img src="../images/Bellwright.jpg" alt="">
+                        </div>
+
+                        <div class="st">
+                            <img src="../images/Eldenring.jpg" alt="">
+                        </div>
+
+                        <div class="st">
+                            <img src="../images/Fallout4.jpg" alt="">
+                        </div>
+
+                        <div class="st">
+                            <img src="../images/Hades.jpg" alt="">
+                        </div>
+
+                        <div class="st">
+                            <img src="../images/iRacing.jpg" alt="">
+                        </div>
+
+                        <div class="st">
+                            <img src="../images/P3r.jpg" alt="">
+                        </div>
+
+                        <div class="st">
+                            <img src="../images/Stellaris.jpg" alt="">
+                        </div>
+
+                        <div class="st">
+                            <img src="../images/Titanfall2.jpg" alt="">
+                        </div>
+
+                        <div class="nav-auto">
+                            <div class="a-b1"></div>
+                            <div class="a-b2"></div>
+                            <div class="a-b3"></div>
+                            <div class="a-b4"></div>
+                            <div class="a-b5"></div>
+                            <div class="a-b6"></div>
+                            <div class="a-b7"></div>
+                            <div class="a-b8"></div>
+                            <div class="a-b9"></div>
+                            <div class="a-b10"></div>
+                        </div>
+                    </div>
+
+                    <div class="nav-m">
+                        <label for="radio1" class="m-btn"></label>
+                        <label for="radio2" class="m-btn"></label>
+                        <label for="radio3" class="m-btn"></label>
+                        <label for="radio4" class="m-btn"></label>
+                        <label for="radio5" class="m-btn"></label>
+                        <label for="radio6" class="m-btn"></label>
+                        <label for="radio7" class="m-btn"></label>
+                        <label for="radio8" class="m-btn"></label>
+                        <label for="radio9" class="m-btn"></label>
+                        <label for="radio10" class="m-btn"></label>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script type="text/javascript">
+            var counter = 1;
+            setInterval(function(){
+                document.getElementById('radio' + counter).checked=true;
+                counter++;
+                if(counter > 10){
+                    counter = 1;
+                }
+            },5000);
+        </script>
+
+        <!-- End of Main content -->
+        <!-- Footer -->
+        <footer>
+        </footer>
+        <!-- End of footer -->
 </body>
 
 </html>
