@@ -10,11 +10,11 @@
 }
 
 body {
-    height: 100vh;
+    height: 400vh;
     background-color: #252A34;
     background-size: cover;
     background-position: center;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 
@@ -93,7 +93,7 @@ i {
     cursor: pointer;
 }
 
-=======
+
 .navbar i.bx-menu:hover {
     cursor: pointer;
 }
@@ -226,7 +226,6 @@ i {
 
 
 /* Main content */
-main {}
 
 .section {
     margin: 0;
@@ -273,7 +272,7 @@ main {}
 }
 
 .m-btn{
-    border: 2px solid #23e3c2;
+    border: 2px solid #fff;
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
@@ -285,7 +284,7 @@ main {}
 }
 
 .m-btn:hover{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio1:checked ~.first{
@@ -337,7 +336,7 @@ main {}
 }
 
 .nav-auto div{
-    border: 2px solid #23e3c2;
+    border: 2px solid #fff;
     padding: 5px;
     border-radius: 10px;
     transition: 1s;
@@ -349,52 +348,49 @@ main {}
 }
 
 #radio1:checked ~ .nav-auto .a-b1{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio2:checked ~ .nav-auto .a-b2{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio3:checked ~ .nav-auto .a-b3{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio4:checked ~ .nav-auto .a-b4{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio5:checked ~ .nav-auto .a-b5{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio6:checked ~ .nav-auto .a-b6{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio7:checked ~ .nav-auto .a-b7{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio8:checked ~ .nav-auto .a-b8{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio9:checked ~ .nav-auto .a-b9{
-    background-color: #252A34;
+    background-color: #fff;
 }
 
 #radio10:checked ~ .nav-auto .a-b10{
-    background-color: #252A34;
+    background-color: #fff;
 }
 /* Special offer content */
 /* End of Special offer content */
 /* Most downloaded content */
 /* End of Most downloaded content */
-.show-sidebar main {
-    padding-left: 0;
-    /* Kembalikan padding ke 0 saat sidebar tidak ditampilkan */
-}
+
 
 /* End of Main Content */
 
