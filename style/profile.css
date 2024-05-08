@@ -1,0 +1,44 @@
+.bi.bi-arrow-left-circle-fill {
+    font-size: 30px;
+    margin-right: 5px;
+    color: #FF2E63 ; 
+}
+
+body{
+    background-color: #252A34;
+    color: #fff;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+label {
+    width: 120px; /* Atur lebar label sesuai kebutuhan */
+    margin-right: 10px; /* Berikan jarak antara label dan input */
+}
+
+input,
+textarea {
+    flex: 1; /* Biarkan input mengisi sisa ruang yang tersedia */
+}
+
+.btn.btn-primary {
+    background-color: #FF2E63; /* Warna tombol asli */
+    border-color: #FF2E63; /* Warna border asli */
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus {
+    background-color: #FF2E63; /* Warna tombol saat dihover */
+    border-color: #FF2E63; /* Warna border saat dihover */
+}
+
+.btn.btn-primary:active,
+.btn.btn-primary.active,
+.show > .btn.btn-primary.dropdown-toggle {
+    background-color: #FF2E63; /* Warna tombol saat diklik */
+    border-color: #FF2E63; /* Warna border saat diklik */
+}
+

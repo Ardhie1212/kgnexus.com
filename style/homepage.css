@@ -56,11 +56,11 @@ header {
     user-select: none;
 }
 
-
 .navbar li {
     list-style: none;
     position: relative;
 }
+
 /* End of Navbar element styling */
 
 /* Navbar icon styling */
@@ -77,9 +77,8 @@ i {
     color: #FF2E63;
     cursor: pointer;
 }
-.navbar i.bx-menu:hover {
-    cursor: pointer;
-}
+
+
 /* End of Navbar icon styling */
 
 /* Navbar search-box styling */
@@ -135,11 +134,10 @@ i {
     background-color: #252A34;
     width: 10rem;
     top: 100%;
-    left: 0;
     z-index: 1000;
     padding: 0.5rem 0;
     border-radius: 0.5rem;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
 }
 .dropyourstore li,
 .genres li,
@@ -162,8 +160,43 @@ i {
 .navbar li:hover .special {
     display: block; /* Tampilkan dropdown saat li hover */
 }
+.sub-menu-wrap {
+    visibility: hidden;
+    position: absolute;
+    display: none;
+    top: 80%;
+    right: 0%;
+    width: 10rem;
+    border-radius: 0.5rem;
+    background: #252A34;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem; /* Tambahkan padding untuk memberi ruang di sekitar konten */
+    margin: 5px;
+    justify-content: center;
+}
 
+.sub-menu-wrap a {
+    position: relative;
+    color: #fff;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+    display: block; /* Mengubah tampilan elemen anchor menjadi block */
+    padding: 0.5rem 0; /* Tambahkan padding di atas dan bawah untuk memberi jarak vertikal */
+}
+
+.sub-menu-wrap a:hover{
+    color: #FF2E63;
+}
+
+.sub-menu-show {
+    visibility: visible;
+    display: block;
+}
 /* End of Navbar dropdown styling */
+
+
 
 
 /* Main content */
