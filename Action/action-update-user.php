@@ -19,6 +19,8 @@ if (isset($_POST['id_user'], $_POST['email'], $_POST['username'], $_POST['alamat
 
     mysqli_close($conn);
 } else {
-    echo "Data kosong/tidak lengkap";
+    // Notifikasi jika data kosong
+    header('location: ../user/profile.php?error=Data kosong/tidak lengkap');
+    exit(); // Pastikan untuk keluar dari skrip setelah mengalihkan
 }
 ?>

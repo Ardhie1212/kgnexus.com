@@ -46,7 +46,7 @@
             <i class='bx bxs-user-circle' id="user"></i>
             <div class="sub-menu-wrap" id="sub-menu-wrap">
                 <a href="profile-user.php">Manage Account</a>
-                <a href="sign-up.php">Logout</a>
+                <a href="sign-up.php" onclick='confirmLogout()'>Logout</a>
             </div>
         </nav>
 
@@ -79,6 +79,12 @@
         special.previousElementSibling.addEventListener('click', () => {
             genres.classList.toggle('special-show');
         });
+
+        function confirmLogout() {
+        if (confirm('Apakah Anda yakin ingin keluar?')) {
+            window.location.href = 'sign-up.php';
+        }
+    }
     </script>
     <!-- End of javascript dropdown -->
 

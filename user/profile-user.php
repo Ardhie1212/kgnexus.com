@@ -9,11 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../style/profile.css">
-    <style>
-        .input-group-text {
-            cursor: pointer;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -22,7 +18,7 @@
         <h2 class="text-center">User Profile</h2><br>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="../Action/action-update-user.php" method="post" onclick="return confirm('Apakah Anda yakin ingin memperbarui profil ?')">
+                <form id="profileForm" action="../Action/action-update-user.php" method="post">
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <div class="input-group">
@@ -56,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="confirmSave()">Save</button>
                 </form>
             </div>
         </div>
@@ -67,6 +63,12 @@
             var input = document.getElementById(inputId);
             input.disabled = false;
             input.focus();
+        }
+
+        function confirmSave() {
+            if (confirm('Apakah Anda yakin ingin menyimpan perubahan?')) {
+                document.getElementById('profileForm').submit();
+            }
         }
     </script>
 
