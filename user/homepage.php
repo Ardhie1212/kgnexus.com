@@ -43,10 +43,15 @@
                 <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
                 <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
             </ul>
-            <i class='bx bxs-user-circle'></i>
+            <i class='bx bxs-user-circle' id="user"></i>
+            <div class="sub-menu-wrap" id="sub-menu-wrap">
+                <a href="profile-user.php">Manage Account</a>
+                <a href="sign-up.php">Logout</a>
+            </div>
         </nav>
 
     </header>
+
     <!-- End of navigatrion -->
 
     <!-- Javascript Dropdown -->
@@ -54,6 +59,14 @@
         let yourStore = document.getElementById('yourstoreclick');
         let genres = document.getElementById('genres');
         let special = document.getElementById('special')
+
+        document.getElementById('user').addEventListener('click', function() {
+            document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
+        });
+
+        user.addEventListener('click', () => {
+            dropUser.classList.toggle('user-details-show');
+        });
 
         yourStore.previousElementSibling.addEventListener('click', () => {
             yourStore.classList.toggle('dropyourstore-show');
@@ -65,7 +78,7 @@
 
         special.previousElementSibling.addEventListener('click', () => {
             genres.classList.toggle('special-show');
-        }); 
+        });
     </script>
     <!-- End of javascript dropdown -->
 
