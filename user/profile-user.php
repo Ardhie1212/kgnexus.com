@@ -22,7 +22,7 @@
         <h2 class="text-center">User Profile</h2><br>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="update-profile.php" method="post">
+                <form action="../Action/action-update-user.php" method="post" onclick="return confirm('Apakah Anda yakin ingin memperbarui profil ?')">
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <div class="input-group">
