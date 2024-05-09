@@ -1,3 +1,9 @@
+<?php
+include('../server/banner_controller.php');
+include('../server/connection.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +20,7 @@
     <!-- Navigation Bar -->
     <header>
         <nav class="navbar">
-            <h2 color="#eaeaea">KGNEXUS</h2>
+            <h2>KGNEXUS</h2>
             <div class="search-box">
                 <i class='bx bx-search' id="search-icon"></i>
                 <input type="search" placeholder="Search">
@@ -52,7 +58,7 @@
 
     </header>
 
-    <!-- End of navigatrion -->
+    <!-- End of navigation bar -->
 
     <!-- Javascript Dropdown -->
     <script>
@@ -93,50 +99,15 @@
                     <input type="radio" name="radio-btn" id="radio4">
                     <input type="radio" name="radio-btn" id="radio5">
                     <input type="radio" name="radio-btn" id="radio6">
-                    <input type="radio" name="radio-btn" id="radio7">
-                    <input type="radio" name="radio-btn" id="radio8">
-                    <input type="radio" name="radio-btn" id="radio9">
-                    <input type="radio" name="radio-btn" id="radio10">
 
                     <div class="st first">
-                        <img src="../images/Balatro.jpg" alt="">
+                        <img src="../images/photo1/photo1-balatro.jpg" alt="">
                     </div>
-
-                    <div class="st">
-                        <img src="../images/Battlefield1.jpg" alt="">
-                    </div>
-
-                    <div class="st">
-                        <img src="../images/Bellwright.jpg" alt="">
-                    </div>
-
-                    <div class="st">
-                        <img src="../images/Eldenring.jpg" alt="">
-                    </div>
-
-                    <div class="st">
-                        <img src="../images/Fallout4.jpg" alt="">
-                    </div>
-
-                    <div class="st">
-                        <img src="../images/Hades.jpg" alt="">
-                    </div>
-
-                    <div class="st">
-                        <img src="../images/iRacing.jpg" alt="">
-                    </div>
-
-                    <div class="st">
-                        <img src="../images/P3r.jpg" alt="">
-                    </div>
-
-                    <div class="st">
-                        <img src="../images/Stellaris.jpg" alt="">
-                    </div>
-
-                    <div class="st">
-                        <img src="../images/Titanfall2.jpg" alt="">
-                    </div>
+                    <?php while ($row = $banner_image->fetch_assoc()) { ?>
+                        <div class="st">
+                            <img src="../images/photo1/<?php echo $row['photo1'] ?>" alt="">
+                        </div>
+                    <?php } ?>
 
                     <div class="nav-auto">
                         <div class="a-b1"></div>
@@ -145,10 +116,6 @@
                         <div class="a-b4"></div>
                         <div class="a-b5"></div>
                         <div class="a-b6"></div>
-                        <div class="a-b7"></div>
-                        <div class="a-b8"></div>
-                        <div class="a-b9"></div>
-                        <div class="a-b10"></div>
                     </div>
                 </div>
 
@@ -159,31 +126,28 @@
                     <label for="radio4" class="m-btn"></label>
                     <label for="radio5" class="m-btn"></label>
                     <label for="radio6" class="m-btn"></label>
-                    <label for="radio7" class="m-btn"></label>
-                    <label for="radio8" class="m-btn"></label>
-                    <label for="radio9" class="m-btn"></label>
-                    <label for="radio10" class="m-btn"></label>
                 </div>
             </div>
         </section>
     </main>
     <!-- End of Main content -->
 
+    <!-- Javascript Slider -->
     <script type="text/javascript">
         var counter = 1;
         setInterval(function() {
             document.getElementById('radio' + counter).checked = true;
             counter++;
-            if (counter > 10) {
+            if (counter > 6) {
                 counter = 1;
             }
-        }, 5000);
+        }, 3000);
     </script>
-
+    <!-- End of Javascript slider -->
 
     <!-- Footer -->
     <footer>
-        
+
     </footer>
     <!-- End of footer -->
 </body>

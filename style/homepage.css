@@ -227,6 +227,7 @@ i {
 
 /* Main content */
 
+
 .section {
     margin: 0;
     padding: 0;
@@ -237,19 +238,19 @@ i {
 }
 
 .slider{
-    width: 800px;
-    height: 500px;
+    width: 920px;
+    height: 430px;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .slide{
     width: 500%;
-    height: 500px;
+    height: 430px;
     display: flex;
 }
 
-.slide input{
+.slide input {
     display: none;
 }
 
@@ -259,13 +260,13 @@ i {
 }
 
 .st img{
-    width: 800px;
-    height: 500px;
+    width: 920px;
+    height: 430px;
 }
 
 .nav-m{
     position: absolute;
-    width: 800px;
+    width: 920px;
     margin-top: -40px;
     justify-content: center;
     display: flex;
@@ -329,8 +330,8 @@ i {
 
 .nav-auto{
     position: absolute;
-    width: 800px;
-    margin-top: 460px;
+    width: 920px;
+    margin-top: 390px;
     display: flex;
     justify-content: center;
 }
