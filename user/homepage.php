@@ -102,11 +102,11 @@ include('../server/recommended_get.php');
                     <input type="radio" name="radio-btn" id="radio6">
 
                     <div class="st first">
-                        <img src="../images/photo1/photo1-balatro.jpg" alt="">
+                        <img src="../images/game-images/header/header-balatro.jpg" alt="">
                     </div>
                     <?php while ($row = $banner_image->fetch_assoc()) { ?>
                         <div class="st">
-                            <img src="../images/photo1/<?php echo $row['photo1'] ?>" alt="">
+                            <img src="../images/photo1/<?php echo $row['header'] ?>" alt="">
                         </div>
                     <?php } ?>
 
@@ -137,7 +137,7 @@ include('../server/recommended_get.php');
             <div class="game-bx">
                 <?php while ($row = $recommended->fetch_assoc()) {?>
                 <div class="card">
-                    <img src="../images/photo1/<?php echo $row['photo1'] ?>" alt="">
+                    <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
                     <div class="content">
                         <div class="left">
                             <h5><?php echo $row['game_name']?></h5>
@@ -147,36 +147,6 @@ include('../server/recommended_get.php');
                     </div>
                 </div>
                 <?php }?>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
             </div>
         </div>
     </main>
