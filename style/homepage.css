@@ -14,6 +14,7 @@ body {
     background-color: #252A34;
     background-size: cover;
     background-position: center;
+    overflow-y: scroll;
     overflow-y: auto;
 }
 
@@ -387,6 +388,12 @@ i {
 #radio10:checked ~ .nav-auto .a-b10{
     background-color: #fff;
 }
+
+/* Special offer content */
+/* End of Special offer content */
+/* Most downloaded content */
+/* End of Most downloaded content */
+
 /* Recommended For You */
 main .game1 {
     position: relative;
@@ -477,6 +484,7 @@ main .game1 .game-bx .card .content h6{
 }
 
 /* End of Recommended For You */
+
 
 /* End of Main Content */
 

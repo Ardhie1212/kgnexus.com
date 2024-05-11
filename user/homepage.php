@@ -93,7 +93,6 @@ include('../server/recommended_get.php');
     <main>
         <section class="section">
             <div class="slider">
-
                 <div class="slide">
                     <input type="radio" name="radio-btn" id="radio1">
                     <input type="radio" name="radio-btn" id="radio2">
@@ -131,6 +130,7 @@ include('../server/recommended_get.php');
                 </div>
             </div>
         </section>
+
         <!-- Game content begin -->
         <div class="game1">
             <h3>Recommended For You</h3>
