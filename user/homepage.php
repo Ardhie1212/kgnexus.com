@@ -106,7 +106,7 @@ include('../server/recommended_get.php');
                     </div>
                     <?php while ($row = $banner_image->fetch_assoc()) { ?>
                         <div class="st">
-                            <img src="../images/photo1/<?php echo $row['header'] ?>" alt="">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
                         </div>
                     <?php } ?>
 
@@ -137,7 +137,7 @@ include('../server/recommended_get.php');
             <div class="game-bx">
                 <?php while ($row = $recommended->fetch_assoc()) {?>
                 <div class="card">
-                    <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                    <img src="../images/game-images/header/<?php echo $row['header']?>" alt="">
                     <div class="content">
                         <div class="left">
                             <h5><?php echo $row['game_name']?></h5>

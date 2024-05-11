@@ -40,7 +40,6 @@ include('../server/connection.php');
                         <li><a href="">Strategy</a></li>
                         <li><a href="">Sports & Racing</a></li>
                     </ul>
-
                 </li>
                 <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
                 <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
@@ -61,7 +60,7 @@ include('../server/connection.php');
         <div class="wrapper">
             <div class="game-banner">
                 <!-- Game Banner Image and Content -->
-                <img src="../images/game-images/balatro/header-balatro.jpg" alt="banner game balatro">
+                <img src="../images/game-images/header/header-balatro.jpg" alt="banner game balatro">
                 <div class="game-content">
                     <!-- Game Information -->
                     <h1>Game Title</h1>
@@ -75,13 +74,13 @@ include('../server/connection.php');
             <div class="game-media">
                 <!-- Game Trailer -->
                 <div class="video-container">
-                    <iframe src="../images/game-images/balatro/video-balatro.webm" frameborder="0" allowfullscreen></iframe>
+                    <video src="../images/game-images/video/video-balatro.webm" frameborder="0" ></video>
                 </div>
                 <!-- Game Photos -->
                 <div class="image-gallery">
-                    <img src="../images/game-images/balatro/photo1-balatro.jpg" alt="Game Photo 1">
-                    <img src="../images/game-images/balatro/photo2-balatro.jpg" alt="Game Photo 2">
-                    <img src="../images/game-images/balatro/photo3-balatro.jpg" alt="Game Photo 3">
+                    <img src="../images/game-images/photo1/photo1-balatro.jpg" alt="Game Photo 1">
+                    <img src="../images/game-images/photo2/photo2-balatro.jpg" alt="Game Photo 2">
+                    <img src="../images/game-images/photo3/photo3-balatro.jpg" alt="Game Photo 3">
                 </div>
                 <!-- Add to Cart Button -->
                 <div class="add-to-cart">
