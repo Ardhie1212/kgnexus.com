@@ -1,6 +1,7 @@
 <?php
 include('../server/banner_controller.php');
 include('../server/connection.php');
+include('../server/recommended_get.php');
 ?>
 
 
@@ -129,6 +130,55 @@ include('../server/connection.php');
                 </div>
             </div>
         </section>
+
+        <!-- Game content begin -->
+        <div class="game1">
+            <h3>Recommended For You</h3>
+            <div class="game-bx">
+                <?php while ($row = $recommended->fetch_assoc()) {?>
+                <div class="card">
+                    <img src="../images/photo1/<?php echo $row['photo1'] ?>" alt="">
+                    <div class="content">
+                        <div class="left">
+                            <h5><?php echo $row['game_name']?></h5>
+                            <p>IDR <?php echo $row['game_price'],00?></p>
+                        </div>
+                        <h6><?php echo $row['rating']?></h6>
+                    </div>
+                </div>
+                <?php }?>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+            </div>
+        </div>
     </main>
     <!-- End of Main content -->
 
