@@ -146,10 +146,41 @@ include('../server/connection.php');
     <!-- End of Javascript slider -->
 
     <!-- Footer -->
-    <footer>
-
+    <footer id="footer" class="show-footer">
+        <div class="footer-container">
+            <div class="logo">
+                <img src="../images/TransparentLogo.png" alt="KGNexus Logo">
+            </div>
+            <div class="copyright">
+                <p>Copyright &copy;2024; Designed by <span class="designer">KGNexus Team</span></p>
+            </div>
+        </div>
     </footer>
     <!-- End of footer -->
+
+    <!-- Javascript Footer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var footer = document.getElementById('footer');
+            var windowHeight = window.innerHeight;
+            var fullHeight = document.documentElement.scrollHeight;
+            var footerHeight = footer.offsetHeight;
+
+            function toggleFooter() {
+                var scrollPosition = window.scrollY;
+                if (scrollPosition + windowHeight >= fullHeight - footerHeight) {
+                    footer.classList.add('show-footer');
+                } else {
+                    footer.classList.remove('show-footer');
+                }
+            }
+
+            toggleFooter(); 
+            document.addEventListener('scroll', toggleFooter);
+            window.addEventListener('resize', toggleFooter);
+        });
+    </script>
+    <!-- End of Javascript Footer -->
 </body>
 
 </html>
