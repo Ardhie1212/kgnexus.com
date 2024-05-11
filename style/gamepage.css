@@ -1,0 +1,283 @@
+/* Initialize */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+body {
+    height: 400vh;
+    background-color: #252A34;
+    background-size: cover;
+    background-position: center;
+    overflow-y: scroll;
+}
+
+
+li {
+    list-style: none;
+}
+
+/* End of Initialize */
+
+/* Navbar styling */
+header {
+    width: 100%;
+    position: fixed;
+    padding: 0 2rem;
+    background-color: #252A34;
+    z-index: 100;
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Game Banner styling */
+main {
+    padding-top: 60px; /* Adjust to match the height of your navbar */
+}
+/* End Banner styling */
+
+.links {
+    justify-content: center;
+    display: flex;
+    gap: 2rem;
+}
+
+/* End of Navbar Styling */
+
+/* Navbar element styling */
+.links a {
+    position: relative;
+    /* Tambahkan posisi relatif */
+    color: #fff;
+    font-size: 1rem;
+    align-items: center;
+    transition: color 0.3s;
+    /* Transisi untuk warna teks */
+}
+
+.links a:hover {
+    color: #FF2E63 !important;
+}
+
+.navbar h2 {
+    color: #FF2E63;
+    cursor: default;
+    user-select: none;
+}
+
+.navbar li {
+    list-style: none;
+    position: relative;
+}
+
+/* End of Navbar element styling */
+
+/* Navbar icon styling */
+.navbar i {
+    color: #fff;
+    font-size: 2.2rem;
+    transition: color 0.3s ease;
+}
+
+i {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.navbar i.bxs-user-circle:hover {
+    color: #FF2E63;
+    cursor: pointer;
+}
+
+
+.navbar i.bx-menu:hover {
+    cursor: pointer;
+}
+
+/* End of Navbar icon styling */
+
+
+.navbar #menu {
+    margin-left: 10px;
+}
+
+/* Navbar dropdown styling */
+.navbar .bx.bxs-user-circle {
+    font-size: 2rem;
+}
+
+.navbar #Home {
+    margin-right: 0.5rem;
+}
+
+.navbar #dropdown {
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    margin-left: 0.5rem;
+}
+.dropyourstore,
+.genres,
+.special {
+    display: none; /* Semua dropdown defaultnya tidak terlihat */
+    position: absolute;
+    background-color: #252A34;
+    width: 10rem;
+    top: 100%;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+}
+.dropyourstore li,
+.genres li,
+.special li {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+.dropyourstore li a,
+.genres li a,
+.special li a {
+    color: #fff;
+}
+.dropyourstore li a:hover,
+.genres li a:hover,
+.special li a:hover {
+    color: #FF2E63;
+}
+.navbar li:hover .dropyourstore,
+.navbar li:hover .genres,
+.navbar li:hover .special {
+    display: block; /* Tampilkan dropdown saat li hover */
+}
+.sub-menu-wrap {
+    visibility: hidden;
+    position: absolute;
+    display: none;
+    top: 80%;
+    right: 0%;
+    width: 10rem;
+    border-radius: 0.5rem;
+    background: #252A34;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem; /* Tambahkan padding untuk memberi ruang di sekitar konten */
+    margin: 5px;
+    justify-content: center;
+}
+
+.sub-menu-wrap a {
+    position: relative;
+    color: #fff;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+    display: block; /* Mengubah tampilan elemen anchor menjadi block */
+    padding: 0.5rem 0; /* Tambahkan padding di atas dan bawah untuk memberi jarak vertikal */
+}
+
+.sub-menu-wrap a:hover{
+    color: #FF2E63;
+}
+
+.sub-menu-show {
+    visibility: visible;
+    display: block;
+}
+/* End of Navbar dropdown styling */
+
+/*game banner styling */
+.game-banner {
+    position: relative;
+}
+
+.game-banner img {
+    width: 100%;
+    height: auto; /* Ensures image maintains aspect ratio */
+}
+
+.game-content {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for readability */
+    padding: 10px;
+    color: white;
+}
+
+/* Adjustments for responsiveness */
+@media (max-width: 768px) {
+    .game-content {
+        position: static; /* Change position for smaller screens */
+        margin-top: 20px; /* Add spacing between image and content */
+    }
+}
+
+/*end of game banner styling */
+
+/* Game Media Styling */
+.game-media {
+    margin-top: 20px; /* Add space between banner and media */
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Aspect ratio for 16:9 videos */
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.image-gallery img {
+    width: calc(33.33% - 10px); /* Adjust based on desired spacing */
+    object-fit: cover;
+}
+/*end of game media styling */
+
+/* add to cart styling */
+.add-to-cart {
+    text-align: center; /* Center align the button */
+    margin-top: 20px; /* Add space between images and button */
+}
+
+.add-to-cart button {
+    padding: 10px 20px; /* Add padding to the button */
+    background-color: #4CAF50; /* Green background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.add-to-cart button i {
+    margin-right: 10px; /* Add space between icon and text */
+}
+
+/*End of add to cart styling */
