@@ -2,6 +2,8 @@
 include('../server/banner_controller.php');
 include('../server/connection.php');
 include('../server/recommended_get.php');
+include('../server/sale_get.php');
+include('../server/most_played_get.php');
 ?>
 
 
@@ -133,20 +135,68 @@ include('../server/recommended_get.php');
 
         <!-- Game content begin -->
         <div class="game1">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_1_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_1_right_btn"></i>
+            </div>
             <h3>Recommended For You</h3>
-            <div class="game-bx">
-                <?php while ($row = $recommended->fetch_assoc()) {?>
-                <div class="card">
-                    <img src="../images/game-images/header/<?php echo $row['header']?>" alt="">
-                    <div class="content">
-                        <div class="left">
-                            <h5><?php echo $row['game_name']?></h5>
-                            <p>IDR <?php echo $row['game_price'],00?></p>
+            <div class="game-bx" id="game_bx_1">
+                <?php while ($row = $recommended->fetch_assoc()) { ?>
+                    <div class="card">
+                        <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h5><?php echo $row['game_name'] ?></h5>
+                                <p><?php echo $row['rating'] ?></p>
+                            </div>
+                            <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
                         </div>
-                        <h6><?php echo $row['rating']?></h6>
                     </div>
-                </div>
-                <?php }?>
+                <?php } ?>
+            </div>
+        </div>
+
+        <div class="game2">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_2_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_2_right_btn"></i>
+            </div>
+            <h3>SALE</h3>
+            <div class="game-bx" id="game_bx_2">
+                <?php while ($row = $sale->fetch_assoc()) { ?>
+                    <div class="card">
+                        <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h5><?php echo $row['game_name'] ?></h5>
+                                <p><?php echo $row['rating'] ?></p>
+                            </div>
+                            <h6>IDR <?php echo $row['price'], 00 ?></h6>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+        <div class="game3">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_3_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_3_right_btn"></i>
+            </div>
+            <h3>Most Played</h3>
+            <div class="game-bx" id="game_bx_3">
+                <?php while ($row = $mostplayed->fetch_assoc()) { ?>
+                    <div class="card">
+                        <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h5><?php echo $row['game_name'] ?></h5>
+                                <p><?php echo $row['rating'] ?></p>
+                            </div>
+                            <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </main>
@@ -165,6 +215,46 @@ include('../server/recommended_get.php');
     </script>
     <!-- End of Javascript slider -->
 
+    <!-- Javascript game card scroll -->
+    <script>
+        let game_bx_1 = document.getElementById('game_bx_1');
+        let game_bx_1_left_btn = document.getElementById('game_bx_1_left_btn');
+        let game_bx_1_right_btn = document.getElementById('game_bx_1_right_btn');
+
+        let game_bx_2 = document.getElementById('game_bx_2');
+        let game_bx_2_left_btn = document.getElementById('game_bx_2_left_btn');
+        let game_bx_2_right_btn = document.getElementById('game_bx_2_right_btn');
+
+        let game_bx_3 = document.getElementById('game_bx_3');
+        let game_bx_3_left_btn = document.getElementById('game_bx_3_left_btn')
+        let game_bx_3_right_btn = document.getElementById('game_bx_3_right_btn')
+
+
+        game_bx_1_left_btn.addEventListener('click', () => {
+            game_bx_1.scrollLeft -= 300;
+        });
+
+        game_bx_1_right_btn.addEventListener('click', () => {
+            game_bx_1.scrollLeft += 300;
+        });
+
+        game_bx_2_left_btn.addEventListener('click', () => {
+            game_bx_2.scrollLeft -= 300;
+        });
+
+        game_bx_2_right_btn.addEventListener('click', () => {
+            game_bx_2.scrollLeft += 300;
+        });
+
+        game_bx_3_left_btn.addEventListener('click', () => {
+            game_bx_3.scrollLeft -= 300;
+        });
+
+        game_bx_3_right_btn.addEventListener('click', () => {
+            game_bx_3.scrollLeft += 300;
+        });
+    </script>
+    <!-- End of Javascript game card scroll -->
     <!-- Footer -->
     <footer id="footer" class="show-footer">
         <div class="footer-container">
@@ -195,7 +285,7 @@ include('../server/recommended_get.php');
                 }
             }
 
-            toggleFooter(); 
+            toggleFooter();
             document.addEventListener('scroll', toggleFooter);
             window.addEventListener('resize', toggleFooter);
         });

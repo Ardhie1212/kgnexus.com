@@ -1,6 +1,6 @@
 <?php
     include('connection.php');
-    $query_banner = "SELECT header from game WHERE sector = 'Banner' LIMIT 5";
+    $query_banner = "SELECT header from game WHERE sector = 'Most played' LIMIT 5";
 
     $stmt_banner = $conn ->prepare($query_banner);
 
