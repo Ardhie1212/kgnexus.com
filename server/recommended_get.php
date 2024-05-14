@@ -1,6 +1,6 @@
 <?php
     include('connection.php');
-    $query_recommended_image = "SELECT header, game_price, game_name, rating from game WHERE sector = 'recommended'";
+    $query_recommended_image = "SELECT * from game WHERE sector = 'recommended'";
 
     $stmt_recommended = $conn ->prepare($query_recommended_image);
 

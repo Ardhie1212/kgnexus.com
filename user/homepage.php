@@ -142,16 +142,18 @@ include('../server/most_played_get.php');
             <h3>Recommended For You</h3>
             <div class="game-bx" id="game_bx_1">
                 <?php while ($row = $recommended->fetch_assoc()) { ?>
-                    <div class="card">
-                        <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                        <div class="content">
-                            <div class="left">
-                                <h5><?php echo $row['game_name'] ?></h5>
-                                <p><?php echo $row['rating'] ?></p>
+                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
+                        <div class="card">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            <div class="content">
+                                <div class="left">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                    <p><?php echo $row['rating'] ?></p>
+                                </div>
+                                <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
                             </div>
-                            <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
                         </div>
-                    </div>
+                    </a>
                 <?php } ?>
             </div>
         </div>
@@ -164,16 +166,18 @@ include('../server/most_played_get.php');
             <h3>SALE</h3>
             <div class="game-bx" id="game_bx_2">
                 <?php while ($row = $sale->fetch_assoc()) { ?>
-                    <div class="card">
-                        <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                        <div class="content">
-                            <div class="left">
-                                <h5><?php echo $row['game_name'] ?></h5>
-                                <p><?php echo $row['rating'] ?></p>
+                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
+                        <div class="card">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            <div class="content">
+                                <div class="left">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                    <p><?php echo $row['rating'] ?></p>
+                                </div>
+                                <h6>IDR <?php echo $row['price'], 00 ?></h6>
                             </div>
-                            <h6>IDR <?php echo $row['price'], 00 ?></h6>
                         </div>
-                    </div>
+                    </a>
                 <?php } ?>
             </div>
         </div>
@@ -186,16 +190,18 @@ include('../server/most_played_get.php');
             <h3>Most Played</h3>
             <div class="game-bx" id="game_bx_3">
                 <?php while ($row = $mostplayed->fetch_assoc()) { ?>
-                    <div class="card">
-                        <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                        <div class="content">
-                            <div class="left">
-                                <h5><?php echo $row['game_name'] ?></h5>
-                                <p><?php echo $row['rating'] ?></p>
+                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
+                        <div class="card">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            <div class="content">
+                                <div class="left">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                    <p><?php echo $row['rating'] ?></p>
+                                </div>
+                                <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
                             </div>
-                            <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
                         </div>
-                    </div>
+                    </a>
                 <?php } ?>
             </div>
         </div>

@@ -1,5 +1,13 @@
 <?php
 include('../server/connection.php');
+
+$game_id = $_GET['game_id'];
+$query_select = "SELECT * FROM game WHERE game_id = $game_id";
+$result = mysqli_query($conn,$query_select);
+
+if (mysqli_num_rows($result) == 1) {
+    $game = mysqli_fetch_assoc($result);
+    mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -54,33 +62,34 @@ include('../server/connection.php');
     </header>
 
     <!-- End of navigation bar -->
-
+    
     <!-- Game Banner -->
     <main>
         <div class="wrapper">
             <div class="game-banner">
                 <!-- Game Banner Image and Content -->
-                <img src="../images/game-images/header/header-balatro.jpg" alt="banner game balatro">
+                
+                <img src="../images/game-images/header/<?php echo $game['header']?>" alt="">
                 <div class="game-content">
                     <!-- Game Information -->
-                    <h1>Game Title</h1>
-                    <p>Description of the game...</p>
-                    <p>Category: Action</p>
-                    <p>Company/Developer: ABC Games</p>
-                    <p>Release Date: January 1, 2023</p>
-                    <p>Size: 5 GB</p>
+                    <h1><?php echo $game['game_name']?></h1>
+                    <p><?php echo $game['game_desc']?></p>
+                    <p>Category: <?php echo $game['game_category']?></p>
+                    <p>Company/Developer: <?php echo $game['game_company']?></p>
+                    <p>Release Date: <?php echo $game['release_date']?></p>
+                    <p>Size: <?php echo $game['size']?>/p>
                 </div>
             </div>
             <div class="game-media">
                 <!-- Game Trailer -->
                 <div class="video-container">
-                    <video src="../images/game-images/video/video-balatro.webm" frameborder="0" ></video>
+                    <iframe src="../images/game-images/video/<?php echo $game['video']?>" frameborder="0" ></iframe>
                 </div>
                 <!-- Game Photos -->
                 <div class="image-gallery">
-                    <img src="../images/game-images/photo1/photo1-balatro.jpg" alt="Game Photo 1">
-                    <img src="../images/game-images/photo2/photo2-balatro.jpg" alt="Game Photo 2">
-                    <img src="../images/game-images/photo3/photo3-balatro.jpg" alt="Game Photo 3">
+                    <img src="../images/game-images/photo1/<?php echo $game['photo1']?>" alt="Game Photo 1">
+                    <img src="../images/game-images/photo2/<?php echo $game['photo2']?> "alt="Game Photo 2">
+                    <img src="../images/game-images/photo3/<?php echo $game['photo3']?>" alt="Game Photo 3">
                 </div>
                 <!-- Add to Cart Button -->
                 <div class="add-to-cart">
@@ -129,3 +138,5 @@ include('../server/connection.php');
 
 
 </html>
+
+<?php }?>
