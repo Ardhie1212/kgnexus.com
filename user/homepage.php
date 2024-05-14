@@ -1,3 +1,12 @@
+<?php
+include('../server/banner_controller.php');
+include('../server/connection.php');
+include('../server/recommended_get.php');
+include('../server/sale_get.php');
+include('../server/most_played_get.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +23,7 @@
     <!-- Navigation Bar -->
     <header>
         <nav class="navbar">
-            <h2 color="#eaeaea">KGNEXUS</h2>
+            <h2>KGNEXUS</h2>
             <div class="search-box">
                 <i class='bx bx-search' id="search-icon"></i>
                 <input type="search" placeholder="Search">
@@ -52,7 +61,7 @@
 
     </header>
 
-    <!-- End of navigatrion -->
+    <!-- End of navigation bar -->
 
     <!-- Javascript Dropdown -->
     <script>
@@ -90,126 +99,204 @@
 
     <!-- Main content -->
     <main>
+        <section class="section">
+            <div class="slider">
+                <div class="slide">
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <input type="radio" name="radio-btn" id="radio4">
+                    <input type="radio" name="radio-btn" id="radio5">
+                    <input type="radio" name="radio-btn" id="radio6">
+
+                    <div class="st first">
+                        <img src="../images/game-images/header/header-balatro.jpg" alt="">
+                    </div>
+                    <?php while ($row = $banner_image->fetch_assoc()) { ?>
+                        <div class="st">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                        </div>
+                    <?php } ?>
+
+                    <div class="nav-auto">
+                        <div class="a-b1"></div>
+                        <div class="a-b2"></div>
+                        <div class="a-b3"></div>
+                        <div class="a-b4"></div>
+                        <div class="a-b5"></div>
+                        <div class="a-b6"></div>
+                    </div>
+                </div>
+
+                <div class="nav-m">
+                    <label for="radio1" class="m-btn"></label>
+                    <label for="radio2" class="m-btn"></label>
+                    <label for="radio3" class="m-btn"></label>
+                    <label for="radio4" class="m-btn"></label>
+                    <label for="radio5" class="m-btn"></label>
+                    <label for="radio6" class="m-btn"></label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game content begin -->
+        <div class="game1">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_1_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_1_right_btn"></i>
+            </div>
+            <h3>Recommended For You</h3>
+            <div class="game-bx" id="game_bx_1">
+                <?php while ($row = $recommended->fetch_assoc()) { ?>
+                    <div class="card">
+                        <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h5><?php echo $row['game_name'] ?></h5>
+                                <p><?php echo $row['rating'] ?></p>
+                            </div>
+                            <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+        <div class="game2">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_2_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_2_right_btn"></i>
+            </div>
+            <h3>SALE</h3>
+            <div class="game-bx" id="game_bx_2">
+                <?php while ($row = $sale->fetch_assoc()) { ?>
+                    <div class="card">
+                        <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h5><?php echo $row['game_name'] ?></h5>
+                                <p><?php echo $row['rating'] ?></p>
+                            </div>
+                            <h6>IDR <?php echo $row['price'], 00 ?></h6>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+        <div class="game3">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_3_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_3_right_btn"></i>
+            </div>
+            <h3>Most Played</h3>
+            <div class="game-bx" id="game_bx_3">
+                <?php while ($row = $mostplayed->fetch_assoc()) { ?>
+                    <div class="card">
+                        <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h5><?php echo $row['game_name'] ?></h5>
+                                <p><?php echo $row['rating'] ?></p>
+                            </div>
+                            <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
     </main>
     <!-- End of Main content -->
+
+    <!-- Javascript Slider -->
+    <script type="text/javascript">
+        var counter = 1;
+        setInterval(function() {
+            document.getElementById('radio' + counter).checked = true;
+            counter++;
+            if (counter > 6) {
+                counter = 1;
+            }
+        }, 3000);
+    </script>
+    <!-- End of Javascript slider -->
+
+    <!-- Javascript game card scroll -->
+    <script>
+        let game_bx_1 = document.getElementById('game_bx_1');
+        let game_bx_1_left_btn = document.getElementById('game_bx_1_left_btn');
+        let game_bx_1_right_btn = document.getElementById('game_bx_1_right_btn');
+
+        let game_bx_2 = document.getElementById('game_bx_2');
+        let game_bx_2_left_btn = document.getElementById('game_bx_2_left_btn');
+        let game_bx_2_right_btn = document.getElementById('game_bx_2_right_btn');
+
+        let game_bx_3 = document.getElementById('game_bx_3');
+        let game_bx_3_left_btn = document.getElementById('game_bx_3_left_btn')
+        let game_bx_3_right_btn = document.getElementById('game_bx_3_right_btn')
+
+
+        game_bx_1_left_btn.addEventListener('click', () => {
+            game_bx_1.scrollLeft -= 300;
+        });
+
+        game_bx_1_right_btn.addEventListener('click', () => {
+            game_bx_1.scrollLeft += 300;
+        });
+
+        game_bx_2_left_btn.addEventListener('click', () => {
+            game_bx_2.scrollLeft -= 300;
+        });
+
+        game_bx_2_right_btn.addEventListener('click', () => {
+            game_bx_2.scrollLeft += 300;
+        });
+
+        game_bx_3_left_btn.addEventListener('click', () => {
+            game_bx_3.scrollLeft -= 300;
+        });
+
+        game_bx_3_right_btn.addEventListener('click', () => {
+            game_bx_3.scrollLeft += 300;
+        });
+    </script>
+    <!-- End of Javascript game card scroll -->
     <!-- Footer -->
-    <footer>
+    <footer id="footer" class="show-footer">
+        <div class="footer-container">
+            <div class="logo">
+                <img src="../images/TransparentLogo.png" alt="KGNexus Logo">
+            </div>
+            <div class="copyright">
+                <p>Copyright &copy;2024; Designed by <span class="designer">KGNexus Team</span></p>
+            </div>
+        </div>
     </footer>
     <!-- End of footer -->
 
-        <script>
-            const menuBtn = document.getElementById('menu');
-            const sidebar = document.getElementById('sidebar');
+    <!-- Javascript Footer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var footer = document.getElementById('footer');
+            var windowHeight = window.innerHeight;
+            var fullHeight = document.documentElement.scrollHeight;
+            var footerHeight = footer.offsetHeight;
 
-            menuBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('show-sidebar');
-                // Kalau div id="sidebar" punya class 'show-sidebar', maka class dihapus. Jika tidak, maka class 'show-sidebar' akan ditambahkan.
-                menuBtn.classList.toggle('bx-x');
-                // Kalau i dgn id="menu" punya class 'bx-x', class dihapus. Kalau ga punya, class nya ditambah. 
-            });
-        </script>
-        <!-- End of JavaScript Sidebar -->
-        <!-- Main content -->
-        <main>
-            <section class="section">
-                <div class="slider">
-                    <div class="slide">
-                        <input type="radio" name="radio-btn" id="radio1">
-                        <input type="radio" name="radio-btn" id="radio2">
-                        <input type="radio" name="radio-btn" id="radio3">
-                        <input type="radio" name="radio-btn" id="radio4">
-                        <input type="radio" name="radio-btn" id="radio5">
-                        <input type="radio" name="radio-btn" id="radio6">
-                        <input type="radio" name="radio-btn" id="radio7">
-                        <input type="radio" name="radio-btn" id="radio8">
-                        <input type="radio" name="radio-btn" id="radio9">
-                        <input type="radio" name="radio-btn" id="radio10">
-
-                        <div class="st first">
-                            <img src="../images/Balatro.jpg" alt="">
-                        </div>
-
-                        <div class="st">
-                            <img src="../images/Battlefield1.jpg" alt="">
-                        </div>
-
-                        <div class="st">
-                            <img src="../images/Bellwright.jpg" alt="">
-                        </div>
-
-                        <div class="st">
-                            <img src="../images/Eldenring.jpg" alt="">
-                        </div>
-
-                        <div class="st">
-                            <img src="../images/Fallout4.jpg" alt="">
-                        </div>
-
-                        <div class="st">
-                            <img src="../images/Hades.jpg" alt="">
-                        </div>
-
-                        <div class="st">
-                            <img src="../images/iRacing.jpg" alt="">
-                        </div>
-
-                        <div class="st">
-                            <img src="../images/P3r.jpg" alt="">
-                        </div>
-
-                        <div class="st">
-                            <img src="../images/Stellaris.jpg" alt="">
-                        </div>
-
-                        <div class="st">
-                            <img src="../images/Titanfall2.jpg" alt="">
-                        </div>
-
-                        <div class="nav-auto">
-                            <div class="a-b1"></div>
-                            <div class="a-b2"></div>
-                            <div class="a-b3"></div>
-                            <div class="a-b4"></div>
-                            <div class="a-b5"></div>
-                            <div class="a-b6"></div>
-                            <div class="a-b7"></div>
-                            <div class="a-b8"></div>
-                            <div class="a-b9"></div>
-                            <div class="a-b10"></div>
-                        </div>
-                    </div>
-
-                    <div class="nav-m">
-                        <label for="radio1" class="m-btn"></label>
-                        <label for="radio2" class="m-btn"></label>
-                        <label for="radio3" class="m-btn"></label>
-                        <label for="radio4" class="m-btn"></label>
-                        <label for="radio5" class="m-btn"></label>
-                        <label for="radio6" class="m-btn"></label>
-                        <label for="radio7" class="m-btn"></label>
-                        <label for="radio8" class="m-btn"></label>
-                        <label for="radio9" class="m-btn"></label>
-                        <label for="radio10" class="m-btn"></label>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <script type="text/javascript">
-            var counter = 1;
-            setInterval(function(){
-                document.getElementById('radio' + counter).checked=true;
-                counter++;
-                if(counter > 10){
-                    counter = 1;
+            function toggleFooter() {
+                var scrollPosition = window.scrollY;
+                if (scrollPosition + windowHeight >= fullHeight - footerHeight) {
+                    footer.classList.add('show-footer');
+                } else {
+                    footer.classList.remove('show-footer');
                 }
-            },5000);
-        </script>
+            }
 
-        <!-- End of Main content -->
-        <!-- Footer -->
-        <footer>
-        </footer>
-        <!-- End of footer -->
+            toggleFooter();
+            document.addEventListener('scroll', toggleFooter);
+            window.addEventListener('resize', toggleFooter);
+        });
+    </script>
+    <!-- End of Javascript Footer -->
 </body>
 
 </html>
