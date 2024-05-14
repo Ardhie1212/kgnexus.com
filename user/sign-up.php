@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include('../server/connection.php');
 
@@ -8,32 +7,34 @@ if (isset($_SESSION['logged_in'])) {
     exit;
 }
 
-if (isset($_POST['submit-btn'])){
-    if (strlen($_POST['email']) == 0 && strlen($_POST['alamat']) == 0){
-        $username = $_POST['username']; // Variabel $email menyimpan value dari <input> dengan name "user_email"
-        $passkey = $_POST['passkey']; // Variabel $password menyimpan value dari <input> dengan name "user_password"
+if (isset($_POST['submit-btn'])) {
+    if (strlen($_POST['email']) == 0 && strlen($_POST['alamat']) == 0) {
+        $username = $_POST['username'];
+        $passkey = $_POST['passkey'];
         $passkey = md5($passkey);
         $query = "SELECT * FROM user WHERE username = ? AND passkey = ? LIMIT 1";
 
         $stmt_login = $conn->prepare($query);
-        $stmt_login->bind_param('ss',$username,$passkey);
+        $stmt_login->bind_param('ss', $username, $passkey);
 
-        if($stmt_login->execute()){
+        if ($stmt_login->execute()) {
             $stmt_login->bind_result($id_user, $email, $username, $passkey, $alamat);
             $stmt_login->store_result();
 
-            if ($stmt_login->num_rows() == 1){
+            if ($stmt_login->num_rows() == 1) {
                 $stmt_login->fetch();
-                
+
                 $_SESSION['id_user'] = $id_user;
                 $_SESSION['email'] = $email;
                 $_SESSION['username'] = $username;
                 $_SESSION['passkey'] = $passkey;
                 $_SESSION['alamat'] = $alamat;
 
-                header('location: homepage.php?message=Logged in successfully');
+                header('location: homepage.php?login_success=1&username=' . urlencode($username));
+                exit();
             } else {
                 header('location: sign-up.php?error=Could not verify your account');
+                exit();
             }
         } else {
             header('location: sign-up.php?error=Something went wrong!');
@@ -53,18 +54,24 @@ if (isset($_POST['submit-btn'])){
         $result = mysqli_stmt_get_result($stmt);
 
         if (mysqli_num_rows($result) > 0) {
-            echo "Username or Email already exists. Please choose a different Username or Email.";
+            header('location: sign-up.php?error=1');
+            exit();
         } else {
             $query = "INSERT INTO user (email, username, passkey, alamat) VALUES (?, ?, ?, ?)";
             $stmt = mysqli_prepare($conn, $query);
             mysqli_stmt_bind_param($stmt, "ssss", $email, $username, $hashedPassword, $alamat);
-            mysqli_stmt_execute($stmt);
-            echo "Record inserted successfully!";
+            if (mysqli_stmt_execute($stmt)) {
+                header('location: sign-up.php?success=1');
+                exit();
+            } else {
+                header('location: sign-up.php?error=1');
+                exit();
+            }
         }
     }
 }
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,21 +90,19 @@ if (isset($_POST['submit-btn'])){
             <form action="sign-up.php" method="POST">
                 <div class="input-group">
                     <div class="input-field" id="emailField">
-                        <i class='bx bx-envelope' ></i>
+                        <i class='bx bx-envelope'></i>
                         <input type="email" placeholder="Email" name="email">
                     </div>
                     <div class="input-field" id="usernameField">
-                        <i class='bx bxs-user' ></i>    
+                        <i class='bx bxs-user'></i>
                         <input type="text" placeholder="Username" name="username" required>
                     </div>
-
                     <div class="input-field">
-                        <i class='bx bxs-key'></i>    
-                        <input type="password" placeholder="Password" name="passkey" required>                        
+                        <i class='bx bxs-key'></i>
+                        <input type="password" placeholder="Password" name="passkey" required>
                     </div>
-
                     <div class="input-field" id="addressField">
-                        <i class='bx bx-current-location'></i>    
+                        <i class='bx bx-current-location'></i>
                         <input type="text" placeholder="Address" name="alamat">
                     </div>
                 </div>
@@ -112,43 +117,101 @@ if (isset($_POST['submit-btn'])){
         </div>
     </div>
 
-        <script>
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Success!</h2>
+            <p>You have successfully created an account!</p>
+            <button id="modalOkButton">OK</button>
+        </div>
+    </div>
+    <!-- End of Success Modal -->
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Error!</h2>
+            <p>You failed to create an account!</p>
+            <button id="errorOkButton">OK</button>
+        </div>
+    </div>
+    <!-- End of Error Modal -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var successModal = document.getElementById("successModal");
+            var errorModal = document.getElementById("errorModal");
+            var closeButtons = document.getElementsByClassName("close");
+            var modalOkButton = document.getElementById("modalOkButton");
+            var errorOkButton = document.getElementById("errorOkButton");
+
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success')) {
+                successModal.style.display = "flex";
+            } else if (urlParams.has('error')) {
+                errorModal.style.display = "flex";
+            }
+
+            for (let i = 0; i < closeButtons.length; i++) {
+                closeButtons[i].onclick = function() {
+                    successModal.style.display = "none";
+                    errorModal.style.display = "none";
+                    window.location.href = window.location.pathname;
+                }
+            }
+
+            modalOkButton.onclick = function() {
+                successModal.style.display = "none";
+                window.location.href = window.location.pathname;
+            }
+
+            errorOkButton.onclick = function() {
+                errorModal.style.display = "none";
+                window.location.href = window.location.pathname;
+            }
+
+            window.onclick = function(event) {
+                if (event.target == successModal) {
+                    successModal.style.display = "none";
+                    window.location.href = window.location.pathname;
+                } else if (event.target == errorModal) {
+                    errorModal.style.display = "none";
+                    window.location.href = window.location.pathname;
+                }
+            }
+
             let signinBtn = document.getElementById("signinBtn");
             let signupBtn = document.getElementById("signupBtn");
             let usernameField = document.getElementById("usernameField");
             let emailField = document.getElementById("emailField");
             let title = document.getElementById("title");
             let addressField = document.getElementById("addressField");
-            let emailInput = document.getElementsByName("email");
-            let addressInput = document.getElementsByName("alamat")
-
+            let emailInput = document.getElementsByName("email")[0];
+            let addressInput = document.getElementsByName("alamat")[0];
 
             signinBtn.onclick = function() {
                 emailField.style.maxHeight = "0";
                 addressField.style.maxHeight = "0";
-                title.innerHTML = "Sign-In"
+                title.innerHTML = "Sign-In";
                 signupBtn.classList.add("disable");
                 signinBtn.classList.remove("disable");
+                emailInput.value = "";
+                addressInput.value = "";
             }
 
-            document.getElementById("signinBtn").addEventListener("click", function() {
-            // Mengambil elemen input untuk email dan alamat rumah
-            var emailInput = document.getElementsByName("email")[0];
-            var alamatInput = document.getElementsByName("alamat")[0];
-            // Mengosongkan nilai input
-            emailInput.value = "";
-            alamatInput.value = "";
+            signupBtn.onclick = function() {
+                emailField.style.maxHeight = "60px";
+                addressField.style.maxHeight = "60px";
+                title.innerHTML = "Sign-Up";
+                signupBtn.classList.remove("disable");
+                signinBtn.classList.add("disable");
+            }
         });
-
-
-        signupBtn.onclick = function() {
-            emailField.style.maxHeight = "60px";
-            title.innerHTML = "Sign-Up";
-            addressField.style.maxHeight = "60px";
-            signupBtn.classList.remove("disable");
-            signinBtn.classList.add("disable");
-        }
     </script>
+
+
 </body>
 
 </html>
