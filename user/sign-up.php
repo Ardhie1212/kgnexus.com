@@ -88,12 +88,12 @@ if (isset($_POST['submit-btn'])){
                     </div>
                     <div class="input-field" id="usernameField">
                         <i class='bx bxs-user' ></i>    
-                        <input type="text" placeholder="Username" name="username">
+                        <input type="text" placeholder="Username" name="username" required>
                     </div>
 
                     <div class="input-field">
                         <i class='bx bxs-key'></i>    
-                        <input type="password" placeholder="Password" name="passkey">                        
+                        <input type="password" placeholder="Password" name="passkey" required>                        
                     </div>
 
                     <div class="input-field" id="addressField">

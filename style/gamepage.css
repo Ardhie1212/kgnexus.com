@@ -281,3 +281,170 @@ i {
 }
 
 /*End of add to cart styling */
+
+
+/* Footer */
+
+footer {
+    background-color: #111;
+    position: fixed;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: transform 0.3s ease;
+    transform: translate(0, 100%);
+    display: flex;
+}
+
+.show-footer {
+    transform: translate(0, 0); 
+    display: flex;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo img {
+    width: 250px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.footer-container p {
+    margin: 0;
+    color: #fff;
+}
+
+.designer {
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+}
+
+/* End of Footer */
+/* Trailer */
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.game-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.video-container {
+    width: 100%;
+    max-width: 800px; /* Adjust this as needed */
+    margin: 20px 0;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.add-to-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.game-price-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.inner-price-box {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+/* End of Trailer */
+/* Transaction Box Styling */
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.game-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.add-to-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+.game-price-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.inner-price-box {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+/* End of Transaction Box Styling */
