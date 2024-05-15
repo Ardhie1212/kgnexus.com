@@ -40,12 +40,12 @@ include('../server/most_played_get.php');
                 <li>
                     <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
                     <ul class="genres" id="genres">
-                        <li><a href="">Action</a></li>
-                        <li><a href="">Adventure</a></li>
-                        <li><a href="">Role-playing</a></li>
-                        <li><a href="">Simulation</a></li>
-                        <li><a href="">Strategy</a></li>
-                        <li><a href="">Sports & Racing</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Action'?>">Action</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Adventure'?>">Adventure</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Role-playing'?>">Role-playing</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Simulator'?>">Simulation</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Strategy'?>">Strategy</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Sports'?>">Sports & Racing</a></li>
                     </ul>
 
                 </li>

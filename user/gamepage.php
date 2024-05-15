@@ -137,7 +137,11 @@ if (mysqli_num_rows($result) == 1) {
                                 </button>
                             </div>
                         </div>
-                        <i class='bx bx-heart'>i>
+                        <div class="wishlist">
+                            <i class='bx bx-heart'>
+                                <p>Wishlist</p>
+                            </i>
+                        </div>
                     </div>
                 </div>
             </div>
