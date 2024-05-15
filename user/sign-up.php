@@ -91,7 +91,7 @@ if (isset($_POST['submit-btn'])) {
                 <div class="input-group">
                     <div class="input-field" id="emailField">
                         <i class='bx bx-envelope'></i>
-                        <input type="email" placeholder="Email" name="email">
+                        <input type="email" placeholder="Email" name="email" required>
                     </div>
                     <div class="input-field" id="usernameField">
                         <i class='bx bxs-user'></i>
@@ -103,7 +103,7 @@ if (isset($_POST['submit-btn'])) {
                     </div>
                     <div class="input-field" id="addressField">
                         <i class='bx bx-current-location'></i>
-                        <input type="text" placeholder="Address" name="alamat">
+                        <input type="text" placeholder="Address" name="alamat" required>
                     </div>
                 </div>
                 <div class="btn-field">
@@ -117,6 +117,48 @@ if (isset($_POST['submit-btn'])) {
         </div>
     </div>
 
+    <!-- Javascript Login Form Logic -->
+
+    <script>
+        let signinBtn = document.getElementById("signinBtn");
+        let signupBtn = document.getElementById("signupBtn");
+        let usernameField = document.getElementById("usernameField");
+        let emailField = document.getElementById("emailField");
+        let title = document.getElementById("title");
+        let addressField = document.getElementById("addressField");
+        let emailInput = document.getElementsByName("email")[0];
+        let addressInput = document.getElementsByName("alamat")[0];
+
+        signinBtn.onclick = function() {
+            emailField.style.maxHeight = "0";
+            addressField.style.maxHeight = "0";
+            title.innerHTML = "Sign-In";
+            signupBtn.classList.add("disable");
+            signinBtn.classList.remove("disable");
+
+            
+            emailInput.removeAttribute("required");
+            addressInput.removeAttribute("required");
+
+            
+            emailInput.value = "";
+            addressInput.value = "";
+        }
+
+        signupBtn.onclick = function() {
+            emailField.style.maxHeight = "60px";
+            addressField.style.maxHeight = "60px";
+            title.innerHTML = "Sign-Up";
+            signupBtn.classList.remove("disable");
+            signinBtn.classList.add("disable");
+
+            // Menambahkan atribut required
+            emailInput.setAttribute("required", "required");
+            addressInput.setAttribute("required", "required");
+        }
+    </script>
+    <!-- End of Javascript Login Form Logic -->
+    
     <!-- Success Modal -->
     <div id="successModal" class="modal">
         <div class="modal-content">
@@ -139,6 +181,8 @@ if (isset($_POST['submit-btn'])) {
     </div>
     <!-- End of Error Modal -->
 
+
+    <!-- Javascript Error Modal Logic -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var successModal = document.getElementById("successModal");
@@ -182,35 +226,9 @@ if (isset($_POST['submit-btn'])) {
                 }
             }
 
-            let signinBtn = document.getElementById("signinBtn");
-            let signupBtn = document.getElementById("signupBtn");
-            let usernameField = document.getElementById("usernameField");
-            let emailField = document.getElementById("emailField");
-            let title = document.getElementById("title");
-            let addressField = document.getElementById("addressField");
-            let emailInput = document.getElementsByName("email")[0];
-            let addressInput = document.getElementsByName("alamat")[0];
-
-            signinBtn.onclick = function() {
-                emailField.style.maxHeight = "0";
-                addressField.style.maxHeight = "0";
-                title.innerHTML = "Sign-In";
-                signupBtn.classList.add("disable");
-                signinBtn.classList.remove("disable");
-                emailInput.value = "";
-                addressInput.value = "";
-            }
-
-            signupBtn.onclick = function() {
-                emailField.style.maxHeight = "60px";
-                addressField.style.maxHeight = "60px";
-                title.innerHTML = "Sign-Up";
-                signupBtn.classList.remove("disable");
-                signinBtn.classList.add("disable");
-            }
         });
     </script>
-
+    <!-- End of Javascript Error Modal Logic -->
 
 </body>
 
