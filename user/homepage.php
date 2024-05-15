@@ -4,6 +4,7 @@ include('../server/connection.php');
 include('../server/recommended_get.php');
 include('../server/sale_get.php');
 include('../server/most_played_get.php');
+session_start();
 ?>
 
 
@@ -54,8 +55,8 @@ include('../server/most_played_get.php');
             </ul>
             <i class='bx bxs-user-circle' id="user"></i>
             <div class="sub-menu-wrap" id="sub-menu-wrap">
-                <a href="profile-user.php">Manage Account</a>
-                <a href="#" id="logout">Logout</a>
+                <a href="profile-user.php?id=<?php echo $_SESSION['id_user']; ?>">Manage Account</a>
+                <a href="sign-up.php" onclick='confirmLogout()'>Logout</a>
             </div>
         </nav>
 
@@ -139,6 +140,12 @@ include('../server/most_played_get.php');
         special.previousElementSibling.addEventListener('click', () => {
             genres.classList.toggle('special-show');
         });
+
+        function confirmLogout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                window.location.href = 'sign-up.php';
+            }
+        }
     </script>
     <!-- End of javascript dropdown -->
 
