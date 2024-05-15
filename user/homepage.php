@@ -41,12 +41,12 @@ session_start();
                 <li>
                     <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
                     <ul class="genres" id="genres">
-                        <li><a href="">Action</a></li>
-                        <li><a href="">Adventure</a></li>
-                        <li><a href="">Role-playing</a></li>
-                        <li><a href="">Simulation</a></li>
-                        <li><a href="">Strategy</a></li>
-                        <li><a href="">Sports & Racing</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Action'?>">Action</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Adventure'?>">Adventure</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Role-playing'?>">Role-playing</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Simulator'?>">Simulation</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Strategy'?>">Strategy</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Sports'?>">Sports & Racing</a></li>
                     </ul>
 
                 </li>
@@ -63,6 +63,57 @@ session_start();
     </header>
 
     <!-- End of navigation bar -->
+
+    <!-- Logout Modal -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Are you sure you want to log out?</h2>
+        <div>
+            <button id="confirmLogout">Yes</button>
+            <button id="cancelLogout">Cancel</button>
+        </div>
+    </div>
+    <!-- End of Logout Modal -->
+
+    <!-- Javascript Logout Modal -->
+    <script>
+        function centerModal() {
+            var modal = document.querySelector('.modal-content');
+            modal.style.top = "50%";
+            modal.style.left = "50%";
+            modal.style.transform = "translate(-50%, -50%)";
+        }
+
+        window.addEventListener('resize', centerModal);
+
+        var logoutBtn = document.getElementById("logout");
+        var modal = document.querySelector('.modal-content');
+        var closeModal = document.querySelector('.close');
+
+        logoutBtn.addEventListener('click', function() {
+            modal.style.display = "block";
+            centerModal();
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        document.getElementById("confirmLogout").addEventListener("click", function() {
+            window.location.href = "sign-up.php"; 
+        });
+
+        document.getElementById("cancelLogout").addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+    </script>
+    <!-- End of Javascript Logout Modal -->
 
     <!-- Javascript Dropdown -->
     <script>

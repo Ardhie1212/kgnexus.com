@@ -294,7 +294,7 @@ i {
 
 /* add to cart styling */
 .add-to-cart {
-    height: 300px;
+    height: 320px;
     width: 440px;
     text-align: center; /* Center align the text */
     margin-top: 20px; /* Add space between images and button */
@@ -338,6 +338,24 @@ i {
 
 .inner-price-box button i {
     margin-right: 10px; /* Add space between icon and text */
+}
+
+.wishlist {
+    align-items: center;
+    display: inline-flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.add-to-cart i.bx-heart {
+    font-size: 1rem;
+    color: #111;
+    display: inline;
+}
+
+
+.add-to-cart i.bx-heart:hover {
+    color: #FF2E63;
 }
 /*End of add to cart styling */
 
