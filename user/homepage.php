@@ -1,6 +1,9 @@
 <?php
 include('../server/banner_controller.php');
 include('../server/connection.php');
+include('../server/recommended_get.php');
+include('../server/sale_get.php');
+include('../server/most_played_get.php');
 ?>
 
 
@@ -37,12 +40,12 @@ include('../server/connection.php');
                 <li>
                     <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
                     <ul class="genres" id="genres">
-                        <li><a href="">Action</a></li>
-                        <li><a href="">Adventure</a></li>
-                        <li><a href="">Role-playing</a></li>
-                        <li><a href="">Simulation</a></li>
-                        <li><a href="">Strategy</a></li>
-                        <li><a href="">Sports & Racing</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Action'?>">Action</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Adventure'?>">Adventure</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Role-playing'?>">Role-playing</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Simulator'?>">Simulation</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Strategy'?>">Strategy</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Sports'?>">Sports & Racing</a></li>
                     </ul>
 
                 </li>
@@ -101,11 +104,11 @@ include('../server/connection.php');
                     <input type="radio" name="radio-btn" id="radio6">
 
                     <div class="st first">
-                        <img src="../images/photo1/photo1-balatro.jpg" alt="">
+                        <img src="../images/game-images/header/header-balatro.jpg" alt="">
                     </div>
                     <?php while ($row = $banner_image->fetch_assoc()) { ?>
                         <div class="st">
-                            <img src="../images/photo1/<?php echo $row['photo1'] ?>" alt="">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
                         </div>
                     <?php } ?>
 
@@ -129,6 +132,79 @@ include('../server/connection.php');
                 </div>
             </div>
         </section>
+
+        <!-- Game content begin -->
+        <div class="game1">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_1_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_1_right_btn"></i>
+            </div>
+            <h3>Recommended For You</h3>
+            <div class="game-bx" id="game_bx_1">
+                <?php while ($row = $recommended->fetch_assoc()) { ?>
+                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
+                        <div class="card">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            <div class="content">
+                                <div class="left">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                    <p><?php echo $row['rating'] ?></p>
+                                </div>
+                                <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
+                            </div>
+                        </div>
+                    </a>
+                <?php } ?>
+            </div>
+        </div>
+
+        <div class="game2">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_2_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_2_right_btn"></i>
+            </div>
+            <h3>SALE</h3>
+            <div class="game-bx" id="game_bx_2">
+                <?php while ($row = $sale->fetch_assoc()) { ?>
+                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
+                        <div class="card">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            <div class="content">
+                                <div class="left">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                    <p><?php echo $row['rating'] ?></p>
+                                </div>
+                                <h6>IDR <?php echo $row['price'], 00 ?></h6>
+                            </div>
+                        </div>
+                    </a>
+                <?php } ?>
+            </div>
+        </div>
+
+        <div class="game3">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_3_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_3_right_btn"></i>
+            </div>
+            <h3>Most Played</h3>
+            <div class="game-bx" id="game_bx_3">
+                <?php while ($row = $mostplayed->fetch_assoc()) { ?>
+                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
+                        <div class="card">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            <div class="content">
+                                <div class="left">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                    <p><?php echo $row['rating'] ?></p>
+                                </div>
+                                <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
+                            </div>
+                        </div>
+                    </a>
+                <?php } ?>
+            </div>
+        </div>
     </main>
     <!-- End of Main content -->
 
@@ -145,11 +221,82 @@ include('../server/connection.php');
     </script>
     <!-- End of Javascript slider -->
 
-    <!-- Footer -->
-    <footer>
+    <!-- Javascript game card scroll -->
+    <script>
+        let game_bx_1 = document.getElementById('game_bx_1');
+        let game_bx_1_left_btn = document.getElementById('game_bx_1_left_btn');
+        let game_bx_1_right_btn = document.getElementById('game_bx_1_right_btn');
 
+        let game_bx_2 = document.getElementById('game_bx_2');
+        let game_bx_2_left_btn = document.getElementById('game_bx_2_left_btn');
+        let game_bx_2_right_btn = document.getElementById('game_bx_2_right_btn');
+
+        let game_bx_3 = document.getElementById('game_bx_3');
+        let game_bx_3_left_btn = document.getElementById('game_bx_3_left_btn')
+        let game_bx_3_right_btn = document.getElementById('game_bx_3_right_btn')
+
+
+        game_bx_1_left_btn.addEventListener('click', () => {
+            game_bx_1.scrollLeft -= 300;
+        });
+
+        game_bx_1_right_btn.addEventListener('click', () => {
+            game_bx_1.scrollLeft += 300;
+        });
+
+        game_bx_2_left_btn.addEventListener('click', () => {
+            game_bx_2.scrollLeft -= 300;
+        });
+
+        game_bx_2_right_btn.addEventListener('click', () => {
+            game_bx_2.scrollLeft += 300;
+        });
+
+        game_bx_3_left_btn.addEventListener('click', () => {
+            game_bx_3.scrollLeft -= 300;
+        });
+
+        game_bx_3_right_btn.addEventListener('click', () => {
+            game_bx_3.scrollLeft += 300;
+        });
+    </script>
+    <!-- End of Javascript game card scroll -->
+    <!-- Footer -->
+    <footer id="footer" class="show-footer">
+        <div class="footer-container">
+            <div class="logo">
+                <img src="../images/TransparentLogo.png" alt="KGNexus Logo">
+            </div>
+            <div class="copyright">
+                <p>Copyright &copy;2024; Designed by <span class="designer">KGNexus Team</span></p>
+            </div>
+        </div>
     </footer>
     <!-- End of footer -->
+
+    <!-- Javascript Footer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var footer = document.getElementById('footer');
+            var windowHeight = window.innerHeight;
+            var fullHeight = document.documentElement.scrollHeight;
+            var footerHeight = footer.offsetHeight;
+
+            function toggleFooter() {
+                var scrollPosition = window.scrollY;
+                if (scrollPosition + windowHeight >= fullHeight - footerHeight) {
+                    footer.classList.add('show-footer');
+                } else {
+                    footer.classList.remove('show-footer');
+                }
+            }
+
+            toggleFooter();
+            document.addEventListener('scroll', toggleFooter);
+            window.addEventListener('resize', toggleFooter);
+        });
+    </script>
+    <!-- End of Javascript Footer -->
 </body>
 
 </html>
