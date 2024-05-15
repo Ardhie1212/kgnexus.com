@@ -138,12 +138,10 @@ i {
 .navbar #menu {
     margin-left: 10px;
 }
+/* End of Navbar search-box styling */
 
 
 /* Navbar dropdown styling */
-
-/* End of Navbar search-box styling */
-
 .navbar .bx.bxs-user-circle {
     font-size: 2rem;
 }

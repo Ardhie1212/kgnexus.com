@@ -1,5 +1,12 @@
 <?php
-
+include('../server/connection.php');
+if (isset($_GET['game_category'])) {
+    $category = $_GET['game_category'];
+    $query_get_game = "SELECT * FROM game WHERE game_category = '$category'";
+    $stmt_query = $conn->prepare($query_get_game);
+    $stmt_query->execute();
+    $game = $stmt_query->get_result();
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../style/categorypage.css">
 </head>
 
 <body>
@@ -81,6 +89,12 @@
         });
     </script>
     <!-- End of javascript dropdown -->
+
+    <main>
+        <?php while ($row = $game->fetch_assoc()) {?>
+        <p><?php echo $row['game_category'] ?>KOMTOOOL</p>
+        <?php }?>
+    </main>
 </body>
 
 </html>
