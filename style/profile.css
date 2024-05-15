@@ -42,3 +42,6 @@ textarea {
     border-color: #FF2E63; /* Warna border saat diklik */
 }
 
+.input-group-text {
+    cursor: pointer;
+}
