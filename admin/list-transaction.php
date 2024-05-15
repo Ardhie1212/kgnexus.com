@@ -9,6 +9,7 @@ $result = mysqli_query($conn, $query_view);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,24 +85,35 @@ $result = mysqli_query($conn, $query_view);
             cursor: pointer;
             font-size: 30px;
         }
-
-        .modal-backdrop {
-            z-index: 1040 !important;
-        }
-        .modal {
-            z-index: 1050 !important;
-        }
-        #confirmLogoutModal {
-            z-index: 1060 !important;
-        }
     </style>
 </head>
+
 <body>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="list-transaction.php">List Transaksi</a>
         <a href="dashboard-admin.php">List Games</a>
         <a href="#" onclick="confirmLogout()">Logout</a>
+    </div>
+    <!-- Modal for Logout Confirmation -->
+    <div class="modal fade" id="confirmLogoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true" style="z-index: 1050;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmLogoutModalLabel">Konfirmasi Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="main">
@@ -151,27 +163,6 @@ $result = mysqli_query($conn, $query_view);
     </div>
 
     <!-- Modal HTML -->
-    <div class="modal fade" id="confirmLogoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmLogoutModalLabel">Konfirmasi Logout</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin logout?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal HTML for status change confirmation -->
     <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -215,7 +206,7 @@ $result = mysqli_query($conn, $query_view);
                 }
             });
 
-            $('#confirmModal').on('hidden.bs.modal', function () {
+            $('#confirmModal').on('hidden.bs.modal', function() {
                 if (!$('#confirmBtn').data('confirmed')) {
                     $(currentCheckbox).prop('checked', false);
                 }
@@ -252,4 +243,5 @@ $result = mysqli_query($conn, $query_view);
         }
     </script>
 </body>
+
 </html>

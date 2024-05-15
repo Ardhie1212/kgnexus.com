@@ -1,26 +1,49 @@
 <?php
 include '../server/connection.php';
 
-if (isset($_POST['id_user'], $_POST['email'], $_POST['username'], $_POST['alamat'])) {
+if (isset($_POST['id_user'])) {
     $id_user = $_POST['id_user'];
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $alamat = $_POST['alamat'];
 
-    $query = "UPDATE user SET email = '$email', username = '$username', alamat = '$alamat'
-    WHERE id_user = $id_user";
+    // Array to hold the update queries
+    $updates = [];
 
-    if (mysqli_query($conn, $query)) {
-        header('location: ../user/profile.php?success=Data telah diperbarui!');
-        exit(); // Pastikan untuk keluar dari skrip setelah mengalihkan
-    } else {
-        echo "Error: " . mysqli_error($conn); // Tampilkan pesan kesalahan jika kueri gagal
+    if (!empty($_POST['email'])) {
+        $email = $_POST['email'];
+        $updates[] = "email = '$email'";
     }
 
-    mysqli_close($conn);
+    if (!empty($_POST['username'])) {
+        $username = $_POST['username'];
+        $updates[] = "username = '$username'";
+    }
+
+    if (!empty($_POST['alamat'])) {
+        $alamat = $_POST['alamat'];
+        $updates[] = "alamat = '$alamat'";
+    }
+
+    // Check if there are updates to make
+    if (!empty($updates)) {
+        $query = "UPDATE user SET " . implode(', ', $updates) . " WHERE id_user = $id_user";
+
+        if (mysqli_query($conn, $query)) {
+            mysqli_close($conn);
+            header('location: ../user/profile-user.php?success=Data telah diperbarui!');
+            exit(); // Ensure to exit after redirecting
+        } else {
+            $error_message = "Error: " . mysqli_error($conn);
+        }
+    } else {
+        // Notify if no data was provided
+        $error_message = "Tidak ada data yang diubah";
+    }
 } else {
-    // Notifikasi jika data kosong
-    header('location: ../user/profile.php?error=Data kosong/tidak lengkap');
-    exit(); // Pastikan untuk keluar dari skrip setelah mengalihkan
+    // Notify if id_user is not set
+    $error_message = "ID pengguna tidak ditemukan";
 }
+
+// Redirect to profile page with error message
+mysqli_close($conn);
+header('location: ../user/profile-user.php?error=' . urlencode($error_message));
+exit(); // Ensure to exit after redirecting
 ?>

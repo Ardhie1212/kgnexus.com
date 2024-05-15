@@ -84,7 +84,14 @@ if ($result_users) {
     $total_users = $row['total_users'];
 }
 
-$query_income = "SELECT SUM(amount) as total_income FROM transaction";
+$query_income = "
+    SELECT SUM(total_sales) AS total_income
+    FROM (
+        SELECT g.game_price * COUNT(t.transaction_id) AS total_sales
+        FROM transaction t
+        JOIN game g ON t.game_id = g.game_id
+        GROUP BY g.game_id
+    ) AS sales";
 $result_income = $conn->query($query_income);
 $total_income = 0.0;
 if ($result_income) {
@@ -229,46 +236,47 @@ $conn->close();
 </head>
 
 <body>
-    <span><h1 style="background-color: #111; color : white ; padding : 25px ;"  >Dashboard Admin</h1></span>
+    <span>
+        <h1 style="background-color: #111; color: white; padding: 25px;">Dashboard Admin</h1>
+    </span>
     <div class="hamburger" style="color: white;" onclick="openNav()">&#9776;</div>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="list-transaction.php">List Transaksi</a>
         <a href="dashboard-admin.php">List Games</a>
         <a href="#" onclick="confirmLogout()">Logout</a>
-
-        <!-- Modal for Logout Confirmation -->
-        <div class="modal fade" id="confirmLogoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true" style="z-index: 1050;">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmLogoutModalLabel">Konfirmasi Logout</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Apakah Anda yakin ingin logout?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
-                    </div>
+    </div>
+    <!-- Modal for Logout -->
+    <div class="modal fade" id="confirmLogoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmLogoutModalLabel">Konfirmasi Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
                 </div>
             </div>
         </div>
-
-        <script>
-            function confirmLogout() {
-                $('#confirmLogoutModal').modal('show');
-            }
-
-            function logout() {
-                window.location.href = 'login-admin.php'; // Redirect to logout page
-            }
-        </script>
-
     </div>
+
+
+    <script>
+        function confirmLogout() {
+            $('#confirmLogoutModal').modal('show');
+        }
+
+        function logout() {
+            window.location.href = 'login-admin.php'; // Redirect to logout page
+        }
+    </script>
 
     <div class="row align-items-center">
         <div class="col-md-8">
