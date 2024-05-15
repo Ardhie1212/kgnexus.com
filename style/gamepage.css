@@ -10,11 +10,12 @@
 }
 
 body {
-    height: 400vh;
-    background-color: #252A34;
+    height: 300vh;
+    background-color: #222831;
     background-size: cover;
     background-position: center;
     overflow-y: scroll;
+    overflow-y: auto;
 }
 
 
@@ -27,10 +28,10 @@ li {
 /* Navbar styling */
 header {
     width: 100%;
-    position: fixed;
+    position:absolute;
     padding: 0 2rem;
-    background-color: #252A34;
-    z-index: 100;
+    background-color: #FF2E63;
+    z-index: 1000;
 }
 
 .navbar {
@@ -40,12 +41,6 @@ header {
     align-items: center;
     justify-content: space-between;
 }
-
-/* Game Banner styling */
-main {
-    padding-top: 60px; /* Adjust to match the height of your navbar */
-}
-/* End Banner styling */
 
 .links {
     justify-content: center;
@@ -66,12 +61,15 @@ main {
     /* Transisi untuk warna teks */
 }
 
-.links a:hover {
-    color: #FF2E63 !important;
+#yourStore:hover, #Category:hover, #Wishlist:hover, #Cart:hover {
+    color: #222831 !important;
 }
 
+.links a:hover{
+    color: #08D9D6 !important;
+}
 .navbar h2 {
-    color: #FF2E63;
+    color: #fff;
     cursor: default;
     user-select: none;
 }
@@ -96,7 +94,7 @@ i {
 }
 
 .navbar i.bxs-user-circle:hover {
-    color: #FF2E63;
+    color: #222831;
     cursor: pointer;
 }
 
@@ -107,12 +105,45 @@ i {
 
 /* End of Navbar icon styling */
 
+/* Navbar search-box styling */
+.search-box {
+    background-color: #fff;
+    border-radius: 2rem;
+    padding: 0.5rem 0.5rem;
+    display: flex;
+    align-items: center;
+    width: 20vw;
+}
+
+.search-box i {
+    color: #252A34;
+    font-size: 1.2rem;
+}
+
+.navbar #search-icon {
+    margin-left: 10px;
+}
+
+.navbar input[type="search"] {
+    background: transparent;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+    color: hsl(252, 30%, 17%);
+    border: none;
+    outline: none;
+    width: 100%;
+}
 
 .navbar #menu {
     margin-left: 10px;
 }
 
+
 /* Navbar dropdown styling */
+
+/* End of Navbar search-box styling */
+
 .navbar .bx.bxs-user-circle {
     font-size: 2rem;
 }
@@ -187,7 +218,7 @@ i {
 }
 
 .sub-menu-wrap a:hover{
-    color: #FF2E63;
+    color: #08D9D6;
 }
 
 .sub-menu-show {
@@ -195,6 +226,10 @@ i {
     display: block;
 }
 /* End of Navbar dropdown styling */
+
+
+
+
 
 /*game banner styling */
 .game-banner {
@@ -256,13 +291,35 @@ i {
 }
 /*end of game media styling */
 
+
 /* add to cart styling */
 .add-to-cart {
-    text-align: center; /* Center align the button */
+    height: 300px;
+    width: 440px;
+    text-align: center; /* Center align the text */
     margin-top: 20px; /* Add space between images and button */
 }
 
-.add-to-cart button {
+.add-to-cart h4 {
+    font-size: 35px;
+    margin-bottom: 30px; /* Add some space below the price */
+    margin-top: 40px;
+}
+
+.game-price-box {
+    display: flex;
+    justify-content: center; /* Center the inner box */
+    width: 100%;
+}
+
+.inner-price-box {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center align the buttons */
+    width: 100%;
+}
+
+.inner-price-box button {
     padding: 10px 20px; /* Add padding to the button */
     background-color: #4CAF50; /* Green background color */
     color: white;
@@ -270,18 +327,19 @@ i {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 80%;
+    height: 70%;
+    margin-bottom: 10px; /* Add space between buttons */
 }
 
-.add-to-cart button:hover {
+.inner-price-box button:hover {
     background-color: #45a049; /* Darker green on hover */
 }
 
-.add-to-cart button i {
+.inner-price-box button i {
     margin-right: 10px; /* Add space between icon and text */
 }
-
 /*End of add to cart styling */
-
 
 /* Footer */
 
