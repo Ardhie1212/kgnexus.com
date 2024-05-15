@@ -4,6 +4,15 @@ include('../server/connection.php');
 include('../server/recommended_get.php');
 include('../server/sale_get.php');
 include('../server/most_played_get.php');
+session_start();
+
+
+$id_user = $_SESSION['id_user'];
+$email = $_SESSION['email'];
+$username=$_SESSION['username'];
+$passkey = $_SESSION['passkey'];
+$alamat =$_SESSION['alamat'];
+
 ?>
 
 

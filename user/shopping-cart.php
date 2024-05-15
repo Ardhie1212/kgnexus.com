@@ -1,5 +1,23 @@
 <?php
 include('../server/connection.php');
+session_start();
+
+// Check if session variables are set
+if (isset($_SESSION['id_user']) && isset($_SESSION['email']) && isset($_SESSION['username'])) {
+    $id_user = $_SESSION['id_user'];
+    $email = $_SESSION['email'];
+    $username = $_SESSION['username'];
+    $passkey = $_SESSION['passkey'];
+    $alamat = $_SESSION['alamat'];
+
+    // Now you can use these session variables as needed
+    echo "Welcome back, $username"; // Example of using session variable
+} else {
+    // Redirect to login page if session variables are not set
+    header("Location: sign-up.php");
+    exit();
+}
+
 
 ?>
 
