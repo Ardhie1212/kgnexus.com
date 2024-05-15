@@ -12,6 +12,7 @@ if (isset($_POST['submit-btn'])){
     if (strlen($_POST['email']) == 0 && strlen($_POST['alamat']) == 0){
         $username = $_POST['username']; // Variabel $email menyimpan value dari <input> dengan name "user_email"
         $passkey = $_POST['passkey']; // Variabel $password menyimpan value dari <input> dengan name "user_password"
+        $passkey = md5($passkey);
         $query = "SELECT * FROM user WHERE username = ? AND passkey = ? LIMIT 1";
 
         $stmt_login = $conn->prepare($query);
@@ -43,7 +44,7 @@ if (isset($_POST['submit-btn'])){
         $passkey = $_POST['passkey'];
         $alamat = $_POST['alamat'];
 
-        $hashedPassword = password_hash($passkey, PASSWORD_DEFAULT);
+        $hashedPassword = md5($passkey);
 
         $checkQuery = "SELECT * FROM user WHERE username = ? OR email = ?";
         $stmt = mysqli_prepare($conn, $checkQuery);
@@ -87,12 +88,12 @@ if (isset($_POST['submit-btn'])){
                     </div>
                     <div class="input-field" id="usernameField">
                         <i class='bx bxs-user' ></i>    
-                        <input type="text" placeholder="Username" name="username">
+                        <input type="text" placeholder="Username" name="username" required>
                     </div>
 
                     <div class="input-field">
                         <i class='bx bxs-key'></i>    
-                        <input type="password" placeholder="Password" name="passkey">                        
+                        <input type="password" placeholder="Password" name="passkey" required>                        
                     </div>
 
                     <div class="input-field" id="addressField">

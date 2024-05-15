@@ -120,19 +120,19 @@ $conn->close();
             height: 100%;
             width: 0;
             position: fixed;
+            z-index: 1000;
             top: 0;
-            right: 0;
+            left: 0;
             background-color: #111;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
-            z-index: 1;
         }
 
         .sidebar a {
-            padding: 10px 15px;
+            padding: 8px 8px 8px 32px;
             text-decoration: none;
-            font-size: 22px;
+            font-size: 25px;
             color: #818181;
             display: block;
             transition: 0.3s;
@@ -233,7 +233,7 @@ $conn->close();
     <div class="hamburger" style="color: white;" onclick="openNav()">&#9776;</div>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="transactions_list.php">List Transaksi</a>
+        <a href="list-transaction.php">List Transaksi</a>
         <a href="dashboard-admin.php">List Games</a>
         <a href="#" onclick="confirmLogout()">Logout</a>
 
