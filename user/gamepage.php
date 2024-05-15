@@ -127,10 +127,12 @@ if (mysqli_num_rows($result) == 1) {
                         <h4>Rp. <?php echo $game['game_price'] ?></h4>
                         <div class="game-price-box">
                             <div class="inner-price-box">
-                                <button>
-                                    <i class='bx bxs-cart-add'></i>
+                                <a href="shopping-cart.php?game_id=<?=$game_id ?>"><button>
+                                    <i class="fas fa-shopping-cart"></i>
                                     Add to Cart
                                 </button>
+                                </a>
+                                <br>
                                 <button>
                                     <i class='bx bx-download'></i>
                                     BUY NOW

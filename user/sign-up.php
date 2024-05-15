@@ -16,6 +16,7 @@ if (isset($_POST['submit-btn'])) {
 
         $stmt_login = $conn->prepare($query);
         $stmt_login->bind_param('ss', $username, $passkey);
+        session_start();
 
         if ($stmt_login->execute()) {
             $stmt_login->bind_result($id_user, $email, $username, $passkey, $alamat);

@@ -1,11 +1,34 @@
+<?php
+include('../server/connection.php');
+session_start();
+
+// Check if session variables are set
+if (isset($_SESSION['id_user']) && isset($_SESSION['email']) && isset($_SESSION['username'])) {
+    $id_user = $_SESSION['id_user'];
+    $email = $_SESSION['email'];
+    $username = $_SESSION['username'];
+    $passkey = $_SESSION['passkey'];
+    $alamat = $_SESSION['alamat'];
+
+    // Now you can use these session variables as needed
+    echo "Welcome back, $username"; // Example of using session variable
+} else {
+    // Redirect to login page if session variables are not set
+    header("Location: sign-up.php");
+    exit();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wishlist</title>
-    <link rel="stylesheet" href="../style/wishlist.css">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="../style/shopping-cart.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -82,12 +105,102 @@
     </script>
     <!-- End of javascript dropdown -->
 
+    
 
-        
+    <!-- main content -->
 
+    <!-- Hidden template for cart item -->
+    <template id="cart-item-template">
+        <div class="order-item">
+            <img src="" alt="Game Image">
+            <div class="item-details">
+                <p class="item-name"></p>
+                <a href="#" class="remove-item">Remove</a>
+            </div>
+            <div class="item-price"></div>
+        </div>
+    </template>
 
+    <div class="cart-wrapper">
+        <div class="cart">
+            <h2>YOUR ORDER</h2>
+            <div id="cart-items-container"></div>
+            <p>ORDER TOTAL: <span id="order-total">Rp.0</span></p>
+        </div>
+        <div class="payment-option">
+            <h3>YOUR PAYMENT & GIFTING DETAILS</h3>
+            <br>
+            <div class="payment-method">
+                <label>
+                    <input type="radio" name="payment" value="wallet">
+                    <span class="payment-description">
+                        <p>USE WALLET FUNDS (BALANCE Rp. 100.000)</p>
+                    </span>
+                </label>
+            </div>
+            <div class="order-total">
+                <h5>TOTAL: </h5>
+                <p id="payment-total">Rp.0</p>
+                <button>PAY FOR YOUR ORDER NOW</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of main content -->
 
+<!-- javascript cart  -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const cartItemsContainer = document.getElementById('cart-items-container');
+    const orderTotalElement = document.getElementById('order-total');
+    const paymentTotalElement = document.getElementById('payment-total');
+    const cartItemTemplate = document.getElementById('cart-item-template');
+    
+    let cart = [];
 
+    // Function to add item to cart
+    function addItemToCart(name, price, imageUrl) {
+        const newItem = {
+            name: name,
+            price: price,
+            imageUrl: imageUrl
+        };
+        cart.push(newItem);
+        renderCart();
+    }
+
+    // Function to remove item from cart
+    function removeItemFromCart(index) {
+        cart.splice(index, 1);
+        renderCart();
+    }
+
+    // Function to render cart items
+    function renderCart() {
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price;
+            const clone = document.importNode(cartItemTemplate.content, true);
+            clone.querySelector('.item-name').textContent = item.name;
+            clone.querySelector('img').src = item.imageUrl;
+            clone.querySelector('.item-price').textContent = `Rp.${item.price.toLocaleString()}`;
+            clone.querySelector('.remove-item').addEventListener('click', (e) => {
+                e.preventDefault();
+                removeItemFromCart(index);
+            });
+            cartItemsContainer.appendChild(clone);
+        });
+        orderTotalElement.textContent = `Rp.${total.toLocaleString()}`;
+        paymentTotalElement.textContent = `Rp.${total.toLocaleString()}`;
+    }
+
+    // Example: Add items to cart (this can be triggered by user actions in a real application)
+    addItemToCart('Fallout 4', 299000, '../images/game-images/header/header-fallout4.jpg');
+    addItemToCart('Another Game', 199000, '../images/game-images/header/header-anothergame.jpg');
+});
+</script>
+
+<!-- End of javascript cart  -->
 
 
     <!-- Footer -->
@@ -126,8 +239,6 @@
         });
     </script>
     <!-- End of Javascript Footer -->
-
-
 
 </body>
 
