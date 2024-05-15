@@ -4,7 +4,7 @@ session_start();
 include('../server/connection.php');
 
 if (isset($_SESSION['logged_in'])) {
-	header('location: homepage.php');
+	header('location: dashboard-admin.php');
 	exit;
 }
 
@@ -27,14 +27,14 @@ if (isset($_POST['submit-field'])) {
 			$_SESSION['username'] = $username;
 			$_SESSION['passkey'] = $passkey;
 
-			header('location: homepage.php?message=Logged in successfully');
+			header('location: dashboard-admin.php?message=Logged in successfully');
 			exit;
 		} else {
-			header('location: login.php?error=Could not verify your account');
+			header('location: login-admin.php?error=Could not verify your account');
 			exit;
 		}
 	} else {
-		header('location: login.php?error=' . urlencode($conn->error));
+		header('location: login-admin.php?error=' . urlencode($conn->error));
 		exit;
 	}
 }
@@ -55,7 +55,7 @@ if (isset($_POST['submit-field'])) {
 	<div class="container">
 		<div class="login-content">
 			<img src="../images/Logo.jpeg">
-			<form action="login.php" method="POST">
+			<form action="login-admin.php" method="POST">
 				<h2 class="title">Admin Login</h2>
 				<div class="input-div one">
 					<div class="i">

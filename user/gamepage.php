@@ -26,9 +26,11 @@ if (mysqli_num_rows($result) == 1) {
         <!-- Navigation Bar -->
         <header>
             <nav class="navbar">
-                <a href="homepage.php">
-                    <h2>KGNEXUS</h2>
-                </a>
+                <h2>KGNEXUS</h2>
+                <div class="search-box">
+                    <i class='bx bx-search' id="search-icon"></i>
+                    <input type="search" placeholder="Search">
+                </div>
                 <ul class="links">
                     <li>
                         <a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
@@ -48,6 +50,7 @@ if (mysqli_num_rows($result) == 1) {
                             <li><a href="">Strategy</a></li>
                             <li><a href="">Sports & Racing</a></li>
                         </ul>
+
                     </li>
                     <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
                     <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
@@ -62,6 +65,34 @@ if (mysqli_num_rows($result) == 1) {
         </header>
 
         <!-- End of navigation bar -->
+
+        <!-- Javascript Dropdown -->
+        <script>
+            let yourStore = document.getElementById('yourstoreclick');
+            let genres = document.getElementById('genres');
+            let special = document.getElementById('special')
+
+            document.getElementById('user').addEventListener('click', function() {
+                document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
+            });
+
+            user.addEventListener('click', () => {
+                dropUser.classList.toggle('user-details-show');
+            });
+
+            yourStore.previousElementSibling.addEventListener('click', () => {
+                yourStore.classList.toggle('dropyourstore-show');
+            });
+
+            genres.previousElementSibling.addEventListener('click', () => {
+                genres.classList.toggle('genres-show');
+            });
+
+            special.previousElementSibling.addEventListener('click', () => {
+                genres.classList.toggle('special-show');
+            });
+        </script>
+        <!-- End of javascript dropdown -->
 
         <!-- Game Banner -->
         <main>
@@ -103,10 +134,15 @@ if (mysqli_num_rows($result) == 1) {
                                 </a>
                                 <br>
                                 <button>
-                                    <i class="fas fa-shopping-cart"></i>
+                                    <i class='bx bx-download'></i>
                                     BUY NOW
                                 </button>
                             </div>
+                        </div>
+                        <div class="wishlist">
+                            <i class='bx bx-heart'>
+                                <p>Wishlist</p>
+                            </i>
                         </div>
                     </div>
                 </div>
@@ -114,34 +150,6 @@ if (mysqli_num_rows($result) == 1) {
         </main>
 
         <!-- End of Game Banner -->
-
-        <!-- Javascript Dropdown -->
-        <script>
-            let yourStore = document.getElementById('yourstoreclick');
-            let genres = document.getElementById('genres');
-            let special = document.getElementById('special')
-
-            document.getElementById('user').addEventListener('click', function() {
-                document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
-            });
-
-            user.addEventListener('click', () => {
-                dropUser.classList.toggle('user-details-show');
-            });
-
-            yourStore.previousElementSibling.addEventListener('click', () => {
-                yourStore.classList.toggle('dropyourstore-show');
-            });
-
-            genres.previousElementSibling.addEventListener('click', () => {
-                genres.classList.toggle('genres-show');
-            });
-
-            special.previousElementSibling.addEventListener('click', () => {
-                genres.classList.toggle('special-show');
-            });
-        </script>
-        <!-- End of javascript dropdown -->
 
         <!-- Footer -->
         <footer id="footer" class="show-footer">

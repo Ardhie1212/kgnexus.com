@@ -138,12 +138,10 @@ i {
 .navbar #menu {
     margin-left: 10px;
 }
+/* End of Navbar search-box styling */
 
 
 /* Navbar dropdown styling */
-
-/* End of Navbar search-box styling */
-
 .navbar .bx.bxs-user-circle {
     font-size: 2rem;
 }
@@ -538,6 +536,79 @@ i {
 
 /* End of Recommended For You */
 
+/* Modal content */
+
+.modal-content {
+    display: none;
+    background-color: #fefefe;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    max-width: 80%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  button#confirmLogout {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #FF2E63;
+  }
+  
+  button#cancelLogout {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #fff;
+    color: #000000;
+  }
+
+  button#confirmLogout:hover {
+    opacity: 0.8;
+    background-color: #FF2E63;
+  }
+  
+  button#cancelLogout:hover {
+    opacity: 0.8;
+    background-color: #e0e0e0;
+  }
+
+  /* End of Modal content */
 
 /* End of Main Content */
 
