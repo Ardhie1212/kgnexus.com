@@ -199,7 +199,6 @@ $alamat = $_SESSION['alamat'];
                             <div class="card-content">
                                 <h5><?php echo $row['game_name'] ?></h5>
                                 <p>Rp. <?php echo $row['price'] ?></p>
-
                             </div>
                         </a>
                     </div>
