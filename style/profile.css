@@ -45,3 +45,7 @@ textarea {
 .input-group-text {
     cursor: pointer;
 }
+
+.modal-body, .modal-title{
+    color: #000;
+}
