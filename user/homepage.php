@@ -36,7 +36,7 @@ $alamat = $_SESSION['alamat'];
         <i class='bx bxs-user-circle' id="user"></i>
         <div class="sub-menu-wrap" id="sub-menu-wrap">
             <a href="profile-user.php">Manage Account</a>
-            <a href="sign-up.php" onclick='confirmLogout()'>Logout</a>
+            <a href="sign-up.php" id="logout">Logout</a>
         </div>
     </nav>
 
@@ -45,10 +45,10 @@ $alamat = $_SESSION['alamat'];
         document.getElementById('user').addEventListener('click', function() {
             document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
         });
+
         function confirmLogout() {
-            if (confirm('Apakah Anda yakin ingin keluar?')) {
-                window.location.href = 'sign-up.php';
-            }
+            modal.style.display = "block";
+            centerModal();
         }
     </script>
 
@@ -101,9 +101,13 @@ $alamat = $_SESSION['alamat'];
             modal.style.display = "none";
         });
 
-        
+        document.getElementById("logout").addEventListener('click', function(event) {
+            event.preventDefault();
+            confirmLogout();
+        });
     </script>
     <!-- End of Javascript Logout Modal -->
+
 
     <header>
         <div class="header-content">
