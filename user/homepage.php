@@ -14,62 +14,43 @@ $alamat = $_SESSION['alamat'];
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KGNexus</title>
     <link rel="stylesheet" href="../style/homepage.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Homepage</title>
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <header>
-        <nav class="navbar">
-            <h2>KGNEXUS</h2>
-            <div class="search-box">
-                <i class='bx bx-search' id="search-icon"></i>
-                <input type="search" placeholder="Search">
-            </div>
-            <ul class="links">
-                <li>
-                    <a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
-                    <ul class="dropyourstore" id="yourstoreclick">
-                        <li><a href="#">Store</a></li>
-                        <li><a href="#">Library</a></li>
-                    </ul>
-                </li>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="" class="onpage">Home</a></li>
+            <li><a href="">Library</a></li>
+            <li><a href="">Wallet</a></li>
+            <li><a href="shopping-cart.php">Cart</a></li>
+        </ul>
+        <i class='bx bxs-user-circle' id="user"></i>
+        <div class="sub-menu-wrap" id="sub-menu-wrap">
+            <a href="profile-user.php">Manage Account</a>
+            <a href="sign-up.php" onclick='confirmLogout()'>Logout</a>
+        </div>
+    </nav>
 
-                <li>
-                    <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
-                    <ul class="genres" id="genres">
-                        <li><a href="categorypage.php?game_category=<?= 'Action' ?>">Action</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Adventure' ?>">Adventure</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Role-playing' ?>">Role-playing</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Simulator' ?>">Simulation</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Strategy' ?>">Strategy</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Sports' ?>">Sports & Racing</a></li>
-                    </ul>
-
-                </li>
-                <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
-                <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
-            </ul>
-            <i class='bx bxs-user-circle' id="user"></i>
-            <div class="sub-menu-wrap" id="sub-menu-wrap">
-                <a href="profile-user.php?id=<?php echo $_SESSION['id_user']; ?>">Manage Account</a>
-                <a href="sign-up.php" onclick='confirmLogout()'>Logout</a>
-            </div>
-        </nav>
-
-    </header>
-
-    <!-- End of navigation bar -->
+    <!-- Javascript dropdown -->
+    <script>
+        document.getElementById('user').addEventListener('click', function() {
+            document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
+        });
+        function confirmLogout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                window.location.href = 'sign-up.php';
+            }
+        }
+    </script>
 
     <!-- Logout Modal -->
     <div class="modal-content">
@@ -119,113 +100,71 @@ $alamat = $_SESSION['alamat'];
         document.getElementById("cancelLogout").addEventListener("click", function() {
             modal.style.display = "none";
         });
+
+        
     </script>
     <!-- End of Javascript Logout Modal -->
 
-    <!-- Javascript Dropdown -->
-    <script>
-        let yourStore = document.getElementById('yourstoreclick');
-        let genres = document.getElementById('genres');
-        let special = document.getElementById('special')
+    <header>
+        <div class="header-content">
+            <h2>KGNEXUS</h2>
+            <section class="line"></section>
+            <h1>Gateway to Epic Adventures</h1>
+        </div>
+    </header>
 
-        document.getElementById('user').addEventListener('click', function() {
-            document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
-        });
-
-        user.addEventListener('click', () => {
-            dropUser.classList.toggle('user-details-show');
-        });
-
-        yourStore.previousElementSibling.addEventListener('click', () => {
-            yourStore.classList.toggle('dropyourstore-show');
-        });
-
-        genres.previousElementSibling.addEventListener('click', () => {
-            genres.classList.toggle('genres-show');
-        });
-
-        special.previousElementSibling.addEventListener('click', () => {
-            genres.classList.toggle('special-show');
-        });
-
-        function confirmLogout() {
-            if (confirm('Apakah Anda yakin ingin keluar?')) {
-                window.location.href = 'sign-up.php';
-            }
-        }
-    </script>
-    <!-- End of javascript dropdown -->
-
-    <!-- Main content -->
-    <main>
-        <section class="section">
-            <div class="slider">
-                <div class="slide">
-                    <input type="radio" name="radio-btn" id="radio1">
-                    <input type="radio" name="radio-btn" id="radio2">
-                    <input type="radio" name="radio-btn" id="radio3">
-                    <input type="radio" name="radio-btn" id="radio4">
-                    <input type="radio" name="radio-btn" id="radio5">
-                    <input type="radio" name="radio-btn" id="radio6">
-
-                    <div class="st first">
-                        <img src="../images/game-images/header/header-balatro.jpg" alt="">
-                    </div>
-                    <?php while ($row = $banner_image->fetch_assoc()) { ?>
-                        <div class="st">
-                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                        </div>
-                    <?php } ?>
-
-                    <div class="nav-auto">
-                        <div class="a-b1"></div>
-                        <div class="a-b2"></div>
-                        <div class="a-b3"></div>
-                        <div class="a-b4"></div>
-                        <div class="a-b5"></div>
-                        <div class="a-b6"></div>
-                    </div>
-                </div>
-
-                <div class="nav-m">
-                    <label for="radio1" class="m-btn"></label>
-                    <label for="radio2" class="m-btn"></label>
-                    <label for="radio3" class="m-btn"></label>
-                    <label for="radio4" class="m-btn"></label>
-                    <label for="radio5" class="m-btn"></label>
-                    <label for="radio6" class="m-btn"></label>
-                </div>
-            </div>
-        </section>
-
-        <!-- Game content begin -->
-        <div class="game1">
-            <div class="btns">
-                <i class='bx bx-caret-left' id="game_bx_1_left_btn"></i>
-                <i class='bx bx-caret-right' id="game_bx_1_right_btn"></i>
-            </div>
-            <h3>Recommended For You</h3>
-            <div class="game-bx" id="game_bx_1">
+    <!-- Recommended Section -->
+    <section class="recommended">
+        <div class="title">
+            <h1>Recommended For You</h1>
+            <section class="line"></section>
+        </div>
+        <div class="content1">
+            <div class="card-grid">
                 <?php while ($row = $recommended->fetch_assoc()) { ?>
-                    <div class="card">
-                        <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
-                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                            <div class="content">
-                                <div class="left">
-                                    <h5><?php echo $row['game_name'] ?></h5>
-                                    <p><?php echo $row['rating'] ?></p>
-                                </div>
-                                <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
+                    <div class="card1">
+                        <a href="gamepage.php?game_id=<?php echo $row['game_id']; ?>">
+                            <div class="card-image">
+                                <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            </div>
+                            <div class="card-content">
+                                <h5><?php echo $row['game_name'] ?></h5>
+                                <p>Rp. <?php echo $row['game_price'] ?></p>
                             </div>
                         </a>
                     </div>
                 <?php } ?>
             </div>
         </div>
+    </section>
 
+    <section class="search-game">
+        <div class="search-content">
+            <h1>SEARCH FOR GAME</h1>
+            <section class="line"></section>
+            <div class="search-box">
+                <i class='bx bx-search' id="search-icon"></i>
+                <input type="search" placeholder="Search">
+            </div>
+            <p>Or, pick your genre</p>
+            <ul>
+                <li><a href="categorypage.php?game_category=<?php echo 'Action' ?>">Action</a></li>
+                <li><a href="categorypage.php?game_category=<?php echo 'Role-playing' ?>">Role-Playing</a></li>
+                <li><a href="categorypage.php?game_category=<?php echo 'Strategy' ?>">Strategy</a></li>
+                <li><a href="categorypage.php?game_category=<?php echo 'Sports' ?>">Sports & Racing</a></li>
+                <li><a href="categorypage.php?game_category=<?php echo 'Simulation' ?>">Simulation</a></li>
+                <li><a href="categorypage.php?game_category=<?php echo 'Adventure' ?>">Adventure</a></li>
+            </ul>
+        </div>
+    </section>
 
+    <!-- Most played -->
+    <section class="mostplayed">
+        <div class="title">
+            <h1>Most Played Games</h1>
+            <section class="line"></section>
+        </div>
         <div class="content1">
-            <h1>GAMES</h1>
             <div class="card-grid">
                 <?php while ($row = $mostplayed->fetch_assoc()) { ?>
                     <div class="card1">
@@ -235,87 +174,44 @@ $alamat = $_SESSION['alamat'];
                             </div>
                             <div class="card-content">
                                 <h5><?php echo $row['game_name'] ?></h5>
-                                <p><strong>Size:</strong> <?php echo $row['size'] ?></p>
-                                <p><strong>Rating:</strong> <?php echo $row['rating'] ?></p>
-                                <p>IDR <?php echo $row['game_price'], 00 ?></p>
+                                <p>Rp. <?php echo $row['game_price'] ?></p>
                             </div>
                         </a>
                     </div>
                 <?php } ?>
             </div>
         </div>
-        <h1 id="category-heading"></h1>
+    </section>
 
-    </main>
-    <!-- End of Main content -->
+    <section class="sale">
+        <div class="title">
+            <h1>-30% SALE</h1>
+            <section class="line"></section>
+        </div>
+        <div class="content1">
+            <div class="card-grid">
+                <?php while ($row = $sale->fetch_assoc()) { ?>
+                    <div class="card1">
+                        <a href="gamepage.php?game_id=<?php echo $row['game_id']; ?>">
+                            <div class="card-image">
+                                <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            </div>
+                            <div class="card-content">
+                                <h5><?php echo $row['game_name'] ?></h5>
+                                <p>Rp. <?php echo $row['price'] ?></p>
 
-    <!-- Javascript Slider -->
-    <script type="text/javascript">
-        var counter = 1;
-        setInterval(function() {
-            document.getElementById('radio' + counter).checked = true;
-            counter++;
-            if (counter > 6) {
-                counter = 1;
-            }
-        }, 3000);
-    </script>
-    <!-- End of Javascript slider -->
-
-    <!-- Javascript game card scroll -->
-    <script>
-        let game_bx_1 = document.getElementById('game_bx_1');
-        let game_bx_1_left_btn = document.getElementById('game_bx_1_left_btn');
-        let game_bx_1_right_btn = document.getElementById('game_bx_1_right_btn');
-
-        let game_bx_2 = document.getElementById('game_bx_2');
-        let game_bx_2_left_btn = document.getElementById('game_bx_2_left_btn');
-        let game_bx_2_right_btn = document.getElementById('game_bx_2_right_btn');
-
-        let game_bx_3 = document.getElementById('game_bx_3');
-        let game_bx_3_left_btn = document.getElementById('game_bx_3_left_btn')
-        let game_bx_3_right_btn = document.getElementById('game_bx_3_right_btn')
-
-
-        game_bx_1_left_btn.addEventListener('click', () => {
-            game_bx_1.scrollLeft -= 300;
-        });
-
-        game_bx_1_right_btn.addEventListener('click', () => {
-            game_bx_1.scrollLeft += 300;
-        });
-
-        game_bx_2_left_btn.addEventListener('click', () => {
-            game_bx_2.scrollLeft -= 300;
-        });
-
-        game_bx_2_right_btn.addEventListener('click', () => {
-            game_bx_2.scrollLeft += 300;
-        });
-
-        game_bx_3_left_btn.addEventListener('click', () => {
-            game_bx_3.scrollLeft -= 300;
-        });
-
-        game_bx_3_right_btn.addEventListener('click', () => {
-            game_bx_3.scrollLeft += 300;
-        });
-    </script>
-    <!-- End of Javascript game card scroll -->
-
-    <!-- Footer -->
-    <footer id="footer" class="show-footer">
-        <div class="footer-container">
-            <div class="logo">
-                <img src="../images/TransparentLogo.png" alt="KGNexus Logo">
-            </div>
-            <div class="copyright">
-                <p>Copyright &copy;2024; Designed by <span class="designer">KGNexus Team</span></p>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
         </div>
-    </footer>
-    <!-- End of footer -->
+    </section>
 
+    <section class="footer">
+        <p>Designed by Kelompok 1</p>
+        <p>Copyright © All rights reserved.</p>
+    </section>
 </body>
 
 </html>
