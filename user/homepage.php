@@ -189,7 +189,7 @@ $alamat = $_SESSION['alamat'];
 
     <section class="sale">
         <div class="title">
-            <h1>-30% SALE</h1>
+            <h1>30% SALE</h1>
             <section class="line"></section>
         </div>
         <div class="content1">
