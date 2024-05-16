@@ -8,9 +8,9 @@ session_start();
 
 $id_user = $_SESSION['id_user'];
 $email = $_SESSION['email'];
-$username=$_SESSION['username'];
+$username = $_SESSION['username'];
 $passkey = $_SESSION['passkey'];
-$alamat =$_SESSION['alamat'];
+$alamat = $_SESSION['alamat'];
 
 ?>
 
@@ -48,12 +48,12 @@ $alamat =$_SESSION['alamat'];
                 <li>
                     <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
                     <ul class="genres" id="genres">
-                        <li><a href="categorypage.php?game_category=<?= 'Action'?>">Action</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Adventure'?>">Adventure</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Role-playing'?>">Role-playing</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Simulator'?>">Simulation</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Strategy'?>">Strategy</a></li>
-                        <li><a href="categorypage.php?game_category=<?= 'Sports'?>">Sports & Racing</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Action' ?>">Action</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Adventure' ?>">Adventure</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Role-playing' ?>">Role-playing</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Simulator' ?>">Simulation</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Strategy' ?>">Strategy</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Sports' ?>">Sports & Racing</a></li>
                     </ul>
 
                 </li>
@@ -113,7 +113,7 @@ $alamat =$_SESSION['alamat'];
         });
 
         document.getElementById("confirmLogout").addEventListener("click", function() {
-            window.location.href = "sign-up.php"; 
+            window.location.href = "sign-up.php";
         });
 
         document.getElementById("cancelLogout").addEventListener("click", function() {
@@ -207,8 +207,8 @@ $alamat =$_SESSION['alamat'];
             <h3>Recommended For You</h3>
             <div class="game-bx" id="game_bx_1">
                 <?php while ($row = $recommended->fetch_assoc()) { ?>
-                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
-                        <div class="card">
+                    <div class="card">
+                        <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
                             <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
                             <div class="content">
                                 <div class="left">
@@ -217,59 +217,35 @@ $alamat =$_SESSION['alamat'];
                                 </div>
                                 <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 <?php } ?>
             </div>
         </div>
 
-        <div class="game2">
-            <div class="btns">
-                <i class='bx bx-caret-left' id="game_bx_2_left_btn"></i>
-                <i class='bx bx-caret-right' id="game_bx_2_right_btn"></i>
-            </div>
-            <h3>SALE</h3>
-            <div class="game-bx" id="game_bx_2">
-                <?php while ($row = $sale->fetch_assoc()) { ?>
-                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
-                        <div class="card">
-                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                            <div class="content">
-                                <div class="left">
-                                    <h5><?php echo $row['game_name'] ?></h5>
-                                    <p><?php echo $row['rating'] ?></p>
-                                </div>
-                                <h6>IDR <?php echo $row['price'], 00 ?></h6>
-                            </div>
-                        </div>
-                    </a>
-                <?php } ?>
-            </div>
-        </div>
 
-        <div class="game3">
-            <div class="btns">
-                <i class='bx bx-caret-left' id="game_bx_3_left_btn"></i>
-                <i class='bx bx-caret-right' id="game_bx_3_right_btn"></i>
-            </div>
-            <h3>Most Played</h3>
-            <div class="game-bx" id="game_bx_3">
+        <div class="content1">
+            <h1>GAMES</h1>
+            <div class="card-grid">
                 <?php while ($row = $mostplayed->fetch_assoc()) { ?>
-                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
-                        <div class="card">
-                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                            <div class="content">
-                                <div class="left">
-                                    <h5><?php echo $row['game_name'] ?></h5>
-                                    <p><?php echo $row['rating'] ?></p>
-                                </div>
-                                <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
+                    <div class="card1">
+                        <a href="gamepage.php?game_id=<?php echo $row['game_id']; ?>">
+                            <div class="card-image">
+                                <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
                             </div>
-                        </div>
-                    </a>
+                            <div class="card-content">
+                                <h5><?php echo $row['game_name'] ?></h5>
+                                <p><strong>Size:</strong> <?php echo $row['size'] ?></p>
+                                <p><strong>Rating:</strong> <?php echo $row['rating'] ?></p>
+                                <p>IDR <?php echo $row['game_price'], 00 ?></p>
+                            </div>
+                        </a>
+                    </div>
                 <?php } ?>
             </div>
         </div>
+        <h1 id="category-heading"></h1>
+
     </main>
     <!-- End of Main content -->
 
@@ -326,7 +302,7 @@ $alamat =$_SESSION['alamat'];
         });
     </script>
     <!-- End of Javascript game card scroll -->
-    
+
     <!-- Footer -->
     <footer id="footer" class="show-footer">
         <div class="footer-container">
@@ -340,29 +316,6 @@ $alamat =$_SESSION['alamat'];
     </footer>
     <!-- End of footer -->
 
-    <!-- Javascript Footer -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var footer = document.getElementById('footer');
-            var windowHeight = window.innerHeight;
-            var fullHeight = document.documentElement.scrollHeight;
-            var footerHeight = footer.offsetHeight;
-
-            function toggleFooter() {
-                var scrollPosition = window.scrollY;
-                if (scrollPosition + windowHeight >= fullHeight - footerHeight) {
-                    footer.classList.add('show-footer');
-                } else {
-                    footer.classList.remove('show-footer');
-                }
-            }
-
-            toggleFooter();
-            document.addEventListener('scroll', toggleFooter);
-            window.addEventListener('resize', toggleFooter);
-        });
-    </script>
-    <!-- End of Javascript Footer -->
 </body>
 
 </html>
