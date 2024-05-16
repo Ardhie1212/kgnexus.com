@@ -326,6 +326,7 @@ $alamat =$_SESSION['alamat'];
         });
     </script>
     <!-- End of Javascript game card scroll -->
+    
     <!-- Footer -->
     <footer id="footer" class="show-footer">
         <div class="footer-container">
