@@ -18,6 +18,10 @@ a {
     text-decoration: none;
 }
 
+h1,h2,h5 {
+    font-family: helvetica;
+}
+
 ul {
     list-style: none;
 }
