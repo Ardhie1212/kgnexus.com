@@ -63,7 +63,7 @@ if (mysqli_num_rows($result) == 1) {
                 <p><?php echo $game['game_desc'] ?></p>
                 <br>
                 <br>
-                <a href="shopping-cart.php?game_id<?= $game['game_id'] ?>" class="addtocart">ADD TO CART</a>
+                <a href="shopping-cart.php?game_id=<?= $game['game_id'] ?>" class="addtocart">ADD TO CART</a>
                 <?php if (isset($game['price']) && $game['price'] < $game['game_price']) : ?>
                     <p class="price"><s>Rp. <?php echo number_format($game['game_price'], 2, ',', '.'); ?></s></p>
                     <p>Rp. <?php echo number_format($game['price'], 2, ',', '.'); ?></p>
