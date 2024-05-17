@@ -25,12 +25,16 @@ if (isset($_POST['add'])) {
     $video = $_FILES['video']['name'];
 
     // Define the target directories for the uploads
-    $target_dir = "uploads/";
-    $header_target = $target_dir . basename($header);
-    $photo1_target = $target_dir . basename($photo1);
-    $photo2_target = $target_dir . basename($photo2);
-    $photo3_target = $target_dir . basename($photo3);
-    $video_target = $target_dir . basename($video);
+    $target_dir_header = "../images/game-images/header/";
+    $target_dir_p1 = "../images/game-images/photo1/";
+    $target_dir_p2 = "../images/game-images/photo2/";
+    $target_dir_p3 = "../images/game-images/photo3/";
+    $target_dir_video = "../images/game-images/video/";
+    $header_target = $target_dir_header . basename($header);
+    $photo1_target = $target_dir_p1 . basename($photo1);
+    $photo2_target = $target_dir_p2 . basename($photo2);
+    $photo3_target = $target_dir_p3 . basename($photo3);
+    $video_target = $target_dir_video . basename($video);
 
     // Move the uploaded files to the target directory
     move_uploaded_file($_FILES['header']['tmp_name'], $header_target);
