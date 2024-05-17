@@ -133,7 +133,7 @@ $alamat = $_SESSION['alamat'];
                             </div>
                             <div class="card-content">
                                 <h5><?php echo $row['game_name'] ?></h5>
-                                <p>Rp. <?php echo $row['game_price'] ?></p>
+                                <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
                             </div>
                         </a>
                     </div>
@@ -178,7 +178,7 @@ $alamat = $_SESSION['alamat'];
                             </div>
                             <div class="card-content">
                                 <h5><?php echo $row['game_name'] ?></h5>
-                                <p>Rp. <?php echo $row['game_price'] ?></p>
+                                <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
                             </div>
                         </a>
                     </div>
@@ -202,7 +202,12 @@ $alamat = $_SESSION['alamat'];
                             </div>
                             <div class="card-content">
                                 <h5><?php echo $row['game_name'] ?></h5>
-                                <p>Rp. <?php echo $row['price'] ?></p>
+                                <?php if (isset($row['price']) && $row['price'] < $row['game_price']) : ?>
+                                    <p class="price"><s>Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></s></p>
+                                    <p>Rp. <?php echo number_format($row['price'], 2, ',', '.'); ?></p>
+                                <?php else : ?>
+                                    <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
+                                <?php endif; ?>
                             </div>
                         </a>
                     </div>

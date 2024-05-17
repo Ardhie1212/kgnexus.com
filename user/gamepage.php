@@ -5,8 +5,15 @@ $game_id = $_GET['game_id'];
 $query_select = "SELECT * FROM game WHERE game_id = $game_id";
 $result = mysqli_query($conn, $query_select);
 
+
 if (mysqli_num_rows($result) == 1) {
     $game = mysqli_fetch_assoc($result);
+
+    if ($game['Sector'] == 'SALE') {
+        // Jika sektor adalah 'SALE', hitung harga diskon
+        $game['price'] = $game['game_price'] * 0.7;
+    }
+
     mysqli_close($conn);
 ?>
 
@@ -51,12 +58,18 @@ if (mysqli_num_rows($result) == 1) {
         <header>
             <div class="header-content">
                 <h2><?php echo $game['game_name'] ?></h2>
+                <p><?php echo $game['game_company']?></p>
                 <section class="line"></section>
                 <p><?php echo $game['game_desc'] ?></p>
                 <br>
                 <br>
                 <a href="shopping-cart.php?game_id<?= $game['game_id'] ?>" class="addtocart">ADD TO CART</a>
-                <p class="price">Rp. <?php echo $game['game_price'] ?></p>
+                <?php if (isset($game['price']) && $game['price'] < $game['game_price']) : ?>
+                    <p class="price"><s>Rp. <?php echo number_format($game['game_price'], 2, ',', '.'); ?></s></p>
+                    <p>Rp. <?php echo number_format($game['price'], 2, ',', '.'); ?></p>
+                <?php else : ?>
+                    <p class="price">Rp. <?php echo number_format($game['game_price'], 2, ',', '.'); ?></p>
+                <?php endif; ?>
             </div>
         </header>
 
