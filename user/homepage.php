@@ -10,8 +10,8 @@ $id_user = $_SESSION['id_user'];
 $email = $_SESSION['email'];
 $username = $_SESSION['username'];
 $passkey = $_SESSION['passkey'];
-$alamat = $_SESSION['alamat'];
-
+$rekening = $_SESSION['rekening'];
+$saldo = $_SESSION['saldo'];
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ $alamat = $_SESSION['alamat'];
         <ul class="nav-links">
             <li><a href="" class="onpage">Home</a></li>
             <li><a href="">Library</a></li>
-            <li><a href="">Wallet</a></li>
+            <li><a href="mywallet.php">Wallet</a></li>
             <li><a href="shopping-cart.php">Cart</a></li>
         </ul>
         <i class='bx bxs-user-circle' id="user"></i>

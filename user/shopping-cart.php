@@ -11,13 +11,50 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['email']) && isset($_SESSION[
     $alamat = $_SESSION['alamat'];
 
     // Now you can use these session variables as needed
-    echo "Welcome back, $username"; // Example of using session variable
 } else {
     // Redirect to login page if session variables are not set
     header("Location: sign-up.php");
     exit();
 }
 
+
+
+if (isset($_GET['game_id'])) {
+    $gameId = $_GET['game_id'];
+    $check_query = "SELECT * FROM cart WHERE game_id = $gameId AND id_user = $id_user";
+    $check_result = mysqli_query($conn, $check_query);
+
+    if (mysqli_num_rows($check_result) == 0) {
+        $query_cart_insert = "INSERT INTO cart (game_id, id_user) VALUES ($gameId, $id_user)";
+        mysqli_query($conn, $query_cart_insert);
+    } else {
+        echo "Game sudah ada di keranjang.";
+    }
+}
+
+$query_cart = 
+"SELECT game.*,
+IF(game.Sector = 'SALE', game.game_price * 0.7, game.game_price) AS price
+FROM game 
+JOIN cart ON game.game_id = cart.game_id
+WHERE cart.id_user = $id_user";
+
+$query_total = 
+"SELECT SUM(game.game_price) AS total_price FROM game JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user";
+$stmt_total = mysqli_query($conn,$query_total);
+$total = mysqli_fetch_assoc($stmt_total);
+
+$query_discount =
+"SELECT SUM(game.game_price * 0.3) AS total_discounted_price FROM game 
+JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user AND game.Sector = 'SALE'";
+$stmt_discount = mysqli_query($conn,$query_discount);
+$discount = mysqli_fetch_assoc($stmt_discount);
+
+$subtotal = $total['total_price'] - $discount['total_discounted_price'];
+
+$stmt_cart = $conn->prepare($query_cart);
+$stmt_cart->execute();
+$game = $stmt_cart->get_result();
 
 ?>
 
@@ -34,212 +71,67 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['email']) && isset($_SESSION[
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <header>
-        <nav class="navbar">
-            <h2>KGNEXUS</h2>
-            <div class="search-box">
-                <i class='bx bx-search' id="search-icon"></i>
-                <input type="search" placeholder="Search">
-            </div>
-            <ul class="links">
-                <li>
-                    <a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
-                    <ul class="dropyourstore" id="yourstoreclick">
-                        <li><a href="#">Store</a></li>
-                        <li><a href="#">Library</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
-                    <ul class="genres" id="genres">
-                        <li><a href="">Action</a></li>
-                        <li><a href="">Adventure</a></li>
-                        <li><a href="">Role-playing</a></li>
-                        <li><a href="">Simulation</a></li>
-                        <li><a href="">Strategy</a></li>
-                        <li><a href="">Sports & Racing</a></li>
-                    </ul>
-
-                </li>
-                <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
-                <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
-            </ul>
-            <i class='bx bxs-user-circle' id="user"></i>
-            <div class="sub-menu-wrap" id="sub-menu-wrap">
-                <a href="profile-user.php">Manage Account</a>
-                <a href="sign-up.php">Logout</a>
-            </div>
-        </nav>
-
-    </header>
-
-    <!-- End of navigation bar -->
-
-    <!-- Javascript Dropdown -->
-    <script>
-        let yourStore = document.getElementById('yourstoreclick');
-        let genres = document.getElementById('genres');
-        let special = document.getElementById('special')
-
-        document.getElementById('user').addEventListener('click', function() {
-            document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
-        });
-
-        user.addEventListener('click', () => {
-            dropUser.classList.toggle('user-details-show');
-        });
-
-        yourStore.previousElementSibling.addEventListener('click', () => {
-            yourStore.classList.toggle('dropyourstore-show');
-        });
-
-        genres.previousElementSibling.addEventListener('click', () => {
-            genres.classList.toggle('genres-show');
-        });
-
-        special.previousElementSibling.addEventListener('click', () => {
-            genres.classList.toggle('special-show');
-        });
-    </script>
-    <!-- End of javascript dropdown -->
-
-    
-
-    <!-- main content -->
-
-    <!-- Hidden template for cart item -->
-    <template id="cart-item-template">
-        <div class="order-item">
-            <img src="" alt="Game Image">
-            <div class="item-details">
-                <p class="item-name"></p>
-                <a href="#" class="remove-item">Remove</a>
-            </div>
-            <div class="item-price"></div>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="homepage.php">Home</a></li>
+            <li><a href="">Library</a></li>
+            <li><a href="">Wallet</a></li>
+            <li><a href="shopping-cart.php" class="onpage">Cart</a></li>
+        </ul>
+        <i class='bx bxs-user-circle' id="user"></i>
+        <div class="sub-menu-wrap" id="sub-menu-wrap">
+            <a href="profile-user.php">Manage Account</a>
+            <a href="sign-up.php" onclick='confirmLogout()'>Logout</a>
         </div>
-    </template>
+    </nav>
 
-    <div class="cart-wrapper">
-        <div class="cart">
-            <h2>YOUR ORDER</h2>
-            <div id="cart-items-container"></div>
-            <p>ORDER TOTAL: <span id="order-total">Rp.0</span></p>
-        </div>
-        <div class="payment-option">
-            <h3>YOUR PAYMENT & GIFTING DETAILS</h3>
-            <br>
-            <div class="payment-method">
-                <label>
-                    <input type="radio" name="payment" value="wallet">
-                    <span class="payment-description">
-                        <p>USE WALLET FUNDS (BALANCE Rp. 100.000)</p>
-                    </span>
-                </label>
-            </div>
-            <div class="order-total">
-                <h5>TOTAL: </h5>
-                <p id="payment-total">Rp.0</p>
-                <button>PAY FOR YOUR ORDER NOW</button>
+    <div class="cart-container">
+        <h1>My Cart</h1>
+        <section class="line"></section>
+        <div class="cart-content">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $game->fetch_assoc()) {?>
+                        <tr>
+                            <td><img src="../images/game-images/header/<?php echo $row['header'] ?>" alt=""></td>
+                            <td><?php echo $row['game_name'] ?></td>
+                            <td>
+                                <?php if (isset($row['price']) && $row['price'] < $row['game_price']) : ?>
+                                    <p class="price"><s>Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></s></p>
+                                    <p>Rp. <?php echo number_format($row['price'], 2, ',', '.'); ?></p>
+                                <?php else : ?>
+                                    <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <p class="remove">Remove</p>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <div class="cart-summary">
+                <h2>Total:</h2>
+                <p id="total">Rp. <?php echo number_format($total['total_price'], 2, ',', '.'); ?></p>
+                <h2>Diskon:</h2>
+                <p>Rp. <?php echo number_format($discount['total_discounted_price'], 2, ',', '.'); ?></p>
+                <h2>Subtotal:</h2>
+                <p>Rp. <?php echo number_format($subtotal, 2, ',', '.'); ?></p>
+                <h2>Saldo</h2>
+                <p>Rp 1,000,000</p>
+                <button class="checkout-btn"><strong>CHECK OUT</strong></button>
             </div>
         </div>
     </div>
-    <!-- End of main content -->
 
-<!-- javascript cart  -->
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const cartItemsContainer = document.getElementById('cart-items-container');
-    const orderTotalElement = document.getElementById('order-total');
-    const paymentTotalElement = document.getElementById('payment-total');
-    const cartItemTemplate = document.getElementById('cart-item-template');
-    
-    let cart = [];
-
-    // Function to add item to cart
-    function addItemToCart(name, price, imageUrl) {
-        const newItem = {
-            name: name,
-            price: price,
-            imageUrl: imageUrl
-        };
-        cart.push(newItem);
-        renderCart();
-    }
-
-    // Function to remove item from cart
-    function removeItemFromCart(index) {
-        cart.splice(index, 1);
-        renderCart();
-    }
-
-    // Function to render cart items
-    function renderCart() {
-        cartItemsContainer.innerHTML = '';
-        let total = 0;
-        cart.forEach((item, index) => {
-            total += item.price;
-            const clone = document.importNode(cartItemTemplate.content, true);
-            clone.querySelector('.item-name').textContent = item.name;
-            clone.querySelector('img').src = item.imageUrl;
-            clone.querySelector('.item-price').textContent = `Rp.${item.price.toLocaleString()}`;
-            clone.querySelector('.remove-item').addEventListener('click', (e) => {
-                e.preventDefault();
-                removeItemFromCart(index);
-            });
-            cartItemsContainer.appendChild(clone);
-        });
-        orderTotalElement.textContent = `Rp.${total.toLocaleString()}`;
-        paymentTotalElement.textContent = `Rp.${total.toLocaleString()}`;
-    }
-
-    // Example: Add items to cart (this can be triggered by user actions in a real application)
-    addItemToCart('Fallout 4', 299000, '../images/game-images/header/header-fallout4.jpg');
-    addItemToCart('Another Game', 199000, '../images/game-images/header/header-anothergame.jpg');
-});
-</script>
-
-<!-- End of javascript cart  -->
-
-
-    <!-- Footer -->
-    <footer id="footer" class="show-footer">
-        <div class="footer-container">
-            <div class="logo">
-                <img src="../images/TransparentLogo.png" alt="KGNexus Logo">
-            </div>
-            <div class="copyright">
-                <p>Copyright &copy;2024; Designed by <span class="designer">KGNexus Team</span></p>
-            </div>
-        </div>
-    </footer>
-    <!-- End of footer -->
-
-    <!-- Javascript Footer -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var footer = document.getElementById('footer');
-            var windowHeight = window.innerHeight;
-            var fullHeight = document.documentElement.scrollHeight;
-            var footerHeight = footer.offsetHeight;
-
-            function toggleFooter() {
-                var scrollPosition = window.scrollY;
-                if (scrollPosition + windowHeight >= fullHeight - footerHeight) {
-                    footer.classList.add('show-footer');
-                } else {
-                    footer.classList.remove('show-footer');
-                }
-            }
-
-            toggleFooter();
-            document.addEventListener('scroll', toggleFooter);
-            window.addEventListener('resize', toggleFooter);
-        });
-    </script>
-    <!-- End of Javascript Footer -->
-
+    <section class="footer">
+        <p>Designed by Kelompok 1</p>
+        <p>Copyright © All rights reserved.</p>
+    </section>
 </body>
 
 </html>
