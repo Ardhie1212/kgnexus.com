@@ -246,7 +246,9 @@ section {
 .search-content h1 {
     font-size: 5vmin;
 }
-
+.search-form {
+    width: 85%;
+}
 .search-content .line {
     width: 150px;
     height: 4px;

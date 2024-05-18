@@ -23,6 +23,17 @@ $saldo = $_SESSION['saldo'];
     <link rel="stylesheet" href="../style/homepage.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Homepage</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var searchInput = document.querySelector('input[type="search"]');
+            searchInput.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault(); // Mencegah aksi default (hanya jika Anda ingin mengontrol form submission secara manual)
+                    this.form.submit(); // Mengirimkan form secara manual
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -148,7 +159,9 @@ $saldo = $_SESSION['saldo'];
             <section class="line"></section>
             <div class="search-box">
                 <i class='bx bx-search' id="search-icon"></i>
-                <input type="search" placeholder="Search">
+                <form action="searchresult.php" class="search-form" method="POST">
+                    <input type="search" placeholder="Search">
+                </form>
             </div>
             <p>Or, pick your genre</p>
             <ul>
