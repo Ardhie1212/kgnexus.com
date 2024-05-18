@@ -8,7 +8,8 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['email']) && isset($_SESSION[
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $passkey = $_SESSION['passkey'];
-    $alamat = $_SESSION['alamat'];
+    $rekening = $_SESSION['rekening'];
+    $saldo = $_SESSION['saldo'];
 
     // Now you can use these session variables as needed
 } else {
@@ -16,8 +17,6 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['email']) && isset($_SESSION[
     header("Location: sign-up.php");
     exit();
 }
-
-
 
 if (isset($_GET['game_id'])) {
     $gameId = $_GET['game_id'];
@@ -32,22 +31,22 @@ if (isset($_GET['game_id'])) {
     }
 }
 
-$query_cart = 
-"SELECT game.*,
+$query_cart =
+    "SELECT game.*,
 IF(game.Sector = 'SALE', game.game_price * 0.7, game.game_price) AS price
 FROM game 
 JOIN cart ON game.game_id = cart.game_id
 WHERE cart.id_user = $id_user";
 
-$query_total = 
-"SELECT SUM(game.game_price) AS total_price FROM game JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user";
-$stmt_total = mysqli_query($conn,$query_total);
+$query_total =
+    "SELECT SUM(game.game_price) AS total_price FROM game JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user";
+$stmt_total = mysqli_query($conn, $query_total);
 $total = mysqli_fetch_assoc($stmt_total);
 
 $query_discount =
-"SELECT SUM(game.game_price * 0.3) AS total_discounted_price FROM game 
+    "SELECT SUM(game.game_price * 0.3) AS total_discounted_price FROM game 
 JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user AND game.Sector = 'SALE'";
-$stmt_discount = mysqli_query($conn,$query_discount);
+$stmt_discount = mysqli_query($conn, $query_discount);
 $discount = mysqli_fetch_assoc($stmt_discount);
 
 $subtotal = $total['total_price'] - $discount['total_discounted_price'];
@@ -95,7 +94,7 @@ $game = $stmt_cart->get_result();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($row = $game->fetch_assoc()) {?>
+                    <?php while ($row = $game->fetch_assoc()) { ?>
                         <tr>
                             <td><img src="../images/game-images/header/<?php echo $row['header'] ?>" alt=""></td>
                             <td><?php echo $row['game_name'] ?></td>
@@ -108,30 +107,38 @@ $game = $stmt_cart->get_result();
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <p class="remove">Remove</p>
+                                <a href="../server/deletecart.php?game_id=<?= $row['game_id'] ?>" class="remove">Remove</a>
                             </td>
                         </tr>
                     <?php } ?>
+                    
                 </tbody>
             </table>
             <div class="cart-summary">
-                <h2>Total:</h2>
-                <p id="total">Rp. <?php echo number_format($total['total_price'], 2, ',', '.'); ?></p>
-                <h2>Diskon:</h2>
-                <p>Rp. <?php echo number_format($discount['total_discounted_price'], 2, ',', '.'); ?></p>
-                <h2>Subtotal:</h2>
-                <p>Rp. <?php echo number_format($subtotal, 2, ',', '.'); ?></p>
-                <h2>Saldo</h2>
-                <p>Rp 1,000,000</p>
+                <div class="summary-item">
+                    <span>Summary</span>
+                </div>
+                <div class="summary-item">
+                    <span>Price:</span>
+                    <span>Rp. <?php echo number_format($total['total_price'], 2, ',', '.'); ?></span>
+                </div>
+                <div class="summary-item">
+                    <span>Discount:</span>
+                    <span>- Rp. <?php echo number_format($discount['total_discounted_price'], 2, ',', '.'); ?></span>
+                </div>
+                <div class="line" id="line"></div>
+                <div class="summary-item">
+                    <span>Subtotal:</span>
+                    <span>Rp. <?php echo number_format($subtotal, 2, ',', '.'); ?></span>
+                </div>
                 <button class="checkout-btn"><strong>CHECK OUT</strong></button>
+                <div class="summary-item">
+                    <span>Saldo:</span>
+                    <span>Rp. <?php echo number_format($saldo, 2, ',', '.'); ?></span>
+                </div>
             </div>
         </div>
     </div>
-
-    <section class="footer">
-        <p>Designed by Kelompok 1</p>
-        <p>Copyright © All rights reserved.</p>
-    </section>
 </body>
 
 </html>

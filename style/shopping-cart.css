@@ -193,16 +193,31 @@ h1 {
     width: 30%;
     padding: 20px;
     background-color: #f5f5f5;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-left: 50px;
     margin-right: auto;
 }
-
-.cart-summary h2 {
-    margin-top: 0;
+.cart-summary .summary-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
     color: #333;
+    margin: 10px 0;
+}
+
+#line {
+    height: 1px;
+    width: 100%;
+    background-color: #333;
+    z-index: 1000;
+    margin: 10px 0 0 0;/* Tambahkan margin untuk memberi jarak */
+}
+
+.cart-summary .summary-item span {
+    display: block;
+    margin-top: 10px;
 }
 
 .cart-summary p {
@@ -212,16 +227,18 @@ h1 {
 }
 
 #total {
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: #333;
     margin-bottom: 30px;
 }
 
 .checkout-btn {
+    margin-top: 20px;
     background-color: #1d72b8;
     color: #fff;
     border: none;
-    padding: 15px 30px;
+    padding: 15px 50px;
+    width: 100%;
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 5px;
