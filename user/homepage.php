@@ -24,7 +24,16 @@ $alamat =$_SESSION['alamat'];
     <title>KGNexus</title>
     <link rel="stylesheet" href="../style/homepage.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<<<<<<< Updated upstream
+=======
+
+=======
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+>>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
+>>>>>>> Stashed changes
 </head>
 
 <body>
@@ -37,6 +46,7 @@ $alamat =$_SESSION['alamat'];
                 <input type="search" placeholder="Search">
             </div>
             <ul class="links">
+<<<<<<< Updated upstream
                 <li>
                     <a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
                     <ul class="dropyourstore" id="yourstoreclick">
@@ -59,6 +69,20 @@ $alamat =$_SESSION['alamat'];
                 </li>
                 <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
                 <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
+=======
+<<<<<<< HEAD
+                <li><a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Wishlist<i class="fa fa-heart fa-sm" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Cart<i class="fa fa-shopping-cart" id="dropdown" aria-hidden="true"></i></a></li>
+=======
+                <li><a href="#">Store</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Category</a></li>
+                <li><a href="#">Wishlist</a></li>
+                <li><a href="#">Cart</a></li>
+>>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
+>>>>>>> Stashed changes
             </ul>
             <i class='bx bxs-user-circle' id="user"></i>
             <div class="sub-menu-wrap" id="sub-menu-wrap">
@@ -69,6 +93,7 @@ $alamat =$_SESSION['alamat'];
 
     </header>
 
+<<<<<<< Updated upstream
     <!-- End of navigation bar -->
 
     <!-- Logout Modal -->
@@ -79,6 +104,17 @@ $alamat =$_SESSION['alamat'];
             <button id="confirmLogout">Yes</button>
             <button id="cancelLogout">Cancel</button>
         </div>
+=======
+<<<<<<< HEAD
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#">Menu 1</a></li>
+            <li><a href="#">Menu 2</a></li>
+            <li><a href="#">Menu 3</a></li>
+            <li><a href="#">Menu 4</a></li>
+        </ul>
+>>>>>>> Stashed changes
     </div>
     <!-- End of Logout Modal -->
 
@@ -156,6 +192,8 @@ $alamat =$_SESSION['alamat'];
     </script>
     <!-- End of javascript dropdown -->
 
+=======
+>>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
     <!-- Main content -->
     <main>
         <section class="section">
