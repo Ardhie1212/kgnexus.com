@@ -17,9 +17,9 @@ if (isset($_POST['id_user'])) {
         $updates[] = "username = '$username'";
     }
 
-    if (!empty($_POST['alamat'])) {
-        $alamat = $_POST['alamat'];
-        $updates[] = "alamat = '$alamat'";
+    if (!empty($_POST['rekening'])) {
+        $rekening = $_POST['rekening'];
+        $updates[] = "rekening = '$rekening'";
     }
 
     // Check if there are updates to make
