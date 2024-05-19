@@ -9,6 +9,16 @@ if (isset($_GET['game_category'])) {
     $stmt_query->execute();
     $game = $stmt_query->get_result();
 }
+
+if (isset($_GET['game_category'])) {
+    $category = $_GET['game_category'];
+    $sorting = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
+    $query_get_game = "SELECT * FROM game WHERE game_category = ? ORDER BY game_price $sorting";
+    $stmt_query = $conn->prepare($query_get_game);
+    $stmt_query->bind_param('s', $category);
+    $stmt_query->execute();
+    $game = $stmt_query->get_result();
+}
 ?>
 
 
@@ -54,6 +64,15 @@ if (isset($_GET['game_category'])) {
                 </li>
                 <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
                 <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
+                <!-- Tambahkan dropdown sorting di sini -->
+                <?php if (isset($_GET['game_category'])) { ?>
+                    <li>
+                        <select id="sort-select">
+                            <option value="asc">Lowest Price</option>
+                            <option value="desc">Highest Price</option>
+                        </select>
+                    </li>
+                <?php } ?>
             </ul>
             <i class='bx bxs-user-circle' id="user"></i>
             <div class="sub-menu-wrap" id="sub-menu-wrap">
@@ -66,15 +85,29 @@ if (isset($_GET['game_category'])) {
     <!-- End of navigation bar -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Tangkap parameter kategori dari URL
+            // Tangkap parameter kategori dan sorting dari URL
             const urlParams = new URLSearchParams(window.location.search);
             const category = urlParams.get('game_category');
+            const sorting = urlParams.get('sort');
+
+            // Setel nilai sorting pada dropdown
+            const sortSelect = document.getElementById('sort-select');
+            if (sorting) {
+                sortSelect.value = sorting;
+            }
 
             // Setel teks kategori berdasarkan nilai yang ditangkap dari URL
             const categoryHeading = document.getElementById('category-heading');
             if (categoryHeading) {
                 categoryHeading.textContent = category || 'All Games'; // Jika tidak ada kategori yang dipilih, tampilkan "All Games"
             }
+        });
+
+        document.getElementById('sort-select').addEventListener('change', function() {
+            var category = "<?php echo isset($_GET['game_category']) ? $_GET['game_category'] : ''; ?>";
+            var sorting = this.value;
+            var url = "categorypage.php?game_category=" + encodeURIComponent(category) + "&sort=" + sorting;
+            window.location.href = url;
         });
     </script>
 
