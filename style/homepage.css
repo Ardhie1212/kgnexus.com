@@ -10,16 +10,31 @@
 }
 
 body {
+<<<<<<< HEAD
     height: 300vh;
     background-color: #222831;
     background-size: cover;
     background-position: center;
     overflow-y: scroll;
     overflow-y: auto;
+=======
+    overflow-x: hidden;
+    background-color: #dcdada;
+    margin: 0;
+    padding: 0;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 }
 
 
+<<<<<<< HEAD
 li {
+=======
+h1,h2,h5 {
+    font-family: helvetica;
+}
+
+ul {
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     list-style: none;
 }
 
@@ -34,6 +49,7 @@ header {
     z-index: 1000;
 }
 
+<<<<<<< HEAD
 .navbar {
     width: 100%;
     height: 60px;
@@ -43,11 +59,95 @@ header {
 }
 
 .links {
+=======
+.sub-menu-wrap a {
+    position: relative;
+    color: #000;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+    display: block;
+    /* Mengubah tampilan elemen anchor menjadi block */
+    padding: 0.5rem 0;
+    /* Tambahkan padding di atas dan bawah untuk memberi jarak vertikal */
+}
+
+.sub-menu-wrap a:hover {
+    color: #FF2E63;
+}
+
+.sub-menu-show {
+    visibility: visible;
+    display: block;
+}
+/* End of Navbar */
+
+/* Header content */
+header {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(rgba(12, 0, 0, 0.55), rgba(12, 0, 0, 0.55)), url(../images/wallpaper1.jpg);
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    margin-left: 150px;
+    color: #f5f5f5;
+    text-align: left;
+}
+
+.header-content h2 {
+    font-size: 4vmin;
+    margin-bottom: 5px;
+}
+
+.header-content .line {
+    width: 150px;
+    height: 4px;
+    background: #FF2E63;
+    margin: 10px 0;
+    margin-bottom: 30px;
+    margin-top: 8px;
+}
+
+.line {
+    width: 150px;
+    height: 4px;
+    background: #121212;
+    margin: 10px auto;
+}
+
+/* Section */
+
+section {
+    width: 80%;
+    margin: 80px auto;
+}
+
+.title {
+    align-items: center;
+    font-size: 4vmin;
+    text-align: center;
+}
+
+
+/* Card */
+
+.content1 {
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     justify-content: center;
     display: flex;
     gap: 2rem;
 }
 
+<<<<<<< HEAD
 /* End of Navbar Styling */
 
 /* Navbar element styling */
@@ -56,6 +156,58 @@ header {
     /* Tambahkan posisi relatif */
     color: #fff;
     font-size: 1rem;
+=======
+.card1 {
+    background-color: #ededed;
+    flex: 1 1 calc(20% - 20px);
+    max-width: 220px;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.card1:hover {
+    transform: scale(1.05);
+    background-color: #f5f5f5;
+}
+
+.card-image img {
+    width: 100%;
+    height: 110px;
+    /* Tinggi gambar diperbesar */
+}
+
+.card-content {
+    padding: 15px;
+    /* Padding diperbesar */
+    text-align: center;
+}
+
+.card-content h5 {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #121212;
+}
+
+.card-content p {
+    color: #121212;
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Search for games */
+
+.search-game {
+    width: 101%;
+    height: 110vh;
+    background-image: linear-gradient(rgba(12, 0, 0, 0.4), rgba(12, 0, 0, 0.4)), url(../images/wallpaper2.jpg);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     align-items: center;
 <<<<<<< Updated upstream
     transition: color 0.3s;
@@ -65,8 +217,17 @@ header {
 >>>>>>> Stashed changes
 }
 
+<<<<<<< HEAD
 #yourStore:hover, #Category:hover, #Wishlist:hover, #Cart:hover {
     color: #222831 !important;
+=======
+.search-content {
+    width: 100%;
+    color: #f5f5f5;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 150px;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 }
 
 .links a:hover{
@@ -77,10 +238,21 @@ header {
     cursor: default;
     user-select: none;
 }
+<<<<<<< HEAD
 
 .navbar li {
     list-style: none;
     position: relative;
+=======
+.search-form {
+    width: 85%;
+}
+.search-content .line {
+    width: 150px;
+    height: 4px;
+    background: #FF2E63;
+    margin: 15px 0 30px 0;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 }
 
 /* End of Navbar element styling */
@@ -584,8 +756,9 @@ i {
 /* Modal content */
 
 .modal-content {
+    font-family: 'Poppins';
     display: none;
-    background-color: #fefefe;
+    background-color: #f5f5f5;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -594,21 +767,42 @@ i {
     margin: auto;
     padding: 30px;
     border: 1px solid #ddd;
-    max-width: 80%;
+    width: 450px;
     text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     animation: fadeIn 0.3s ease;
+    justify-content: center;
+}
+
+.icon {
+    margin-left: 147px;
+    border: 1px solid #000;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    color: #FF2E63;
+    border: 3px solid #FF2E63;
+    border-radius: 50%;
+    line-height: 110px;
+    font-size: 50px;
+}
+.modal-content h2 {
+    font-size: 35px;
+    font-weight: 500;
+    margin: 10px 10px 10px 10px;
+    color: #121212;
 }
 
 .close {
     color: #aaa;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 3px;
+    right: 13px;
     font-size: 28px;
     font-weight: bold;
 }
+<<<<<<< HEAD
   
   @keyframes fadeIn {
     from { opacity: 0; }
@@ -621,31 +815,63 @@ i {
   }
   
   button#confirmLogout {
+=======
+
+.close:hover{
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #121212;
+}
+
+button#confirmLogout {
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     width: 100px;
     padding: 10px 20px;
     margin: 10px 10px;
-    border: none;
+    border: 0.1px solid #FF2E63;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+<<<<<<< HEAD
     background-color: #FF2E63;
   }
   
   button#cancelLogout {
+=======
+    background-color: #dcdada;
+}
+
+button#cancelLogout {
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     width: 100px;
     padding: 10px 20px;
     margin: 10px 10px;
-    border: none;
+    border: 0.1px solid #121212;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    background-color: #fff;
+    background-color: #dcdada;
     color: #000000;
   }
 
   button#confirmLogout:hover {
     opacity: 0.8;
     background-color: #FF2E63;
+<<<<<<< HEAD
   }
   
   button#cancelLogout:hover {
@@ -673,6 +899,17 @@ footer {
     transition: transform 0.3s ease;
     transform: translate(0, 100%);
     display: flex;
+=======
+    font-weight: bold;
+    color: #fff;
+}
+
+button#cancelLogout:hover {
+    opacity: 0.8;
+    background-color: #121212;
+    color: #fff;
+    font-weight: bold;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 }
 
 .show-footer {

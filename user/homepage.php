@@ -25,6 +25,7 @@ $alamat =$_SESSION['alamat'];
     <link rel="stylesheet" href="../style/homepage.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <<<<<<< Updated upstream
 =======
@@ -34,6 +35,20 @@ $alamat =$_SESSION['alamat'];
     
 >>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
 >>>>>>> Stashed changes
+=======
+    <title>Homepage</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var searchInput = document.querySelector('input[type="search"]');
+            searchInput.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault(); // Mencegah aksi default (hanya jika Anda ingin mengontrol form submission secara manual)
+                    this.form.submit(); // Mengirimkan form secara manual
+                }
+            });
+        });
+    </script>
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 </head>
 
 <body>
@@ -99,10 +114,14 @@ $alamat =$_SESSION['alamat'];
     <!-- Logout Modal -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2 class="modal-title">Are you sure you want to log out?</h2>
+        <div class="icon">
+            <i class='bx bx-message-alt-error'></i>
+        </div>
+        <h2>Confirm</h2>
+        <p class="modal-title">Are you sure you want to Sign out?</p>
         <div>
             <button id="confirmLogout">Yes</button>
-            <button id="cancelLogout">Cancel</button>
+            <button id="cancelLogout">No</button>
         </div>
 =======
 <<<<<<< HEAD
@@ -261,10 +280,22 @@ $alamat =$_SESSION['alamat'];
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="game2">
             <div class="btns">
                 <i class='bx bx-caret-left' id="game_bx_2_left_btn"></i>
                 <i class='bx bx-caret-right' id="game_bx_2_right_btn"></i>
+=======
+    <section class="search-game">
+        <div class="search-content">
+            <h1>SEARCH FOR GAME</h1>
+            <section class="line"></section>
+            <div class="search-box">
+                <i class='bx bx-search' id="search-icon"></i>
+                <form action="searchresult.php" class="search-form" method="POST">
+                    <input type="search" placeholder="Search" name="search">
+                </form>
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
             </div>
             <h3>SALE</h3>
             <div class="game-bx" id="game_bx_2">
