@@ -17,22 +17,7 @@ body {
     height: 100vh;
 }
 
-<<<<<<< HEAD:style/transaction.css
 li {
-=======
-a {
-    text-decoration: none;
-}
-
-h1,
-h2,
-h5 {
-    font-family: helvetica;
-    color: #f5f5f5;
-}
-
-ul {
->>>>>>> 69347ce8ddb17f00392fd911e058c8e646e64a6c:style/mywallet.css
     list-style: none;
 }
 
