@@ -18,7 +18,7 @@ if (isset($_GET['success'])) {
 }
 
 if ($user_id) {
-    $query_user = "SELECT email, username, alamat FROM user WHERE id_user = ?";
+    $query_user = "SELECT email, username, rekening FROM user WHERE id_user = ?";
     $stmt = $conn->prepare($query_user);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
@@ -106,7 +106,7 @@ $conn->close();
                     <div class="form-group">
                         <label for="address">Alamat:</label>
                         <div class="input-group">
-                            <textarea class="form-control" id="address" name="alamat" rows="3" disabled><?php echo htmlspecialchars($user['alamat']); ?></textarea>
+                            <textarea class="form-control" id="address" name="alamat" rows="3" disabled><?php echo htmlspecialchars($user['rekening']); ?></textarea>
                             <div class="input-group-append">
                                 <span class="input-group-text edit-icon" onclick="editInput('address')">
                                     <i class="bi bi-pencil-square"></i>
