@@ -9,6 +9,10 @@ $passkey = $_SESSION['passkey'];
 $rekening = $_SESSION['rekening'];
 $saldo = $_SESSION['saldo'];
 
+$top_up_success = false;
+$withdraw_success = false;
+$withdraw_failure = false;
+
 if (isset($_POST['top-up_btn'])) {
     $saldo_input = $_POST['amount'];
 
@@ -22,14 +26,21 @@ if (isset($_POST['top-up_btn'])) {
         // Perbarui saldo dan sesi setelah berhasil di-update di database
         $_SESSION['saldo'] = $top_up_amount;
         $saldo = $_SESSION['saldo'];
+        $top_up_success = true;
     } else {
         echo "Terjadi kesalahan: " . $stmt->error;
     }
 
     $stmt->close();
     $conn->close();
-    header("location: mywallet.php");
-    exit;
+    if ($top_up_success) {
+        echo "<script>document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('success-modal').style.display = 'block';
+        });</script>";
+    } else {
+        header("location: mywallet.php");
+        exit;
+    }
 }
 
 if (isset($_POST['withdraw_btn'])) {
@@ -45,20 +56,27 @@ if (isset($_POST['withdraw_btn'])) {
             // Perbarui saldo dan sesi setelah berhasil di-update
             $_SESSION['saldo'] = $withdraw_amount;
             $saldo = $_SESSION['saldo'];
+            $withdraw_success = true;
         }
 
         $stmt->close();
         $conn->close();
-        header("location: mywallet.php");
-        exit;
+        if ($withdraw_success) {
+            echo "<script>document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('withdraw-success-modal').style.display = 'block';
+            });</script>";
+        } else {
+            header("location: mywallet.php");
+            exit;
+        }
     } else {
-        echo 'Saldo tersedia tidak mencukupi';
+        $withdraw_failure = true;
+        echo "<script>document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('withdraw-failure-modal').style.display = 'block';
+        });</script>";
     }
 }
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,9 +89,9 @@ if (isset($_POST['withdraw_btn'])) {
 </head>
 
 <body>
-<nav class="navbar">
+    <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="homepage.php" >Home</a></li>
+            <li><a href="homepage.php">Home</a></li>
             <li><a href="library.php">Library</a></li>
             <li><a href="mywallet.php">Wallet</a></li>
             <li><a href="shopping-cart.php">Cart</a></li>
@@ -84,7 +102,6 @@ if (isset($_POST['withdraw_btn'])) {
             <a href="sign-up.php" id="logout">Sign out</a>
         </div>
     </nav>
-    <!-- Javascript dropdown -->
 
     <!-- Javascript dropdown -->
     <script>
@@ -93,11 +110,11 @@ if (isset($_POST['withdraw_btn'])) {
         });
 
         function confirmLogout() {
+            var modal = document.querySelector('.modal-content');
             modal.style.display = "block";
             centerModal();
         }
     </script>
-
 
     <!-- Logout Modal -->
     <div class="modal-content">
@@ -112,7 +129,6 @@ if (isset($_POST['withdraw_btn'])) {
             <button id="cancelLogout">No</button>
         </div>
     </div>
-    <!-- End of Logout Modal -->
 
     <!-- Javascript Logout Modal -->
     <script>
@@ -157,7 +173,6 @@ if (isset($_POST['withdraw_btn'])) {
             confirmLogout();
         });
     </script>
-    <!-- End of Javascript Logout Modal -->
 
     <!-- Header content -->
     <header>
@@ -177,7 +192,7 @@ if (isset($_POST['withdraw_btn'])) {
             <form action="mywallet.php" method="POST" class="top-up-form">
                 <h2>Top Up</h2>
                 <div class="line" id="wd-line"></div>
-                <p>From: <?php echo $rekening?></p>
+                <p>From: <?php echo $rekening ?></p>
                 <p>Amount:</p>
                 <input type="number" name="amount" min="0" oninput="checkValue(this)" required placeholder="insert amount here">
                 <button type="submit" name="top-up_btn">TOP UP</button>
@@ -199,6 +214,40 @@ if (isset($_POST['withdraw_btn'])) {
             </form>
         </div>
     </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content2">
+            <span class="close-btn" id="close-success">&times;</span>
+            <h2>Success</h2>
+            <div class="line" id="success-line"></div>
+            <p>Your top-up was successful!</p>
+            <button type="button" id="ok-button" class="modal-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- Withdrawal Success Modal -->
+    <div class="modal" id="withdraw-success-modal">
+        <div class="modal-content2">
+            <span class="close-btn" id="close-withdraw-success">&times;</span>
+            <h2>Success</h2>
+            <div class="line" id="withdraw-success-line"></div>
+            <p>Your withdrawal was successful!</p>
+            <button type="button" id="withdraw-ok-button" class="modal-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- Withdrawal Failure Modal -->
+    <div class="modal" id="withdraw-failure-modal">
+        <div class="modal-content2">
+            <span class="close-btn" id="close-withdraw-failure">&times;</span>
+            <h2>Failure</h2>
+            <div class="line" id="withdraw-failure-line"></div>
+            <p>Your withdrawal failed. Insufficient funds.</p>
+            <button type="button" id="withdraw-failure-ok-button" class="modal-btn">OK</button>
+        </div>
+    </div>
+
 
     <!-- input top up and withdraw >= 0 -->
     <script>
@@ -241,6 +290,78 @@ if (isset($_POST['withdraw_btn'])) {
             }
             if (event.target == withdrawModal) {
                 withdrawModal.style.display = 'none';
+            }
+        }
+    </script>
+
+    <!-- Success Top Up Modal Javascript -->
+    <script>
+        const successModal = document.getElementById('success-modal');
+        const closeSuccessBtn = document.getElementById('close-success');
+        const okBtn = document.getElementById('ok-button');
+
+        closeSuccessBtn.onclick = function() {
+            successModal.style.display = 'none';
+            window.location.href = 'mywallet.php';
+        }
+
+        okBtn.onclick = function() {
+            successModal.style.display = 'none';
+            window.location.href = 'mywallet.php';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == successModal) {
+                successModal.style.display = 'none';
+                window.location.href = 'mywallet.php'; 
+            }
+        }
+    </script>
+
+    <!-- Success Withdraw Modal JavaScript -->
+    <script>
+        const withdrawSuccessModal = document.getElementById('withdraw-success-modal');
+        const closeWithdrawSuccessBtn = document.getElementById('close-withdraw-success');
+        const withdrawOkBtn = document.getElementById('withdraw-ok-button');
+
+        closeWithdrawSuccessBtn.onclick = function() {
+            withdrawSuccessModal.style.display = 'none';
+            window.location.href = 'mywallet.php'; 
+        }
+
+        withdrawOkBtn.onclick = function() {
+            withdrawSuccessModal.style.display = 'none';
+            window.location.href = 'mywallet.php'; 
+        }
+
+        window.onclick = function(event) {
+            if (event.target == withdrawSuccessModal) {
+                withdrawSuccessModal.style.display = 'none';
+                window.location.href = 'mywallet.php';
+            }
+        }
+    </script>
+
+    <!-- Failure Withdraw Modal JavaScript -->
+    <script>
+        const withdrawFailureModal = document.getElementById('withdraw-failure-modal');
+        const closeWithdrawFailureBtn = document.getElementById('close-withdraw-failure');
+        const withdrawFailureOkBtn = document.getElementById('withdraw-failure-ok-button');
+
+        closeWithdrawFailureBtn.onclick = function() {
+            withdrawFailureModal.style.display = 'none';
+            window.location.href = 'mywallet.php'; 
+        }
+
+        withdrawFailureOkBtn.onclick = function() {
+            withdrawFailureModal.style.display = 'none';
+            window.location.href = 'mywallet.php'; 
+        }
+
+        window.onclick = function(event) {
+            if (event.target == withdrawFailureModal) {
+                withdrawFailureModal.style.display = 'none';
+                window.location.href = 'mywallet.php'; 
             }
         }
     </script>
