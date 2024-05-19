@@ -160,7 +160,7 @@ $saldo = $_SESSION['saldo'];
             <div class="search-box">
                 <i class='bx bx-search' id="search-icon"></i>
                 <form action="searchresult.php" class="search-form" method="POST">
-                    <input type="search" placeholder="Search">
+                    <input type="search" placeholder="Search" name="search">
                 </form>
             </div>
             <p>Or, pick your genre</p>

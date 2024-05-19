@@ -83,6 +83,73 @@ $game = $stmt_cart->get_result();
             <a href="sign-up.php" onclick='confirmLogout()'>Logout</a>
         </div>
     </nav>
+    <!-- Javascript dropdown -->
+    <script>
+        document.getElementById('user').addEventListener('click', function() {
+            document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
+        });
+
+        function confirmLogout() {
+            modal.style.display = "block";
+            centerModal();
+        }
+    </script>
+
+    <!-- Logout Modal -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Are you sure you want to log out?</h2>
+        <div>
+            <button id="confirmLogout">Yes</button>
+            <button id="cancelLogout">Cancel</button>
+        </div>
+    </div>
+    <!-- End of Logout Modal -->
+
+    <!-- Javascript Logout Modal -->
+    <script>
+        function centerModal() {
+            var modal = document.querySelector('.modal-content');
+            modal.style.top = "50%";
+            modal.style.left = "50%";
+            modal.style.transform = "translate(-50%, -50%)";
+        }
+
+        window.addEventListener('resize', centerModal);
+
+        var logoutBtn = document.getElementById("logout");
+        var modal = document.querySelector('.modal-content');
+        var closeModal = document.querySelector('.close');
+
+        logoutBtn.addEventListener('click', function() {
+            modal.style.display = "block";
+            centerModal();
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        document.getElementById("confirmLogout").addEventListener("click", function() {
+            window.location.href = "sign-up.php";
+        });
+
+        document.getElementById("cancelLogout").addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        document.getElementById("logout").addEventListener('click', function(event) {
+            event.preventDefault();
+            confirmLogout();
+        });
+    </script>
+    <!-- End of Javascript Logout Modal -->
 
     <div class="cart-container">
         <h1>My Cart</h1>
@@ -111,7 +178,7 @@ $game = $stmt_cart->get_result();
                             </td>
                         </tr>
                     <?php } ?>
-                    
+
                 </tbody>
             </table>
             <div class="cart-summary">
