@@ -267,3 +267,109 @@ h1 {
     margin: 20px auto;
     padding: 20px auto;
 }
+
+/* Modal logout */
+.modal-content {
+    font-family: 'Poppins';
+    display: none;
+    background-color: #f5f5f5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    width: 450px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease;
+    justify-content: center;
+}
+
+.icon {
+    margin-left: 147px;
+    border: 1px solid #000;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    color: #FF2E63;
+    border: 3px solid #FF2E63;
+    border-radius: 50%;
+    line-height: 110px;
+    font-size: 50px;
+}
+.modal-content h2 {
+    font-size: 35px;
+    font-weight: 500;
+    margin: 10px 10px 10px 10px;
+    color: #121212;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 3px;
+    right: 13px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover{
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #121212;
+}
+
+button#confirmLogout {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border: 0.1px solid #FF2E63;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #dcdada;
+}
+
+button#cancelLogout {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border: 0.1px solid #121212;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #dcdada;
+    color: #000000;
+}
+
+button#confirmLogout:hover {
+    opacity: 0.8;
+    background-color: #FF2E63;
+    font-weight: bold;
+    color: #fff;
+}
+
+button#cancelLogout:hover {
+    opacity: 0.8;
+    background-color: #121212;
+    color: #fff;
+    font-weight: bold;
+}

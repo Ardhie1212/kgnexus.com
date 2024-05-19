@@ -66,10 +66,14 @@ $saldo = $_SESSION['saldo'];
     <!-- Logout Modal -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2 class="modal-title">Are you sure you want to log out?</h2>
+        <div class="icon">
+            <i class='bx bx-message-alt-error'></i>
+        </div>
+        <h2>Confirm</h2>
+        <p class="modal-title">Are you sure you want to Sign out?</p>
         <div>
             <button id="confirmLogout">Yes</button>
-            <button id="cancelLogout">Cancel</button>
+            <button id="cancelLogout">No</button>
         </div>
     </div>
     <!-- End of Logout Modal -->
