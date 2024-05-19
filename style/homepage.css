@@ -1,93 +1,65 @@
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins');
-
+/* Initialize */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
+    text-decoration: none;
+    border: none;
+    outline: none;
 }
 
 body {
+<<<<<<< HEAD
+    height: 300vh;
+    background-color: #222831;
+    background-size: cover;
+    background-position: center;
+    overflow-y: scroll;
+    overflow-y: auto;
+=======
     overflow-x: hidden;
     background-color: #dcdada;
     margin: 0;
     padding: 0;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 }
 
-a {
-    text-decoration: none;
-}
 
+<<<<<<< HEAD
+li {
+=======
 h1,h2,h5 {
     font-family: helvetica;
 }
 
 ul {
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     list-style: none;
 }
 
-/* Navbar */
-.navbar {
-    position: absolute;
-    display: flex;
-    top: 0;
-    left: 0;
+/* End of Initialize */
+
+/* Navbar styling */
+header {
     width: 100%;
-    justify-content: space-between;
-    padding: 20px;
-    color: #f5f5f5;
-    align-items: center;
-}
-
-.navbar i {
-    margin-top: -3px;
-    color: #f5f5f5;
-    font-size: 1.8rem;
-    transition: color 0.3s ease;
-}
-
-.nav-links {
-    color: #eaeaea;
-    display: flex;
-    align-items: center;
-}
-
-.nav-links li a {
-    color: #eaeaea;
-    transition: .3s ease;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-.nav-links li a:hover,
-.navbar i:hover {
-    color: #FF2E63;
-    cursor: pointer;
-}
-
-.nav-links li {
-    margin: 0 30px;
-}
-
-.nav-links li a.onpage {
-    color: #FF2E63;
-}
-
-
-.sub-menu-wrap {
-    visibility: hidden;
-    position: absolute;
-    display: none;
-    top: 80%;
-    right: 0%;
-    width: 10rem;
-    background: #fff;
-    padding: 0.5rem;
-    /* Tambahkan padding untuk memberi ruang di sekitar konten */
-    margin: 5px;
-    justify-content: center;
+    position:absolute;
+    padding: 0 2rem;
+    background-color: #FF2E63;
     z-index: 1000;
 }
 
+<<<<<<< HEAD
+.navbar {
+    width: 100%;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.links {
+=======
 .sub-menu-wrap a {
     position: relative;
     color: #000;
@@ -169,19 +141,22 @@ section {
     margin-top: 20px;
     padding: 20px;
     display: flex;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     justify-content: center;
-    /* Center the card grid */
-}
-
-.card-grid {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    /* Ensure all cards are in one row */
-    justify-content: center;
-    max-width: 1200px;
+    gap: 2rem;
 }
 
+<<<<<<< HEAD
+/* End of Navbar Styling */
+
+/* Navbar element styling */
+.links a {
+    position: relative;
+    /* Tambahkan posisi relatif */
+    color: #fff;
+    font-size: 1rem;
+=======
 .card1 {
     background-color: #ededed;
     flex: 1 1 calc(20% - 20px);
@@ -232,20 +207,43 @@ section {
     background-position: center;
     background-size: cover;
     display: flex;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     align-items: center;
+<<<<<<< Updated upstream
+    transition: color 0.3s;
+    /* Transisi untuk warna teks */
+=======
+    transition: color 0.1s; /* Transisi untuk warna teks */
+>>>>>>> Stashed changes
 }
 
+<<<<<<< HEAD
+#yourStore:hover, #Category:hover, #Wishlist:hover, #Cart:hover {
+    color: #222831 !important;
+=======
 .search-content {
     width: 100%;
     color: #f5f5f5;
     align-items: center;
     flex-direction: column;
     margin-left: 150px;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 }
 
-.search-content h1 {
-    font-size: 5vmin;
+.links a:hover{
+    color: #08D9D6 !important;
 }
+.navbar h2 {
+    color: #fff;
+    cursor: default;
+    user-select: none;
+}
+<<<<<<< HEAD
+
+.navbar li {
+    list-style: none;
+    position: relative;
+=======
 .search-form {
     width: 85%;
 }
@@ -254,7 +252,33 @@ section {
     height: 4px;
     background: #FF2E63;
     margin: 15px 0 30px 0;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 }
+
+/* End of Navbar element styling */
+
+/* Navbar icon styling */
+.navbar i {
+    color: #fff;
+    font-size: 2.2rem;
+}
+
+i {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.navbar i.bxs-user-circle:hover {
+    color: #222831;
+    cursor: pointer;
+}
+
+
+.navbar i.bx-menu:hover {
+    cursor: pointer;
+}
+
+/* End of Navbar icon styling */
 
 /* Navbar search-box styling */
 .search-box {
@@ -271,11 +295,11 @@ section {
     font-size: 1.2rem;
 }
 
-#search-icon {
+.navbar #search-icon {
     margin-left: 10px;
 }
 
-input[type="search"] {
+.navbar input[type="search"] {
     background: transparent;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -286,45 +310,448 @@ input[type="search"] {
     width: 100%;
 }
 
-.search-content p {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    color: #9f9e9e;
+.navbar #menu {
+    margin-left: 10px;
+}
+/* End of Navbar search-box styling */
+
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+/* Sidebar styling */
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #FF2E63;
+    position: fixed;
+    /* Menggeser sidebar dari posisi navbar */
+    left: -200px; /* Sembunyikan sidebar secara default */
+    transition: left 0.3s ease; /* Animasi ketika menampilkan/menyembunyikan sidebar */
 }
 
-.search-content ul li {
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+}
+
+.sidebar ul li a {
     color: #fff;
-    margin: 10px 0;
 }
 
-.search-content ul li a {
+.show-sidebar {
+    left: 0; /* Menampilkan sidebar */
+}
+
+.bx-x {
+    transform: rotate(90deg);
+}
+/* End of Search-box styling */
+>>>>>>> Stashed changes
+
+/* Navbar dropdown styling */
+.navbar .bx.bxs-user-circle {
+    font-size: 2rem;
+}
+
+.navbar #Home {
+    margin-right: 0.5rem;
+}
+
+.navbar #dropdown {
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    margin-left: 0.5rem;
+}
+.dropyourstore,
+.genres,
+.special {
+    display: none; /* Semua dropdown defaultnya tidak terlihat */
+    position: absolute;
+    background-color: #252A34;
+    width: 10rem;
+    top: 100%;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+}
+.dropyourstore li,
+.genres li,
+.special li {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+.dropyourstore li a,
+.genres li a,
+.special li a {
     color: #fff;
-    transition: .2s ease;
 }
-
-.search-content ul li a:hover {
+.dropyourstore li a:hover,
+.genres li a:hover,
+.special li a:hover {
     color: #FF2E63;
 }
-
-/* Footer */
-
-.footer {
-    width: 100%;
-    height: 150px;
-    padding: 25px 80px;
-    background-color: #202020;
-    text-align: center;
-    color: #f5f5f5;
-    position: relative;
-    bottom: 0;
+.navbar li:hover .dropyourstore,
+.navbar li:hover .genres,
+.navbar li:hover .special {
+    display: block; /* Tampilkan dropdown saat li hover */
+}
+.sub-menu-wrap {
+    visibility: hidden;
+    position: absolute;
+    display: none;
+    top: 80%;
+    right: 0%;
+    width: 10rem;
+    border-radius: 0.5rem;
+    background: #252A34;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem; /* Tambahkan padding untuk memberi ruang di sekitar konten */
+    margin: 5px;
     justify-content: center;
 }
 
-.footer p {
-    margin: 20px auto;
-    padding: 20px auto;
+<<<<<<< Updated upstream
+.sub-menu-wrap a {
+    position: relative;
+    color: #fff;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+    display: block; /* Mengubah tampilan elemen anchor menjadi block */
+    padding: 0.5rem 0; /* Tambahkan padding di atas dan bawah untuk memberi jarak vertikal */
+}
+=======
+=======
+>>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
+>>>>>>> Stashed changes
+
+.sub-menu-wrap a:hover{
+    color: #08D9D6;
 }
 
+.sub-menu-show {
+    visibility: visible;
+    display: block;
+}
+/* End of Navbar dropdown styling */
+
+
+
+
+/* Main content */
+
+.section {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider{
+    width: 920px;
+    height: 430px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.slide{
+    width: 500%;
+    height: 430px;
+    display: flex;
+}
+
+.slide input {
+    display: none;
+}
+
+.st{
+    width: 20%;
+    transition: 2s;
+}
+
+.st img{
+    width: 920px;
+    height: 430px;
+}
+
+.nav-m{
+    position: absolute;
+    width: 920px;
+    margin-top: -40px;
+    justify-content: center;
+    display: flex;
+}
+
+.m-btn{
+    border: 2px solid #fff;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.m-btn:not(:last-child){
+    margin-right: 30px;
+}
+
+.m-btn:hover{
+    background-color: #fff;
+}
+
+#radio1:checked ~.first{
+    margin-left: 0;
+}
+
+#radio2:checked ~.first{
+    margin-left: -20%;
+}
+
+#radio3:checked ~.first{
+    margin-left: -40%;
+}
+
+#radio4:checked ~.first{
+    margin-left: -60%;
+}
+
+#radio5:checked ~.first{
+    margin-left: -80%;
+}
+
+#radio6:checked ~.first{
+    margin-left: -100%;
+}
+
+#radio7:checked ~.first{
+    margin-left: -120%;
+}
+
+#radio8:checked ~.first{
+    margin-left: -140%;
+}
+
+#radio9:checked ~.first{
+    margin-left: -160%;
+}
+
+#radio10:checked ~.first{
+    margin-left: -180%;
+}
+
+.nav-auto{
+    position: absolute;
+    width: 920px;
+    margin-top: 390px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-auto div{
+    border: 2px solid #fff;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.nav-auto div:not(:last-child){
+    margin-right: 30px;
+    justify-content: center;
+}
+
+#radio1:checked ~ .nav-auto .a-b1{
+    background-color: #fff;
+}
+
+#radio2:checked ~ .nav-auto .a-b2{
+    background-color: #fff;
+}
+
+#radio3:checked ~ .nav-auto .a-b3{
+    background-color: #fff;
+}
+
+#radio4:checked ~ .nav-auto .a-b4{
+    background-color: #fff;
+}
+
+#radio5:checked ~ .nav-auto .a-b5{
+    background-color: #fff;
+}
+
+#radio6:checked ~ .nav-auto .a-b6{
+    background-color: #fff;
+}
+
+#radio7:checked ~ .nav-auto .a-b7{
+    background-color: #fff;
+}
+
+#radio8:checked ~ .nav-auto .a-b8{
+    background-color: #fff;
+}
+
+#radio9:checked ~ .nav-auto .a-b9{
+    background-color: #fff;
+}
+
+#radio10:checked ~ .nav-auto .a-b10{
+    background-color: #fff;
+}
+
+/* Special offer content */
+/* End of Special offer content */
+
+/* Most downloaded content */
+/* End of Most downloaded content */
+
+<<<<<<< Updated upstream
+/* Recommended For You */
+.game1 {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    /* border: 1px solid #fff; */
+    padding: 0px 30px;
+    margin-top: 20px;
+
+}
+.game1 h3{
+    color: #EAEAEA;
+    font-size: 25px;
+    font-weight: 400;
+    transition: .5s linear;
+}
+.game2 {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    /* border: 1px solid #fff; */
+    padding: 0px 30px;
+    margin-top: 20px;
+}
+
+.game2 h3 {
+    color: #EAEAEA;
+    font-size: 25px;
+    font-weight: 400;
+    transition: .5s linear;
+}
+.game3 {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    /* border: 1px solid #fff; */
+    padding: 0px 30px;
+    margin-top: 20px;
+}
+.game3 h3 {
+    color: #EAEAEA;
+    font-size: 25px;
+    font-weight: 400;
+    transition: .5s linear;
+}
+.game-bx {
+    width: 100%;
+    height: 240px;
+    /* border: 1px solid #fff; */
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+.game-bx::-webkit-scrollbar {
+    display: none;
+}
+.card{
+    min-width: 350px;
+    height: 220px;
+    /* border: 1px solid #fff; */
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.card:nth-last-child(1){
+    margin-right: 0px;
+}
+.card img{
+    width: 100%;
+    height: 75%;
+    border-radius: 7px;
+}
+
+.content{
+    width: 100%;
+    height: 25%;
+    /* border: 1px solid #fff; */
+    justify-content: space-between;
+    display: flex;
+    color: #fff;
+    margin-top: -5px;
+}
+
+.left{
+    
+    transition: .5s linear;
+}
+
+.left h5{
+    font-size: 22px;
+    font-weight: 500;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 8px;
+    color: #fff;
+}
+
+.left p{
+    font-size: 12px;
+    font-weight: 500;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #EAEAEA;
+}
+
+.content h6{
+    font-size: 22px;
+    font-weight: 500;
+    color: #EAEAEA;
+    margin-top: 5px;
+    transition: .5s linear;
+}
+
+.btns{
+    position: absolute;
+    right: 3%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    transition: .5s linear;
+}
+
+.btns i {
+    margin-left: 5px;
+    cursor: pointer;
+    transition: .5s linear;
+    color: rgb(255, 255, 255, .5);
+}
+
+.btns i:hover {
+    color: #fff;
+}
+
+
+/* End of Recommended For You */
 
 /* Modal content */
 
@@ -375,6 +802,20 @@ input[type="search"] {
     font-size: 28px;
     font-weight: bold;
 }
+<<<<<<< HEAD
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  button#confirmLogout {
+=======
 
 .close:hover{
     cursor: pointer;
@@ -397,6 +838,7 @@ input[type="search"] {
 }
 
 button#confirmLogout {
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     width: 100px;
     padding: 10px 20px;
     margin: 10px 10px;
@@ -404,10 +846,17 @@ button#confirmLogout {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+<<<<<<< HEAD
+    background-color: #FF2E63;
+  }
+  
+  button#cancelLogout {
+=======
     background-color: #dcdada;
 }
 
 button#cancelLogout {
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     width: 100px;
     padding: 10px 20px;
     margin: 10px 10px;
@@ -417,11 +866,40 @@ button#cancelLogout {
     transition: background-color 0.3s ease;
     background-color: #dcdada;
     color: #000000;
-}
+  }
 
-button#confirmLogout:hover {
+  button#confirmLogout:hover {
     opacity: 0.8;
     background-color: #FF2E63;
+<<<<<<< HEAD
+  }
+  
+  button#cancelLogout:hover {
+    opacity: 0.8;
+    background-color: #e0e0e0;
+  }
+
+  /* End of Modal content */
+=======
+>>>>>>> Stashed changes
+
+/* End of Main Content */
+
+
+/* Footer */
+
+footer {
+    background-color: #111;
+    position: fixed;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: transform 0.3s ease;
+    transform: translate(0, 100%);
+    display: flex;
+=======
     font-weight: bold;
     color: #fff;
 }
@@ -431,6 +909,38 @@ button#cancelLogout:hover {
     background-color: #121212;
     color: #fff;
     font-weight: bold;
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 }
 
-/* End of Modal content */
+.show-footer {
+    transform: translate(0, 0); 
+    display: flex;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo img {
+    width: 250px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.footer-container p {
+    margin: 0;
+    color: #fff;
+}
+
+.designer {
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+}
+
+/* End of Footer */

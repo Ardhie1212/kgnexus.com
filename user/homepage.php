@@ -8,11 +8,12 @@ session_start();
 
 $id_user = $_SESSION['id_user'];
 $email = $_SESSION['email'];
-$username = $_SESSION['username'];
+$username=$_SESSION['username'];
 $passkey = $_SESSION['passkey'];
-$rekening = $_SESSION['rekening'];
-$saldo = $_SESSION['saldo'];
+$alamat =$_SESSION['alamat'];
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +21,21 @@ $saldo = $_SESSION['saldo'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KGNexus</title>
     <link rel="stylesheet" href="../style/homepage.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<<<<<<< Updated upstream
+=======
+
+=======
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+>>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
+>>>>>>> Stashed changes
+=======
     <title>Homepage</title>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -34,34 +48,68 @@ $saldo = $_SESSION['saldo'];
             });
         });
     </script>
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 </head>
 
 <body>
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="" class="onpage">Home</a></li>
-            <li><a href="">Library</a></li>
-            <li><a href="mywallet.php">Wallet</a></li>
-            <li><a href="shopping-cart.php">Cart</a></li>
-        </ul>
-        <i class='bx bxs-user-circle' id="user"></i>
-        <div class="sub-menu-wrap" id="sub-menu-wrap">
-            <a href="profile-user.php">Manage Account</a>
-            <a href="sign-up.php" id="logout">Logout</a>
-        </div>
-    </nav>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <h2>KGNEXUS</h2>
+            <div class="search-box">
+                <i class='bx bx-search' id="search-icon"></i>
+                <input type="search" placeholder="Search">
+            </div>
+            <ul class="links">
+<<<<<<< Updated upstream
+                <li>
+                    <a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
+                    <ul class="dropyourstore" id="yourstoreclick">
+                        <li><a href="#">Store</a></li>
+                        <li><a href="#">Library</a></li>
+                    </ul>
+                </li>
 
-    <!-- Javascript dropdown -->
-    <script>
-        document.getElementById('user').addEventListener('click', function() {
-            document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
-        });
+                <li>
+                    <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
+                    <ul class="genres" id="genres">
+                        <li><a href="categorypage.php?game_category=<?= 'Action'?>">Action</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Adventure'?>">Adventure</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Role-playing'?>">Role-playing</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Simulator'?>">Simulation</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Strategy'?>">Strategy</a></li>
+                        <li><a href="categorypage.php?game_category=<?= 'Sports'?>">Sports & Racing</a></li>
+                    </ul>
 
-        function confirmLogout() {
-            modal.style.display = "block";
-            centerModal();
-        }
-    </script>
+                </li>
+                <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
+=======
+<<<<<<< HEAD
+                <li><a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Wishlist<i class="fa fa-heart fa-sm" id="dropdown" aria-hidden="true"></i></a></li>
+                <li><a href="#">Cart<i class="fa fa-shopping-cart" id="dropdown" aria-hidden="true"></i></a></li>
+=======
+                <li><a href="#">Store</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Category</a></li>
+                <li><a href="#">Wishlist</a></li>
+                <li><a href="#">Cart</a></li>
+>>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
+>>>>>>> Stashed changes
+            </ul>
+            <i class='bx bxs-user-circle' id="user"></i>
+            <div class="sub-menu-wrap" id="sub-menu-wrap">
+                <a href="profile-user.php?id=<?php echo $_SESSION['id_user']; ?>">Manage Account</a>
+                <a href="sign-up.php" onclick='confirmLogout()'>Logout</a>
+            </div>
+        </nav>
+
+    </header>
+
+<<<<<<< Updated upstream
+    <!-- End of navigation bar -->
 
     <!-- Logout Modal -->
     <div class="modal-content">
@@ -75,6 +123,17 @@ $saldo = $_SESSION['saldo'];
             <button id="confirmLogout">Yes</button>
             <button id="cancelLogout">No</button>
         </div>
+=======
+<<<<<<< HEAD
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#">Menu 1</a></li>
+            <li><a href="#">Menu 2</a></li>
+            <li><a href="#">Menu 3</a></li>
+            <li><a href="#">Menu 4</a></li>
+        </ul>
+>>>>>>> Stashed changes
     </div>
     <!-- End of Logout Modal -->
 
@@ -109,54 +168,124 @@ $saldo = $_SESSION['saldo'];
         });
 
         document.getElementById("confirmLogout").addEventListener("click", function() {
-            window.location.href = "sign-up.php";
+            window.location.href = "sign-up.php"; 
         });
 
         document.getElementById("cancelLogout").addEventListener("click", function() {
             modal.style.display = "none";
         });
-
-        document.getElementById("logout").addEventListener('click', function(event) {
-            event.preventDefault();
-            confirmLogout();
-        });
     </script>
     <!-- End of Javascript Logout Modal -->
 
+    <!-- Javascript Dropdown -->
+    <script>
+        let yourStore = document.getElementById('yourstoreclick');
+        let genres = document.getElementById('genres');
+        let special = document.getElementById('special')
 
-    <header>
-        <div class="header-content">
-            <h2>KGNEXUS</h2>
-            <section class="line"></section>
-            <h1>Gateway to Epic Adventures</h1>
-        </div>
-    </header>
+        document.getElementById('user').addEventListener('click', function() {
+            document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
+        });
 
-    <!-- Recommended Section -->
-    <section class="recommended">
-        <div class="title">
-            <h1>Recommended For You</h1>
-            <section class="line"></section>
-        </div>
-        <div class="content1">
-            <div class="card-grid">
-                <?php while ($row = $recommended->fetch_assoc()) { ?>
-                    <div class="card1">
-                        <a href="gamepage.php?game_id=<?php echo $row['game_id']; ?>">
-                            <div class="card-image">
-                                <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                            </div>
-                            <div class="card-content">
-                                <h5><?php echo $row['game_name'] ?></h5>
-                                <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
-                            </div>
-                        </a>
+        user.addEventListener('click', () => {
+            dropUser.classList.toggle('user-details-show');
+        });
+
+        yourStore.previousElementSibling.addEventListener('click', () => {
+            yourStore.classList.toggle('dropyourstore-show');
+        });
+
+        genres.previousElementSibling.addEventListener('click', () => {
+            genres.classList.toggle('genres-show');
+        });
+
+        special.previousElementSibling.addEventListener('click', () => {
+            genres.classList.toggle('special-show');
+        });
+
+        function confirmLogout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                window.location.href = 'sign-up.php';
+            }
+        }
+    </script>
+    <!-- End of javascript dropdown -->
+
+=======
+>>>>>>> 70ce003b0ddb66021ce1c32af432285ce01ed2dc
+    <!-- Main content -->
+    <main>
+        <section class="section">
+            <div class="slider">
+                <div class="slide">
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <input type="radio" name="radio-btn" id="radio4">
+                    <input type="radio" name="radio-btn" id="radio5">
+                    <input type="radio" name="radio-btn" id="radio6">
+
+                    <div class="st first">
+                        <img src="../images/game-images/header/header-balatro.jpg" alt="">
                     </div>
+                    <?php while ($row = $banner_image->fetch_assoc()) { ?>
+                        <div class="st">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                        </div>
+                    <?php } ?>
+
+                    <div class="nav-auto">
+                        <div class="a-b1"></div>
+                        <div class="a-b2"></div>
+                        <div class="a-b3"></div>
+                        <div class="a-b4"></div>
+                        <div class="a-b5"></div>
+                        <div class="a-b6"></div>
+                    </div>
+                </div>
+
+                <div class="nav-m">
+                    <label for="radio1" class="m-btn"></label>
+                    <label for="radio2" class="m-btn"></label>
+                    <label for="radio3" class="m-btn"></label>
+                    <label for="radio4" class="m-btn"></label>
+                    <label for="radio5" class="m-btn"></label>
+                    <label for="radio6" class="m-btn"></label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game content begin -->
+        <div class="game1">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_1_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_1_right_btn"></i>
+            </div>
+            <h3>Recommended For You</h3>
+            <div class="game-bx" id="game_bx_1">
+                <?php while ($row = $recommended->fetch_assoc()) { ?>
+                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
+                        <div class="card">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            <div class="content">
+                                <div class="left">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                    <p><?php echo $row['rating'] ?></p>
+                                </div>
+                                <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
+                            </div>
+                        </div>
+                    </a>
                 <?php } ?>
             </div>
         </div>
-    </section>
 
+<<<<<<< HEAD
+        <div class="game2">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_2_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_2_right_btn"></i>
+=======
     <section class="search-game">
         <div class="search-content">
             <h1>SEARCH FOR GAME</h1>
@@ -166,77 +295,142 @@ $saldo = $_SESSION['saldo'];
                 <form action="searchresult.php" class="search-form" method="POST">
                     <input type="search" placeholder="Search" name="search">
                 </form>
+>>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
             </div>
-            <p>Or, pick your genre</p>
-            <ul>
-                <li><a href="categorypage.php?game_category=<?php echo 'Action' ?>">Action</a></li>
-                <li><a href="categorypage.php?game_category=<?php echo 'Role-playing' ?>">Role-Playing</a></li>
-                <li><a href="categorypage.php?game_category=<?php echo 'Strategy' ?>">Strategy</a></li>
-                <li><a href="categorypage.php?game_category=<?php echo 'Sports' ?>">Sports & Racing</a></li>
-                <li><a href="categorypage.php?game_category=<?php echo 'Simulation' ?>">Simulation</a></li>
-                <li><a href="categorypage.php?game_category=<?php echo 'Adventure' ?>">Adventure</a></li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Most played -->
-    <section class="mostplayed">
-        <div class="title">
-            <h1>Most Played Games</h1>
-            <section class="line"></section>
-        </div>
-        <div class="content1">
-            <div class="card-grid">
-                <?php while ($row = $mostplayed->fetch_assoc()) { ?>
-                    <div class="card1">
-                        <a href="gamepage.php?game_id=<?php echo $row['game_id']; ?>">
-                            <div class="card-image">
-                                <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                            </div>
-                            <div class="card-content">
-                                <h5><?php echo $row['game_name'] ?></h5>
-                                <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
-                            </div>
-                        </a>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
-    </section>
-
-    <section class="sale">
-        <div class="title">
-            <h1>30% SALE</h1>
-            <section class="line"></section>
-        </div>
-        <div class="content1">
-            <div class="card-grid">
+            <h3>SALE</h3>
+            <div class="game-bx" id="game_bx_2">
                 <?php while ($row = $sale->fetch_assoc()) { ?>
-                    <div class="card1">
-                        <a href="gamepage.php?game_id=<?php echo $row['game_id']; ?>">
-                            <div class="card-image">
-                                <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
+                        <div class="card">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            <div class="content">
+                                <div class="left">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                    <p><?php echo $row['rating'] ?></p>
+                                </div>
+                                <h6>IDR <?php echo $row['price'], 00 ?></h6>
                             </div>
-                            <div class="card-content">
-                                <h5><?php echo $row['game_name'] ?></h5>
-                                <?php if (isset($row['price']) && $row['price'] < $row['game_price']) : ?>
-                                    <p class="price"><s>Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></s></p>
-                                    <p>Rp. <?php echo number_format($row['price'], 2, ',', '.'); ?></p>
-                                <?php else : ?>
-                                    <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
-                                <?php endif; ?>
-                            </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 <?php } ?>
             </div>
         </div>
-    </section>
 
-    <section class="footer">
-        <p>Designed by Kelompok 1</p>
-        <p>Copyright © All rights reserved.</p>
-    </section>
+        <div class="game3">
+            <div class="btns">
+                <i class='bx bx-caret-left' id="game_bx_3_left_btn"></i>
+                <i class='bx bx-caret-right' id="game_bx_3_right_btn"></i>
+            </div>
+            <h3>Most Played</h3>
+            <div class="game-bx" id="game_bx_3">
+                <?php while ($row = $mostplayed->fetch_assoc()) { ?>
+                    <a href="gamepage.php?game_id=<?= $row['game_id'] ?>">
+                        <div class="card">
+                            <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                            <div class="content">
+                                <div class="left">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                    <p><?php echo $row['rating'] ?></p>
+                                </div>
+                                <h6>IDR <?php echo $row['game_price'], 00 ?></h6>
+                            </div>
+                        </div>
+                    </a>
+                <?php } ?>
+            </div>
+        </div>
+    </main>
+    <!-- End of Main content -->
+
+    <!-- Javascript Slider -->
+    <script type="text/javascript">
+        var counter = 1;
+        setInterval(function() {
+            document.getElementById('radio' + counter).checked = true;
+            counter++;
+            if (counter > 6) {
+                counter = 1;
+            }
+        }, 3000);
+    </script>
+    <!-- End of Javascript slider -->
+
+    <!-- Javascript game card scroll -->
+    <script>
+        let game_bx_1 = document.getElementById('game_bx_1');
+        let game_bx_1_left_btn = document.getElementById('game_bx_1_left_btn');
+        let game_bx_1_right_btn = document.getElementById('game_bx_1_right_btn');
+
+        let game_bx_2 = document.getElementById('game_bx_2');
+        let game_bx_2_left_btn = document.getElementById('game_bx_2_left_btn');
+        let game_bx_2_right_btn = document.getElementById('game_bx_2_right_btn');
+
+        let game_bx_3 = document.getElementById('game_bx_3');
+        let game_bx_3_left_btn = document.getElementById('game_bx_3_left_btn')
+        let game_bx_3_right_btn = document.getElementById('game_bx_3_right_btn')
+
+
+        game_bx_1_left_btn.addEventListener('click', () => {
+            game_bx_1.scrollLeft -= 300;
+        });
+
+        game_bx_1_right_btn.addEventListener('click', () => {
+            game_bx_1.scrollLeft += 300;
+        });
+
+        game_bx_2_left_btn.addEventListener('click', () => {
+            game_bx_2.scrollLeft -= 300;
+        });
+
+        game_bx_2_right_btn.addEventListener('click', () => {
+            game_bx_2.scrollLeft += 300;
+        });
+
+        game_bx_3_left_btn.addEventListener('click', () => {
+            game_bx_3.scrollLeft -= 300;
+        });
+
+        game_bx_3_right_btn.addEventListener('click', () => {
+            game_bx_3.scrollLeft += 300;
+        });
+    </script>
+    <!-- End of Javascript game card scroll -->
+    <!-- Footer -->
+    <footer id="footer" class="show-footer">
+        <div class="footer-container">
+            <div class="logo">
+                <img src="../images/TransparentLogo.png" alt="KGNexus Logo">
+            </div>
+            <div class="copyright">
+                <p>Copyright &copy;2024; Designed by <span class="designer">KGNexus Team</span></p>
+            </div>
+        </div>
+    </footer>
+    <!-- End of footer -->
+
+    <!-- Javascript Footer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var footer = document.getElementById('footer');
+            var windowHeight = window.innerHeight;
+            var fullHeight = document.documentElement.scrollHeight;
+            var footerHeight = footer.offsetHeight;
+
+            function toggleFooter() {
+                var scrollPosition = window.scrollY;
+                if (scrollPosition + windowHeight >= fullHeight - footerHeight) {
+                    footer.classList.add('show-footer');
+                } else {
+                    footer.classList.remove('show-footer');
+                }
+            }
+
+            toggleFooter();
+            document.addEventListener('scroll', toggleFooter);
+            window.addEventListener('resize', toggleFooter);
+        });
+    </script>
+    <!-- End of Javascript Footer -->
 </body>
 
 </html>

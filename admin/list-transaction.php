@@ -149,7 +149,7 @@ $result = mysqli_query($conn, $query_view);
                         echo '<td>
                                 <form class="status-form" method="POST" action="update_status_admin.php">
                                     <input type="hidden" name="transaction_id" value="' . $row['transaction_id'] . '">
-                                    <input type="checkbox" name="status" value="Verified" class="status-checkbox" ' . ($row['status'] == 'Verified' ? 'checked disabled' : '') . '>
+                                    <input type="checkbox" name="status" value="verified" class="status-checkbox" ' . ($row['status'] == 'verified' ? 'checked disabled' : '') . '>
                                 </form>
                               </td>';
                         echo "</tr>";
@@ -173,7 +173,7 @@ $result = mysqli_query($conn, $query_view);
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to change the status to "Verified"?
+                    Are you sure you want to change the status to "verified"?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

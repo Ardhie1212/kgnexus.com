@@ -11,10 +11,10 @@ $modal_message = "";
 
 if (isset($_GET['success'])) {
     $modal_title = "Success";
-    $modal_message = "Your profile has successfully been updated!";
+    $modal_message = $_GET['success'];
 } elseif (isset($_GET['error'])) {
     $modal_title = "Error";
-    $modal_message = "Your profile failed to update!";
+    $modal_message = $_GET['error'];
 }
 
 if ($user_id) {
@@ -120,10 +120,6 @@ $conn->close();
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <script>
         function editInput(inputId) {
             var input = document.getElementById(inputId);
@@ -132,7 +128,7 @@ $conn->close();
         }
 
         function confirmSave() {
-            if (confirm('Confirmation: Are you sure you want to keep the changes?')) {
+            if (confirm('Apakah Anda yakin ingin menyimpan perubahan?')) {
                 document.getElementById('profileForm').submit();
             }
         }
@@ -144,6 +140,11 @@ $conn->close();
             });
         <?php endif; ?>
     </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

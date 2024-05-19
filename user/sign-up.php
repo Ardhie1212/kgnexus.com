@@ -8,7 +8,7 @@ if (isset($_SESSION['logged_in'])) {
 }
 
 if (isset($_POST['submit-btn'])) {
-    if (strlen($_POST['email']) == 0 && strlen($_POST['rekening']) == 0) {
+    if (strlen($_POST['email']) == 0 && strlen($_POST['alamat']) == 0) {
         $username = $_POST['username'];
         $passkey = $_POST['passkey'];
         $passkey = md5($passkey);
@@ -19,7 +19,7 @@ if (isset($_POST['submit-btn'])) {
         session_start();
 
         if ($stmt_login->execute()) {
-            $stmt_login->bind_result($id_user, $email, $username, $passkey, $rekening, $saldo);
+            $stmt_login->bind_result($id_user, $email, $username, $passkey, $alamat);
             $stmt_login->store_result();
 
             if ($stmt_login->num_rows() == 1) {
@@ -29,8 +29,8 @@ if (isset($_POST['submit-btn'])) {
                 $_SESSION['email'] = $email;
                 $_SESSION['username'] = $username;
                 $_SESSION['passkey'] = $passkey;
-                $_SESSION['rekening'] = $rekening;
-                $_SESSION['saldo'] = $saldo;
+                $_SESSION['alamat'] = $alamat;
+
                 header('location: homepage.php?login_success=1&username=' . urlencode($username));
                 exit();
             } else {
@@ -44,13 +44,13 @@ if (isset($_POST['submit-btn'])) {
         $email = $_POST['email'];
         $username = $_POST['username'];
         $passkey = $_POST['passkey'];
-        $rekening = $_POST['rekening'];
-        $saldo = 0;
+        $alamat = $_POST['alamat'];
+
         $hashedPassword = md5($passkey);
 
-        $checkQuery = "SELECT * FROM user WHERE username = ?";
+        $checkQuery = "SELECT * FROM user WHERE username = ? OR email = ?";
         $stmt = mysqli_prepare($conn, $checkQuery);
-        mysqli_stmt_bind_param($stmt, "s", $username);
+        mysqli_stmt_bind_param($stmt, "ss", $username, $email);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
@@ -58,9 +58,9 @@ if (isset($_POST['submit-btn'])) {
             header('location: sign-up.php?error=1');
             exit();
         } else {
-            $query = "INSERT INTO user (email, username, passkey, rekening,saldo) VALUES (?, ?, ?, ?,?)";
+            $query = "INSERT INTO user (email, username, passkey, alamat) VALUES (?, ?, ?, ?)";
             $stmt = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt, "sssii", $email, $username, $hashedPassword, $rekening, $saldo);
+            mysqli_stmt_bind_param($stmt, "ssss", $email, $username, $hashedPassword, $alamat);
             if (mysqli_stmt_execute($stmt)) {
                 header('location: sign-up.php?success=1');
                 exit();
@@ -102,9 +102,9 @@ if (isset($_POST['submit-btn'])) {
                         <i class='bx bxs-key'></i>
                         <input type="password" placeholder="Password" name="passkey" required>
                     </div>
-                    <div class="input-field" id="rekeningField">
-                        <i class='bx bxs-bank'></i>
-                        <input type="number" placeholder="Bank account" name="rekening" required>
+                    <div class="input-field" id="addressField">
+                        <i class='bx bx-current-location'></i>
+                        <input type="text" placeholder="Address" name="alamat" required>
                     </div>
                 </div>
                 <div class="btn-field">
@@ -119,43 +119,47 @@ if (isset($_POST['submit-btn'])) {
     </div>
 
     <!-- Javascript Login Form Logic -->
+
     <script>
         let signinBtn = document.getElementById("signinBtn");
         let signupBtn = document.getElementById("signupBtn");
         let usernameField = document.getElementById("usernameField");
         let emailField = document.getElementById("emailField");
         let title = document.getElementById("title");
-        let rekeningField = document.getElementById("rekeningField");
+        let addressField = document.getElementById("addressField");
         let emailInput = document.getElementsByName("email")[0];
-        let rekeningInput = document.getElementsByName("rekening")[0];
+        let addressInput = document.getElementsByName("alamat")[0];
 
         signinBtn.onclick = function() {
             emailField.style.maxHeight = "0";
-            rekeningField.style.maxHeight = "0";
+            addressField.style.maxHeight = "0";
             title.innerHTML = "Sign-In";
             signupBtn.classList.add("disable");
             signinBtn.classList.remove("disable");
 
+            
             emailInput.removeAttribute("required");
-            rekeningInput.removeAttribute("required");
+            addressInput.removeAttribute("required");
 
+            
             emailInput.value = "";
-            rekeningInput.value = "";
+            addressInput.value = "";
         }
 
         signupBtn.onclick = function() {
             emailField.style.maxHeight = "60px";
-            rekeningField.style.maxHeight = "60px";
+            addressField.style.maxHeight = "60px";
             title.innerHTML = "Sign-Up";
             signupBtn.classList.remove("disable");
             signinBtn.classList.add("disable");
 
-            emailInput.setAttribute("required");
-            rekeningInput.setAttribute("required");
+            // Menambahkan atribut required
+            emailInput.setAttribute("required", "required");
+            addressInput.setAttribute("required", "required");
         }
     </script>
     <!-- End of Javascript Login Form Logic -->
-
+    
     <!-- Success Modal -->
     <div id="successModal" class="modal">
         <div class="modal-content">

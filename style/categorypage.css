@@ -28,7 +28,7 @@ li {
 /* Navbar styling */
 header {
     width: 100%;
-    position: absolute;
+    position:absolute;
     padding: 0 2rem;
     background-color: #FF2E63;
     z-index: 1000;
@@ -61,17 +61,13 @@ header {
     /* Transisi untuk warna teks */
 }
 
-#yourStore:hover,
-#Category:hover,
-#Wishlist:hover,
-#Cart:hover {
+#yourStore:hover, #Category:hover, #Wishlist:hover, #Cart:hover {
     color: #222831 !important;
 }
 
-.links a:hover {
+.links a:hover{
     color: #08D9D6 !important;
 }
-
 .navbar h2 {
     color: #fff;
     cursor: default;
@@ -142,7 +138,6 @@ i {
 .navbar #menu {
     margin-left: 10px;
 }
-
 /* End of Navbar search-box styling */
 
 /* Navbar dropdown styling */
@@ -159,12 +154,10 @@ i {
     margin-top: 0.2rem;
     margin-left: 0.5rem;
 }
-
 .dropyourstore,
 .genres,
 .special {
-    display: none;
-    /* Semua dropdown defaultnya tidak terlihat */
+    display: none; /* Semua dropdown defaultnya tidak terlihat */
     position: absolute;
     background-color: #252A34;
     width: 10rem;
@@ -174,33 +167,27 @@ i {
     border-radius: 0.5rem;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
 }
-
 .dropyourstore li,
 .genres li,
 .special li {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
 }
-
 .dropyourstore li a,
 .genres li a,
 .special li a {
     color: #fff;
 }
-
 .dropyourstore li a:hover,
 .genres li a:hover,
 .special li a:hover {
     color: #FF2E63;
 }
-
 .navbar li:hover .dropyourstore,
 .navbar li:hover .genres,
 .navbar li:hover .special {
-    display: block;
-    /* Tampilkan dropdown saat li hover */
+    display: block; /* Tampilkan dropdown saat li hover */
 }
-
 .sub-menu-wrap {
     visibility: hidden;
     position: absolute;
@@ -211,8 +198,7 @@ i {
     border-radius: 0.5rem;
     background: #252A34;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
-    padding: 0.5rem;
-    /* Tambahkan padding untuk memberi ruang di sekitar konten */
+    padding: 0.5rem; /* Tambahkan padding untuk memberi ruang di sekitar konten */
     margin: 5px;
     justify-content: center;
 }
@@ -224,13 +210,11 @@ i {
     align-items: center;
     justify-content: center;
     transition: color 0.3s;
-    display: block;
-    /* Mengubah tampilan elemen anchor menjadi block */
-    padding: 0.5rem 0;
-    /* Tambahkan padding di atas dan bawah untuk memberi jarak vertikal */
+    display: block; /* Mengubah tampilan elemen anchor menjadi block */
+    padding: 0.5rem 0; /* Tambahkan padding di atas dan bawah untuk memberi jarak vertikal */
 }
 
-.sub-menu-wrap a:hover {
+.sub-menu-wrap a:hover{
     color: #08D9D6;
 }
 
@@ -238,207 +222,5 @@ i {
     visibility: visible;
     display: block;
 }
-
 /* End of Navbar dropdown styling */
 
-/* Modal content */
-
-.modal-content {
-    display: none;
-    background-color: #fefefe;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    margin: auto;
-    padding: 30px;
-    border: 1px solid #ddd;
-    max-width: 80%;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.3s ease;
-}
-
-.close {
-    color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.modal-title {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-button#confirmLogout {
-    width: 100px;
-    padding: 10px 20px;
-    margin: 10px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: #FF2E63;
-}
-
-button#cancelLogout {
-    width: 100px;
-    padding: 10px 20px;
-    margin: 10px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: #fff;
-    color: #000000;
-}
-
-button#confirmLogout:hover {
-    opacity: 0.8;
-    background-color: #FF2E63;
-}
-
-button#cancelLogout:hover {
-    opacity: 0.8;
-    background-color: #e0e0e0;
-}
-
-/* End of Modal content */
-
-/* Card */
-
-#category-heading {
-    color: #fff;
-    /* Warna teks kategori yang dipilih */
-    font-size: 60px;
-    margin-left: 10px;
-}
-
-.content {
-    padding: 182px;
-    /* Jarak antara card dengan tepi layar */
-    display: flex;
-    flex-wrap: wrap;
-    grid-gap: 20px;
-    /* Jarak antara card */
-}
-
-.content h5,
-.content p {
-    color: white;
-    /* Mengubah warna teks menjadi putih */
-}
-
-.card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Menyebar card secara merata */
-    grid-gap: 20px;
-}
-
-
-.card {
-    width: 300px;
-    height: 250px;
-    background-color: #252A34;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 1.0);
-    overflow: hidden;
-    margin-bottom: 20px; /* Jarak antara baris */
-    flex: 0 0 calc(30% - 20px); /* Lebar card sebesar 25% minus jarak antara card */
-}
-
-.card img {
-    width: 100%;
-    height: 150px; /* Atur tinggi gambar header */
-    object-fit: cover; /* Pastikan gambar mengisi area dengan proporsi yang tepat */
-}
-
-.card .content {
-    padding: 20px;
-}
-
-.card h5 {
-    margin: 0 0 15px;
-    /* Jarak bawah dari judul game */
-    width: 110%; /* Lebarkan header untuk memenuhi lebar card */
-    text-align: center; /* Pusatkan teks judul */
-}
-
-.card p {
-    margin: 0;
-    font-size: 14px;
-    /* Ubah ukuran font teks */
-    color: #fff;
-    /* Ubah warna teks */
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 1.0);
-}
-
-/* End of Card */
-
-/* Footer */
-
-footer {
-    background-color: #111;
-    position: fixed;
-    justify-content: center;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-    transition: transform 0.3s ease;
-    transform: translate(0, 100%);
-    display: flex;
-}
-
-.show-footer {
-    transform: translate(0, 0);
-    display: flex;
-}
-
-.footer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-}
-
-.logo img {
-    width: 250px;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.footer-container p {
-    margin: 0;
-    color: #fff;
-}
-
-.designer {
-    opacity: 0.7;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    margin: 0px 5px;
-}
-
-/* End of Footer */
