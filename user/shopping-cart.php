@@ -3,31 +3,11 @@ include('../server/connection.php');
 session_start();
 
 // Check if session variables are set
-<<<<<<< HEAD
 if (!isset($_SESSION['id_user'])) {
-=======
-if (isset($_SESSION['id_user']) && isset($_SESSION['email']) && isset($_SESSION['username'])) {
-    $id_user = $_SESSION['id_user'];
-    $email = $_SESSION['email'];
-    $username = $_SESSION['username'];
-    $passkey = $_SESSION['passkey'];
-    $rekening = $_SESSION['rekening'];
-    $saldo = $_SESSION['saldo'];
-
-    // Now you can use these session variables as needed
-} else {
-    // Redirect to login page if session variables are not set
->>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
     header("Location: sign-up.php");
     exit();
 }
 
-<<<<<<< HEAD
-$id_user = $_SESSION['id_user'];
-
-// Check if game_id is provided in the URL
-=======
->>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 if (isset($_GET['game_id'])) {
     // Get the game_id from the URL
     $game_id = $_GET['game_id'];
@@ -63,8 +43,6 @@ if (isset($_GET['game_id'])) {
     $check_result->close();
 }
 
-<<<<<<< HEAD
-=======
 $query_cart =
     "SELECT game.*,
 IF(game.Sector = 'SALE', game.game_price * 0.7, game.game_price) AS price
@@ -84,7 +62,6 @@ $stmt_discount = mysqli_query($conn, $query_discount);
 $discount = mysqli_fetch_assoc($stmt_discount);
 
 $subtotal = $total['total_price'] - $discount['total_discounted_price'];
->>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 
 $query_cart = "SELECT * FROM game JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user";
 $stmt_cart = $conn->prepare($query_cart);
@@ -133,184 +110,6 @@ $conn->close();
 </head>
 
 <body>
-<<<<<<< HEAD
-    <!-- Navigation Bar -->
-    <header>
-        <nav class="navbar">
-            <h2>KGNEXUS</h2>
-            <div class="search-box">
-                <i class='bx bx-search' id="search-icon"></i>
-                <input type="search" placeholder="Search">
-            </div>
-            <ul class="links">
-                <li>
-                    <a href="#" id="Home">Your Store<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
-                    <ul class="dropyourstore" id="yourstoreclick">
-                        <li><a href="#">Store</a></li>
-                        <li><a href="#">Library</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#">Category<i class="fa fa-angle-down" id="dropdown" aria-hidden="true"></i></a>
-                    <ul class="genres" id="genres">
-                        <li><a href="">Action</a></li>
-                        <li><a href="">Adventure</a></li>
-                        <li><a href="">Role-playing</a></li>
-                        <li><a href="">Simulation</a></li>
-                        <li><a href="">Strategy</a></li>
-                        <li><a href="">Sports & Racing</a></li>
-                    </ul>
-
-                </li>
-                <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
-                <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
-            </ul>
-            <i class='bx bxs-user-circle' id="user"></i>
-            <div class="sub-menu-wrap" id="sub-menu-wrap">
-                <a href="profile-user.php">Manage Account</a>
-                <a href="sign-up.php">Logout</a>
-            </div>
-        </nav>
-
-    </header>
-
-    <!-- End of navigation bar -->
-
-    <!-- Javascript Dropdown -->
-    <script>
-        let yourStore = document.getElementById('yourstoreclick');
-        let genres = document.getElementById('genres');
-        let special = document.getElementById('special')
-
-        document.getElementById('user').addEventListener('click', function() {
-            document.getElementById('sub-menu-wrap').classList.toggle('sub-menu-show');
-        });
-
-        user.addEventListener('click', () => {
-            dropUser.classList.toggle('user-details-show');
-        });
-
-        yourStore.previousElementSibling.addEventListener('click', () => {
-            yourStore.classList.toggle('dropyourstore-show');
-        });
-
-        genres.previousElementSibling.addEventListener('click', () => {
-            genres.classList.toggle('genres-show');
-        });
-
-        special.previousElementSibling.addEventListener('click', () => {
-            genres.classList.toggle('special-show');
-        });
-    </script>
-    <!-- End of javascript dropdown -->
-
-
-
-    <!-- Main content -->
-    <div class="cart-wrapper">
-        <?php while ($row = $cart->fetch_assoc()) { ?>
-            <div class="cart">
-                <h2>YOUR ORDER</h2>
-                <div id="cart-items-container">
-                    <!-- PHP loop to generate cart items -->
-                    <div class="order-item">
-                        <img src="../images/game-images/header/<?php echo $row['header']; ?>" alt="Game Image">
-                        <div class="item-details">
-                            <p class="item-name"><?php echo $row['game_name']; ?></p>
-                            <p class="item-price">Rp.<?php echo number_format($row['game_price']); ?></p>
-                            <!-- Add remove button with a data attribute to hold the game ID -->
-                            <button class="remove-item" data-gameid="<?php echo $row['game_id']; ?>">Remove</button>
-                        </div>
-                    </div>
-                </div>
-                <p>ORDER TOTAL: <span id="order-total">Rp.</span></p>
-            </div>
-        <?php } ?>
-        <div class="payment-option">
-            <h3>YOUR PAYMENT & GIFTING DETAILS</h3>
-            <br>
-            <div class="payment-method">
-                <label>
-                    <input type="radio" name="payment" value="wallet">
-                    <span class="payment-description">
-                        <p>USE WALLET FUNDS (BALANCE Rp. 100.000)</p>
-                    </span>
-                </label>
-            </div>
-            <div class="order-total">
-                <h5>TOTAL: </h5>
-                <p id="payment-total">Rp.<?php echo number_format($total); ?></p>
-                <button>PAY FOR YOUR ORDER NOW</button>
-            </div>
-        </div>
-    </div>
-    <!-- End of main content -->
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const removeButtons = document.querySelectorAll('.remove-item');
-
-    removeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const gameId = button.getAttribute('data-gameid');
-            // Send AJAX request to delete item
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'delete_item.php', true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    // Item successfully deleted
-                    console.log('Item deleted successfully');
-                    // Reload the page or update the cart as needed
-                    window.location.reload();
-                } else {
-                    console.error('Error deleting item');
-                }
-            };
-            xhr.send('game_id=' + gameId);
-        });
-    });
-});
-</script>
-
-    <!-- Footer -->
-    <footer id="footer" class="show-footer">
-        <div class="footer-container">
-            <div class="logo">
-                <img src="../images/TransparentLogo.png" alt="KGNexus Logo">
-            </div>
-            <div class="copyright">
-                <p>Copyright &copy;2024; Designed by <span class="designer">KGNexus Team</span></p>
-            </div>
-        </div>
-    </footer>
-    <!-- End of footer -->
-
-    <!-- Javascript Footer -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var footer = document.getElementById('footer');
-            var windowHeight = window.innerHeight;
-            var fullHeight = document.documentElement.scrollHeight;
-            var footerHeight = footer.offsetHeight;
-
-            function toggleFooter() {
-                var scrollPosition = window.scrollY;
-                if (scrollPosition + windowHeight >= fullHeight - footerHeight) {
-                    footer.classList.add('show-footer');
-                } else {
-                    footer.classList.remove('show-footer');
-                }
-            }
-
-            toggleFooter();
-            document.addEventListener('scroll', toggleFooter);
-            window.addEventListener('resize', toggleFooter);
-        });
-    </script>
-    <!-- End of Javascript Footer -->
-
-=======
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="homepage.php" >Home</a></li>
@@ -451,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     </div>
->>>>>>> 292d1c5b8ecb500bd9c709dedf1c136ddb9b9807
 </body>
 
 </html>
