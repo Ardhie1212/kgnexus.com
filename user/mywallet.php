@@ -93,7 +93,7 @@ if (isset($_POST['withdraw_btn'])) {
         <ul class="nav-links">
             <li><a href="homepage.php">Home</a></li>
             <li><a href="library.php">Library</a></li>
-            <li><a href="mywallet.php">Wallet</a></li>
+            <li><a href="mywallet.php" class="onpage">Wallet</a></li>
             <li><a href="shopping-cart.php">Cart</a></li>
         </ul>
         <i class='bx bxs-user-circle' id="user"></i>
