@@ -8,6 +8,7 @@ if (isset($_SESSION['logged_in'])) {
 }
 
 if (isset($_POST['submit-btn'])) {
+    //
     if (strlen($_POST['email']) == 0 && strlen($_POST['rekening']) == 0) {
         $username = $_POST['username'];
         $passkey = $_POST['passkey'];
