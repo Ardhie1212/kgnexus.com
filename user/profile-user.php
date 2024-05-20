@@ -106,7 +106,7 @@ $conn->close();
                     <div class="form-group">
                         <label for="address">Bank Account:</label>
                         <div class="input-group">
-                            <textarea class="form-control" id="address" name="rekening" rows="3" disabled><?php echo htmlspecialchars($user['rekening']); ?></textarea>
+                            <textarea class="form-control" id="address" name="alamat" rows="3" disabled><?php echo htmlspecialchars($user['rekening']); ?></textarea>
                             <div class="input-group-append">
                                 <span class="input-group-text edit-icon" onclick="editInput('address')">
                                     <i class="bi bi-pencil-square"></i>

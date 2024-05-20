@@ -9,16 +9,6 @@ if (isset($_GET['game_category'])) {
     $stmt_query->execute();
     $game = $stmt_query->get_result();
 }
-
-if (isset($_GET['game_category'])) {
-    $category = $_GET['game_category'];
-    $sorting = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
-    $query_get_game = "SELECT * FROM game WHERE game_category = ? ORDER BY game_price $sorting";
-    $stmt_query = $conn->prepare($query_get_game);
-    $stmt_query->bind_param('s', $category);
-    $stmt_query->execute();
-    $game = $stmt_query->get_result();
-}
 ?>
 
 
@@ -64,15 +54,6 @@ if (isset($_GET['game_category'])) {
                 </li>
                 <li><a href="#">Wishlist<i class="" id="dropdown" aria-hidden="true"></i></a></li>
                 <li><a href="#">Cart<i class="" id="dropdown" aria-hidden="true"></i></a></li>
-                <!-- Tambahkan dropdown sorting di sini -->
-                <?php if (isset($_GET['game_category'])) { ?>
-                    <li>
-                        <select id="sort-select">
-                            <option value="asc">Lowest Price</option>
-                            <option value="desc">Highest Price</option>
-                        </select>
-                    </li>
-                <?php } ?>
             </ul>
             <i class='bx bxs-user-circle' id="user"></i>
             <div class="sub-menu-wrap" id="sub-menu-wrap">
@@ -83,84 +64,6 @@ if (isset($_GET['game_category'])) {
     </header>
 
     <!-- End of navigation bar -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tangkap parameter kategori dan sorting dari URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const category = urlParams.get('game_category');
-            const sorting = urlParams.get('sort');
-
-            // Setel nilai sorting pada dropdown
-            const sortSelect = document.getElementById('sort-select');
-            if (sorting) {
-                sortSelect.value = sorting;
-            }
-
-            // Setel teks kategori berdasarkan nilai yang ditangkap dari URL
-            const categoryHeading = document.getElementById('category-heading');
-            if (categoryHeading) {
-                categoryHeading.textContent = category || 'All Games'; // Jika tidak ada kategori yang dipilih, tampilkan "All Games"
-            }
-        });
-
-        document.getElementById('sort-select').addEventListener('change', function() {
-            var category = "<?php echo isset($_GET['game_category']) ? $_GET['game_category'] : ''; ?>";
-            var sorting = this.value;
-            var url = "categorypage.php?game_category=" + encodeURIComponent(category) + "&sort=" + sorting;
-            window.location.href = url;
-        });
-    </script>
-
-    <!-- Logout Modal -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2 class="modal-title">Are you sure you want to log out?</h2>
-        <div>
-            <button id="confirmLogout">Yes</button>
-            <button id="cancelLogout">Cancel</button>
-        </div>
-    </div>
-    <!-- End of Logout Modal -->
-
-    <!-- Javascript Logout Modal -->
-    <script>
-        function centerModal() {
-            var modal = document.querySelector('.modal-content');
-            modal.style.top = "50%";
-            modal.style.left = "50%";
-            modal.style.transform = "translate(-50%, -50%)";
-        }
-
-        window.addEventListener('resize', centerModal);
-
-        var logoutBtn = document.getElementById("logout");
-        var modal = document.querySelector('.modal-content');
-        var closeModal = document.querySelector('.close');
-
-        logoutBtn.addEventListener('click', function() {
-            modal.style.display = "block";
-            centerModal();
-        });
-
-        closeModal.addEventListener('click', function() {
-            modal.style.display = "none";
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        });
-
-        document.getElementById("confirmLogout").addEventListener("click", function() {
-            window.location.href = "sign-up.php";
-        });
-
-        document.getElementById("cancelLogout").addEventListener("click", function() {
-            modal.style.display = "none";
-        });
-    </script>
-    <!-- End of Javascript Logout Modal -->
 
     <!-- Javascript Dropdown -->
     <script>
