@@ -1,22 +1,19 @@
 <?php
 include('../server/connection.php');
-include('../server/sale_get.php');
 
 if (isset($_GET['game_category'])) {
     $category = $_GET['game_category'];
-    $query_get_game = "SELECT *, IF(Sector = 'Sale', game_price * 0.7, game_price) AS price FROM game WHERE game_category LIKE '%$category%'";
+    $query_get_game = "SELECT * FROM game WHERE game_category LIKE '%$category%'";
     $game = $conn->query($query_get_game);
 }
 
 if (isset($_GET['game_category'])) {
     $category = $_GET['game_category'];
     $sorting = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
-    $query_get_game = "SELECT *, IF(Sector = 'Sale', game_price * 0.7, game_price) AS price 
-                       FROM game 
-                       WHERE game_category LIKE '%$category%' 
-                       ORDER BY price $sorting";
+    $query_get_game = "SELECT * FROM game WHERE game_category LIKE '%$category%' ORDER BY game_price $sorting";
     $game = $conn->query($query_get_game);
 }
+
 ?>
 
 
@@ -139,12 +136,7 @@ if (isset($_GET['game_category'])) {
                             </div>
                             <div class="card-content">
                                 <h5><?php echo $row['game_name'] ?></h5>
-                                <?php if (isset($row['price']) && $row['price'] < $row['game_price']) : ?>
-                                    <p class="price"><s>Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></s></p>
-                                    <p>Rp. <?php echo number_format($row['price'], 2, ',', '.'); ?></p>
-                                <?php else : ?>
                                     <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
-                                <?php endif; ?>
                             </div>
                         </a>
                     </div>

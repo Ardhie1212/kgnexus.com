@@ -25,9 +25,9 @@ if (isset($_POST['search'])) {
 </head>
 
 <body>
-<nav class="navbar">
+    <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="homepage.php" >Home</a></li>
+            <li><a href="homepage.php">Home</a></li>
             <li><a href="library.php">Library</a></li>
             <li><a href="mywallet.php">Wallet</a></li>
             <li><a href="shopping-cart.php">Cart</a></li>
@@ -128,12 +128,7 @@ if (isset($_POST['search'])) {
                             </div>
                             <div class="card-content">
                                 <h5><?php echo $row['game_name'] ?></h5>
-                                <?php if (isset($row['price']) && $row['price'] < $row['game_price']) : ?>
-                                    <p class="price"><s>Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></s></p>
-                                    <p>Rp. <?php echo number_format($row['price'], 2, ',', '.'); ?></p>
-                                <?php else : ?>
-                                    <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
-                                <?php endif; ?>
+                                <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
                             </div>
                         </a>
                     </div>

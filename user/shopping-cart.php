@@ -31,25 +31,20 @@ if (isset($_GET['game_id'])) {
     }
 }
 
-$query_cart =
-    "SELECT game.*,
-IF(game.Sector = 'SALE', game.game_price * 0.7, game.game_price) AS price
-FROM game 
-JOIN cart ON game.game_id = cart.game_id
-WHERE cart.id_user = $id_user";
+$query_cart = "SELECT * FROM game JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user";
 
 $query_total =
     "SELECT SUM(game.game_price) AS total_price FROM game JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user";
 $stmt_total = mysqli_query($conn, $query_total);
 $total = mysqli_fetch_assoc($stmt_total);
 
-$query_discount =
-    "SELECT SUM(game.game_price * 0.3) AS total_discounted_price FROM game 
-JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user AND game.Sector = 'SALE'";
-$stmt_discount = mysqli_query($conn, $query_discount);
-$discount = mysqli_fetch_assoc($stmt_discount);
+$query_tax =
+    "SELECT SUM(game.game_price * 0.1) AS total_tax FROM game 
+JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user";
+$stmt_tax = mysqli_query($conn, $query_tax);
+$tax = mysqli_fetch_assoc($stmt_tax);
 
-$subtotal = $total['total_price'] - $discount['total_discounted_price'];
+$subtotal = $total['total_price'] - $tax['total_tax'];
 
 $stmt_cart = $conn->prepare($query_cart);
 $stmt_cart->execute();
@@ -170,19 +165,13 @@ $game = $stmt_cart->get_result();
                             <td><img src="../images/game-images/header/<?php echo $row['header'] ?>" alt=""></td>
                             <td><?php echo $row['game_name'] ?></td>
                             <td>
-                                <?php if (isset($row['price']) && $row['price'] < $row['game_price']) : ?>
-                                    <p class="price"><s>Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></s></p>
-                                    <p>Rp. <?php echo number_format($row['price'], 2, ',', '.'); ?></p>
-                                <?php else : ?>
-                                    <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
-                                <?php endif; ?>
+                                <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
                             </td>
                             <td>
                                 <a href="../server/deletecart.php?game_id=<?= $row['game_id'] ?>" class="remove">Remove</a>
                             </td>
                         </tr>
                     <?php } ?>
-
                 </tbody>
             </table>
             <div class="cart-summary">
@@ -194,8 +183,8 @@ $game = $stmt_cart->get_result();
                     <span>Rp. <?php echo number_format($total['total_price'], 2, ',', '.'); ?></span>
                 </div>
                 <div class="summary-item">
-                    <span>Discount:</span>
-                    <span>- Rp. <?php echo number_format($discount['total_discounted_price'], 2, ',', '.'); ?></span>
+                    <span>Tax:</span>
+                    <span>- Rp. <?php echo number_format($tax['total_tax'], 2, ',', '.'); ?></span>
                 </div>
                 <div class="line" id="line"></div>
                 <div class="summary-item">
