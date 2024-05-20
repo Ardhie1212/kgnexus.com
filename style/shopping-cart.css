@@ -25,12 +25,14 @@ a{
     text-decoration: none;
 }
 
+
 .line {
     width: 150px;
     height: 4px;
     background: #333;
-    margin: 10px 503px;
+    margin: 10px auto;
 }
+
 
 /* Navbar */
 .navbar {
