@@ -44,7 +44,7 @@ JOIN cart ON game.game_id = cart.game_id WHERE cart.id_user = $id_user";
 $stmt_tax = mysqli_query($conn, $query_tax);
 $tax = mysqli_fetch_assoc($stmt_tax);
 
-$subtotal = $total['total_price'] - $tax['total_tax'];
+$subtotal = $total['total_price'] + $tax['total_tax'];
 
 $stmt_cart = $conn->prepare($query_cart);
 $stmt_cart->execute();
@@ -184,7 +184,7 @@ $game = $stmt_cart->get_result();
                 </div>
                 <div class="summary-item">
                     <span>Tax:</span>
-                    <span>- Rp. <?php echo number_format($tax['total_tax'], 2, ',', '.'); ?></span>
+                    <span>Rp. <?php echo number_format($tax['total_tax'], 2, ',', '.'); ?></span>
                 </div>
                 <div class="line" id="line"></div>
                 <div class="summary-item">
