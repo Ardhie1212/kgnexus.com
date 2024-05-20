@@ -44,8 +44,8 @@ if (mysqli_num_rows($result) == 1) {
         <nav class="navbar">
             <ul class="nav-links">
                 <li><a href="homepage.php">Home</a></li>
-                <li><a href="">Library</a></li>
-                <li><a href="">Wallet</a></li>
+                <li><a href="library.php">Library</a></li>
+                <li><a href="mywallet.php">Wallet</a></li>
                 <li><a href="shopping-cart.php">Cart</a></li>
             </ul>
             <i class='bx bxs-user-circle' id="user"></i>
