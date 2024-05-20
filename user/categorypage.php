@@ -4,23 +4,19 @@ include('../server/sale_get.php');
 
 if (isset($_GET['game_category'])) {
     $category = $_GET['game_category'];
-    $query_get_game = "SELECT *, IF(Sector = 'Sale', game_price * 0.7, game_price) AS price FROM game WHERE game_category = ?";
-    $stmt_query = $conn->prepare($query_get_game);
-    $stmt_query->bind_param('s', $category);
-    $stmt_query->execute();
-    $game = $stmt_query->get_result();
+    $query_get_game = "SELECT *, IF(Sector = 'Sale', game_price * 0.7, game_price) AS price FROM game WHERE game_category LIKE '%$category%'";
+    $game = $conn->query($query_get_game);
 }
 
 if (isset($_GET['game_category'])) {
     $category = $_GET['game_category'];
     $sorting = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
-    $query_get_game = "SELECT *, IF(Sector = 'Sale', game_price * 0.7, game_price) AS price FROM game WHERE game_category = ? ORDER BY game_price $sorting";
-    $stmt_query = $conn->prepare($query_get_game);
-    $stmt_query->bind_param('s', $category);
-    $stmt_query->execute();
-    $game = $stmt_query->get_result();
+    $query_get_game = "SELECT *, IF(Sector = 'Sale', game_price * 0.7, game_price) AS price 
+                       FROM game 
+                       WHERE game_category LIKE '%$category%' 
+                       ORDER BY price $sorting";
+    $game = $conn->query($query_get_game);
 }
-
 ?>
 
 
