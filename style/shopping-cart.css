@@ -250,6 +250,45 @@ h1 {
     background-color: #155a8a;
 }
 
+#TopUpBtn button {
+    color: rgb(255, 255, 255);
+    background-color: #2ef107;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#TopUpBtn button:hover {
+    background-color: #155a8a;
+}
+
+/* End of check out box styling */
+
+/* Continue Shopping Styling */
+.continue-Shopping {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.continue-Shopping button {
+    background-color: #1d72b8;
+    color: #fff;
+    border: none;
+    padding: 15px 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+.continue-Shopping button:hover {
+    background-color: #155a8a;
+}
+
+
+/* End of Continue Shopping Styling  */
 
 /* Footer */
 

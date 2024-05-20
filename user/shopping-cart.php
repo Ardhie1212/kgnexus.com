@@ -185,6 +185,7 @@ $game = $stmt_cart->get_result();
 
                 </tbody>
             </table>
+            
             <div class="cart-summary">
                 <div class="summary-item">
                     <span>Summary</span>
@@ -204,11 +205,15 @@ $game = $stmt_cart->get_result();
                 </div>
                 <button class="checkout-btn"><strong>CHECK OUT</strong></button>
                 <div class="summary-item">
-                    <span>Saldo:</span>
+                    <span>My Nexus Wallet Balance:</span>
                     <span>Rp. <?php echo number_format($saldo, 2, ',', '.'); ?></span>
                 </div>
+                <a href="mywallet.php" id="TopUpBtn"><button>Top Up +</button></a>
             </div>
         </div>
+    </div>
+    <div class="continue-Shopping">
+        <a href="homepage.php"><button>Continue Shopping</button></a>
     </div>
 </body>
 
