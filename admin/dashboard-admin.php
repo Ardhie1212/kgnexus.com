@@ -36,20 +36,44 @@ if ($result_users) {
     $total_users = $row['total_users'];
 }
 
-$query_income = "
-    SELECT SUM(total_sales) AS total_income
-    FROM (
-        SELECT g.game_price * COUNT(t.transaction_id) AS total_sales
-        FROM transaction t
-        JOIN game g ON t.game_id = g.game_id
-        GROUP BY g.game_id
-    ) AS sales";
+$query_income = "SELECT 
+CASE 
+    WHEN SUM(total_sales) - IFNULL(SUM(total_refunds), 0) < 0 THEN 0
+    ELSE SUM(total_sales) - IFNULL(SUM(total_refunds), 0)
+END AS total_income
+FROM (
+SELECT 
+    CASE 
+        WHEN g.sector = 'SALE' THEN (g.game_price * 0.7) * COUNT(t.transaction_id)
+        ELSE g.game_price * COUNT(t.transaction_id)
+    END AS total_sales,
+    0 AS total_refunds
+FROM transaction t
+JOIN game g ON t.game_id = g.game_id
+WHERE t.status != 'refund'
+GROUP BY g.game_id
+
+UNION ALL
+
+SELECT 
+    0 AS total_sales,
+    SUM(g.game_price) AS total_refunds
+FROM transaction t
+JOIN game g ON t.game_id = g.game_id
+WHERE t.status = 'refund'
+GROUP BY g.game_id
+) AS sales_and_refunds";
+
+$result_income = $conn->query($query_income);
+$total_income = $result_income->fetch_assoc()['total_income'];
+;
 $result_income = $conn->query($query_income);
 $total_income = 0.0;
 if ($result_income) {
     $row = $result_income->fetch_assoc();
     $total_income = $row['total_income'];
 }
+
 
 $query_games = "SELECT game_id, game_name, game_category, game_company, size, release_date, rating, header, photo1, photo2, photo3, video, sector, game_price FROM game";
 $result_games = $conn->query($query_games);
@@ -345,6 +369,7 @@ $conn->close();
                 <th>Size</th>
                 <th>Release Date</th>
                 <th>Rating</th>
+                <th>Sector</th>
                 <th>Game Price</th>
                 <th>Actions</th>
             </tr>
