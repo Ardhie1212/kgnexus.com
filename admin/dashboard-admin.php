@@ -142,14 +142,19 @@ $conn->close();
             z-index: 2;
             color: #111;
         }
+        #main {
+            transition: margin-left .5s;
+        }
     </style>
     <script>
         function openNav() {
             document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
         }
 
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
         }
 
         function openUpdateModal(game) {
@@ -196,7 +201,7 @@ $conn->close();
     </script>
 </head>
 
-<body>
+<body id="main">
     <span>
         <h1 style="background-color: #111; color: white; padding: 25px;">Dashboard Admin</h1>
     </span>
