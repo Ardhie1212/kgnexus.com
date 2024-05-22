@@ -75,7 +75,7 @@ if ($result_income) {
 }
 
 
-$query_games = "SELECT game_id, game_name, game_category, game_company, size, release_date, rating, header, photo1, photo2, photo3, video, sector, game_price FROM game";
+$query_games = "SELECT * FROM game";
 $result_games = $conn->query($query_games);
 $games = [];
 if ($result_games) {
@@ -389,7 +389,7 @@ $conn->close();
                     <td><?php echo $game['size']; ?></td>
                     <td><?php echo $game['release_date']; ?></td>
                     <td><?php echo $game['rating']; ?></td>
-                    <td><?php echo $game['sector']; ?></td>
+                    <td><?php echo $game['Sector']; ?></td>
                     <td>Rp <?php echo number_format($game['game_price'], 2, ',', '.'); ?></td>
                     <td>
                         <form action="dashboard-admin.php" method="POST" style="display:inline-flex;">
@@ -513,7 +513,7 @@ $conn->close();
             document.getElementById('update_size').value = game.size;
             document.getElementById('update_release_date').value = game.release_date;
             document.getElementById('update_rating').value = game.rating;
-            document.getElementById('update_sector').value = game.sector;
+            document.getElementById('update_sector').value = game.Sector;
             document.getElementById('update_game_price').value = game.game_price;
 
             $('#updateModal').modal('show');

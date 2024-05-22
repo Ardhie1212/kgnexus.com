@@ -67,7 +67,7 @@ $game = $stmt_cart->get_result();
 <body>
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="homepage.php" >Home</a></li>
+            <li><a href="homepage.php">Home</a></li>
             <li><a href="library.php">Library</a></li>
             <li><a href="mywallet.php">Wallet</a></li>
             <li><a href="shopping-cart.php" class="onpage">Cart</a></li>
@@ -191,11 +191,11 @@ $game = $stmt_cart->get_result();
                     <span>Subtotal:</span>
                     <span>Rp. <?php echo number_format($subtotal, 2, ',', '.'); ?></span>
                 </div>
-                <button class="checkout-btn"><strong>CHECK OUT</strong></button>
                 <div class="summary-item">
                     <span>Saldo:</span>
                     <span>Rp. <?php echo number_format($saldo, 2, ',', '.'); ?></span>
                 </div>
+                <button class="checkout-btn"><strong>CHECK OUT</strong></button>
             </div>
         </div>
     </div>

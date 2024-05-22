@@ -317,9 +317,9 @@ button#cancelLogout:hover {
 }
 
 #success-modal .modal-btn {
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
+    background-color: #fff;
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -328,6 +328,7 @@ button#cancelLogout:hover {
 
 #success-modal .modal-btn:hover {
     background-color: #45a049;
+    color: #fff;
 }
 
 /* End of Success Modal Styles */
@@ -594,16 +595,20 @@ form input {
 
 form button {
     padding: 10px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
+    background-color: #fff;
+    color: #28a745;
+    border: 1px solid #28a745;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
+    transition: .3s;
+    font-weight: bold;
 }
 
 form button:hover {
     background-color: #218838;
+    color: #fff;
+    font-weight: bold;
 }
 
 /* End of Withdraw content */
