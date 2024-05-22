@@ -434,3 +434,32 @@ button#cancelLogout:hover {
 }
 
 /* End of Modal content */
+
+/*  */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #202020;
+    margin: 0 4px;
+    border-radius: 5px;
+}
+
+.pagination a.active {
+    background-color: #202020;
+    color: white;
+    border: 1px solid #202020;
+    font-weight:bold;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #202020;
+    color: #fff;
+    font-weight: bold;
+}

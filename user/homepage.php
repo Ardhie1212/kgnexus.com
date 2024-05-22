@@ -12,6 +12,33 @@ $username = $_SESSION['username'];
 $passkey = $_SESSION['passkey'];
 $rekening = $_SESSION['rekening'];
 $saldo = $_SESSION['saldo'];
+
+$items_per_page = 10; 
+
+function getPagedData($conn, $sector, $current_page, $items_per_page)
+{
+    $result = $conn->query("SELECT COUNT(*) as total FROM game WHERE sector='$sector'");
+    $row = $result->fetch_assoc();
+    $total_items = $row['total'];
+
+    $total_pages = ceil($total_items / $items_per_page);
+    $offset = ($current_page - 1) * $items_per_page;
+
+    $data = $conn->query("SELECT * FROM game WHERE sector='$sector' LIMIT $items_per_page OFFSET $offset");
+
+    return array($data, $total_pages);
+}
+
+// Dapatkan halaman saat ini dari parameter URL untuk masing-masing sektor, default ke 1 jika tidak diset
+$recommended_page = isset($_GET['recommended_page']) ? (int)$_GET['recommended_page'] : 1;
+$mostplayed_page = isset($_GET['mostplayed_page']) ? (int)$_GET['mostplayed_page'] : 1;
+$specials_page = isset($_GET['specials_page']) ? (int)$_GET['specials_page'] : 1;
+
+// Ambil data untuk masing-masing sektor
+list($recommended, $recommended_total_pages) = getPagedData($conn, 'Recommended', $recommended_page, $items_per_page);
+list($mostplayed, $mostplayed_total_pages) = getPagedData($conn, 'Most Played', $mostplayed_page, $items_per_page);
+list($specials, $specials_total_pages) = getPagedData($conn, 'Special Picks', $specials_page, $items_per_page);
+
 ?>
 
 <!DOCTYPE html>
@@ -134,7 +161,7 @@ $saldo = $_SESSION['saldo'];
     </header>
 
     <!-- Recommended Section -->
-    <section class="recommended">
+    <section id="recommended" class="recommended">
         <div class="title">
             <h1>Recommended For You</h1>
             <section class="line"></section>
@@ -155,6 +182,19 @@ $saldo = $_SESSION['saldo'];
                     </div>
                 <?php } ?>
             </div>
+        </div>
+        <div class="pagination">
+            <?php if ($recommended_page > 1) : ?>
+                <a href="homepage.php?recommended_page=<?php echo $recommended_page - 1; ?>&mostplayed_page=<?php echo $mostplayed_page; ?>&specials_page=<?php echo $specials_page; ?>#recommended">&laquo; Previous</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $recommended_total_pages; $i++) : ?>
+                <a href="homepage.php?recommended_page=<?php echo $i; ?>&mostplayed_page=<?php echo $mostplayed_page; ?>&specials_page=<?php echo $specials_page; ?>#recommended" <?php if ($i == $recommended_page) echo ' class="active"'; ?>><?php echo $i; ?></a>
+            <?php endfor; ?>
+
+            <?php if ($recommended_page < $recommended_total_pages) : ?>
+                <a href="homepage.php?recommended_page=<?php echo $recommended_page + 1; ?>&mostplayed_page=<?php echo $mostplayed_page; ?>&specials_page=<?php echo $specials_page; ?>&login_success=1&username=test2#recommended">Next &raquo;</a>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -179,9 +219,8 @@ $saldo = $_SESSION['saldo'];
             </ul>
         </div>
     </section>
-
-    <!-- Most played -->
-    <section class="mostplayed">
+    <!-- Most Played Section -->
+    <section id="mostplayed" class="mostplayed">
         <div class="title">
             <h1>Most Played Games</h1>
             <section class="line"></section>
@@ -203,9 +242,22 @@ $saldo = $_SESSION['saldo'];
                 <?php } ?>
             </div>
         </div>
-    </section>
+        <div class="pagination">
+            <?php if ($mostplayed_page > 1) : ?>
+                <a href="homepage.php?recommended_page=<?php echo $recommended_page; ?>&mostplayed_page=<?php echo $mostplayed_page - 1; ?>&specials_page=<?php echo $specials_page; ?>#mostplayed">&laquo; Previous</a>
+            <?php endif; ?>
 
-    <section class="special">
+            <?php for ($i = 1; $i <= $mostplayed_total_pages; $i++) : ?>
+                <a href="homepage.php?recommended_page=<?php echo $recommended_page; ?>&mostplayed_page=<?php echo $i; ?>&specials_page=<?php echo $specials_page; ?>#mostplayed" <?php if ($i == $mostplayed_page) echo ' class="active"'; ?>><?php echo $i; ?></a>
+            <?php endfor; ?>
+
+            <?php if ($mostplayed_page < $mostplayed_total_pages) : ?>
+                <a href="homepage.php?recommended_page=<?php echo $recommended_page; ?>&mostplayed_page=<?php echo $mostplayed_page + 1; ?>&specials_page=<?php echo $specials_page; ?>#mostplayed">Next &raquo;</a>
+            <?php endif; ?>
+        </div>
+    </section>
+    <!-- Special Picks Section -->
+    <section id="special" class="special">
         <div class="title">
             <h1>Special Picks</h1>
             <section class="line"></section>
@@ -226,6 +278,19 @@ $saldo = $_SESSION['saldo'];
                     </div>
                 <?php } ?>
             </div>
+        </div>
+        <div class="pagination">
+            <?php if ($specials_page > 1) : ?>
+                <a href="homepage.php?recommended_page=<?php echo $recommended_page; ?>&mostplayed_page=<?php echo $mostplayed_page; ?>&specials_page=<?php echo $specials_page - 1; ?>&#special">&laquo; Previous</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $specials_total_pages; $i++) : ?>
+                <a href="homepage.php?recommended_page=<?php echo $recommended_page; ?>&mostplayed_page=<?php echo $mostplayed_page; ?>&specials_page=<?php echo $i; ?>&#special" <?php if ($i == $specials_page) echo ' class="active"'; ?>><?php echo $i; ?></a>
+            <?php endfor; ?>
+
+            <?php if ($specials_page < $specials_total_pages) : ?>
+                <a href="homepage.php?recommended_page=<?php echo $recommended_page; ?>&mostplayed_page=<?php echo $mostplayed_page; ?>&specials_page=<?php echo $specials_page + 1; ?>&#special">Next &raquo;</a>
+            <?php endif; ?>
         </div>
     </section>
 

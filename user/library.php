@@ -42,8 +42,8 @@ if (isset($_GET['transaction_id'])) {
     <!-- Navbar -->
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="homepage.php" class="onpage">Home</a></li>
-            <li><a href="library.php">Library</a></li>
+            <li><a href="homepage.php">Home</a></li>
+            <li><a href="library.php" class="onpage">Library</a></li>
             <li><a href="mywallet.php">Wallet</a></li>
             <li><a href="shopping-cart.php">Cart</a></li>
         </ul>
