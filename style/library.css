@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+li {
+    list-style: none;
+}
+
+a{ 
+    text-decoration: none;
+}
+
+.line {
+    width: 150px;
+    height: 4px;
+    background: #333;
+    margin: 10px auto;
+}
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    color: #f5f5f5;
+    align-items: center;
+    background-color: #121212;
+}
+
+.navbar i {
+    margin-top: -3px;
+    color: #f5f5f5;
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li a {
+    color: #f5f5f5;
+    transition: .3s ease;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.nav-links li a:hover,
+.navbar i:hover {
+    color: #FF2E63;
+    cursor: pointer;
+}
+
+.nav-links li {
+    margin: 0 30px;
+}
+
+.nav-links li a.onpage {
+    color: #FF2E63;
+}
+
+.sub-menu-wrap {
+    visibility: hidden;
+    position: absolute;
+    display: none;
+    top: 80%;
+    right: 0%;
+    width: 10rem;
+    background: #fff;
+    padding: 0.5rem;
+    /* Tambahkan padding untuk memberi ruang di sekitar konten */
+    margin: 5px;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.sub-menu-wrap a {
+    position: relative;
+    color: #000;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+    display: block;
+    /* Mengubah tampilan elemen anchor menjadi block */
+    padding: 0.5rem 0;
+    /* Tambahkan padding di atas dan bawah untuk memberi jarak vertikal */
+}
+
+.sub-menu-wrap a:hover {
+    color: #FF2E63;
+}
+
+.sub-menu-show {
+    visibility: visible;
+    display: block;
+}
+/* End of Navbar */
+
+
+/* Main */
+main.library {
+    padding: 100px 20px 20px; /* Adjust the top padding to give space between navbar and main content */
+    background-color: #f4f4f9;
+    text-align: center;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    margin-right: 10px;
+}
+
+.search-bar select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.game-header {
+    max-width: 150px; /* Set maximum width */
+    height: auto; /* Maintain aspect ratio */
+}   
+
+.library-content h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.library-content p {
+    font-size: 1rem;
+    color: #777;
+}
+
+.library-content a {
+    color: #FF2E63;
+    text-decoration: none;
+}
+
+.library-content a:hover {
+    text-decoration: underline;
+}
+/* End of Main */
+
+/* Footer */
+.footer {
+    width: 100%;
+    height: 150px;
+    padding: 25px 80px;
+    background-color: #202020;
+    text-align: center;
+    color: #f5f5f5;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.footer p {
+    margin: 20px auto;
+    padding: 20px auto;
+}
+/* End of Footer */
+
+/* Modal content */
+.modal-content {
+    font-family: 'Poppins';
+    display: none;
+    background-color: #f5f5f5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    width: 450px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease;
+    justify-content: center;
+}
+
+.icon {
+    margin-left: 147px;
+    border: 1px solid #000;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    color: #FF2E63;
+    border: 3px solid #FF2E63;
+    border-radius: 50%;
+    line-height: 110px;
+    font-size: 50px;
+}
+.modal-content h2 {
+    font-size: 35px;
+    font-weight: 500;
+    margin: 10px 10px 10px 10px;
+    color: #121212;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 3px;
+    right: 13px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #121212;
+}
+
+button#confirmLogout {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border: 0.1px solid #FF2E63;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #dcdada;
+}
+
+button#cancelLogout {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border: 0.1px solid #121212;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #dcdada;
+    color: #000000;
+}
+
+button#confirmLogout:hover {
+    opacity: 0.8;
+    background-color: #FF2E63;
+    font-weight: bold;
+    color: #fff;
+}
+
+button#cancelLogout:hover {
+    opacity: 0.8;
+    background-color: #121212;
+    color: #fff;
+    font-weight: bold;
+}
+/* End of Modal content */
