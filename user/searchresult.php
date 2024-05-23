@@ -3,7 +3,7 @@ include('../server/connection.php');
 
 if (isset($_POST['search'])) {
     $searchString = $_POST['search'];
-    $query = "SELECT * FROM game WHERE game_name LIKE '%$searchString%'";
+    $query = "SELECT *, IF(Sector = 'Sale', game_price * 0.7, game_price) AS price FROM game WHERE game_name LIKE '%$searchString%'";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $searchResult = $stmt->get_result();
@@ -25,9 +25,9 @@ if (isset($_POST['search'])) {
 </head>
 
 <body>
-<nav class="navbar">
+    <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="homepage.php" >Home</a></li>
+            <li><a href="homepage.php">Home</a></li>
             <li><a href="library.php">Library</a></li>
             <li><a href="mywallet.php">Wallet</a></li>
             <li><a href="shopping-cart.php">Cart</a></li>

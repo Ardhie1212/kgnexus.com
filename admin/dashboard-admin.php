@@ -75,13 +75,70 @@ $conn->close();
     <link rel="stylesheet" href="../style/dashboard-admin.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <style>
+        /* Style for sidebar */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .hamburger {
+            font-size: 30px;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 2;
+            color: #111;
+        }
+        #main {
+            transition: margin-left .5s;
+        }
+    </style>
+
     <script>
         function openNav() {
             document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
         }
 
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
         }
 
 
@@ -152,6 +209,11 @@ $conn->close();
 </head>
 
 <body>
+    <span>
+        <h1 style="background-color: #111; color: white; padding: 25px;">Dashboard Admin</h1>
+    </span>
+    <div class="hamburger" style="color: white; position: fixed;" onclick="openNav()">&#9776;</div>
+
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="list-transaction.php">List Transaksi</a>
@@ -320,6 +382,96 @@ $conn->close();
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    New game has been successfully added.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- table games -->
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Game Name</th>
+                <th>Game Category</th>
+                <th>Game Company</th>
+                <th>Size</th>
+                <th>Release Date</th>
+                <th>Rating</th>
+                <th>Sector</th>
+                <th>Game Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($games as $game) { ?>
+                <tr>
+                    <td><?php echo $game['game_id']; ?></td>
+                    <td><?php echo $game['game_name']; ?></td>
+                    <td><?php echo $game['game_category']; ?></td>
+                    <td><?php echo $game['game_company']; ?></td>
+                    <td><?php echo $game['size']; ?></td>
+                    <td><?php echo $game['release_date']; ?></td>
+                    <td><?php echo $game['rating']; ?></td>
+                    <td><?php echo $game['Sector']; ?></td>
+                    <td>Rp <?php echo number_format($game['game_price'], 2, ',', '.'); ?></td>
+                    <td>
+                        <form action="dashboard-admin.php" method="POST" style="display:inline-flex;">
+                            <input type="hidden" name="id" value="<?php echo $game['game_id']; ?>">
+                            <button type="button" class="btn btn-primary" onclick='openUpdateModal(<?php echo json_encode($game); ?>)'>Edit</button>
+                            <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this game?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+
+    <!-- Update Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Update Game</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="..\Action\action-update-games.php" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" id="update_id" name="id">
+                        <div class="form-group">
+                            <label for="update_game_name">Game Name</label>
+                            <input type="text" class="form-control" id="update_game_name" name="game_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_game_desc">Game Description</label>
+                            <textarea class="form-control" id="update_game_desc" name="game_desc" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_game_category">Game Category</label>
+                            <input type="text" class="form-control" id="update_game_category" name="game_category" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_game_company">Game Company</label>
+                            <input type="text" class="form-control" id="update_game_company" name="game_company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_size">Size</label>
+                            <input type="text" class="form-control" id="update_size" name="size" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_release_date">Release Date</label>
+                            <input type="date" class="form-control" id="update_release_date" name="release_date" required>
+
                         </div>
                         <div class="modal-body">
                             New game has been successfully added.
@@ -603,7 +755,6 @@ $conn->close();
                     }
                 });
             </script>
-
 </body>
 
 </html>

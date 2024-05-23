@@ -2,7 +2,7 @@
 include('../server/banner_controller.php');
 include('../server/connection.php');
 include('../server/recommended_get.php');
-include('../server/sale_get.php');
+include('../server/special_get.php');
 include('../server/most_played_get.php');
 session_start();
 
@@ -40,7 +40,7 @@ $saldo = $_SESSION['saldo'];
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="" class="onpage">Home</a></li>
-            <li><a href="">Library</a></li>
+            <li><a href="library.php">Library</a></li>
             <li><a href="mywallet.php">Wallet</a></li>
             <li><a href="shopping-cart.php">Cart</a></li>
         </ul>
@@ -205,14 +205,14 @@ $saldo = $_SESSION['saldo'];
         </div>
     </section>
 
-    <section class="sale">
+    <section class="special">
         <div class="title">
-            <h1>30% SALE</h1>
+            <h1>Special Picks</h1>
             <section class="line"></section>
         </div>
         <div class="content1">
             <div class="card-grid">
-                <?php while ($row = $sale->fetch_assoc()) { ?>
+                <?php while ($row = $specials->fetch_assoc()) { ?>
                     <div class="card1">
                         <a href="gamepage.php?game_id=<?php echo $row['game_id']; ?>">
                             <div class="card-image">
@@ -220,12 +220,7 @@ $saldo = $_SESSION['saldo'];
                             </div>
                             <div class="card-content">
                                 <h5><?php echo $row['game_name'] ?></h5>
-                                <?php if (isset($row['price']) && $row['price'] < $row['game_price']) : ?>
-                                    <p class="price"><s>Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></s></p>
-                                    <p>Rp. <?php echo number_format($row['price'], 2, ',', '.'); ?></p>
-                                <?php else : ?>
-                                    <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
-                                <?php endif; ?>
+                                <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
                             </div>
                         </a>
                     </div>
