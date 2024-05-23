@@ -1,12 +1,31 @@
 <?php
 include('../server/connection.php');
 
-$query_view = "SELECT t.transaction_id, u.email, u.username, g.game_name, g.game_company, g.game_price, t.status 
+// Definisikan variabel halaman saat ini dan jumlah item per halaman
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$items_per_page = 10; // Ubah sesuai kebutuhan Anda
+
+// Hitung offset untuk query database
+$offset = ($page - 1) * $items_per_page;
+
+$query_view = "SELECT SQL_CALC_FOUND_ROWS t.transaction_id, u.email, u.username, g.game_name, g.game_company, g.game_price, t.Status 
                FROM transaction t 
                JOIN game g ON g.game_id = t.game_id
-               JOIN user u ON u.id_user = t.id_user";
-$result = mysqli_query($conn, $query_view);
+               JOIN user u ON u.id_user = t.id_user
+               LIMIT ?, ?";
+$stmt = $conn->prepare($query_view);
+$stmt->bind_param('ii', $offset, $items_per_page);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Dapatkan total jumlah baris yang ditemukan tanpa batasan limit
+$total_rows_result = $conn->query("SELECT FOUND_ROWS() as total_rows");
+$total_rows = $total_rows_result->fetch_assoc()['total_rows'];
+
+// Hitung total halaman berdasarkan jumlah item per halaman
+$total_pages = ceil($total_rows / $items_per_page);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,9 +35,13 @@ $result = mysqli_query($conn, $query_view);
     <title>Transaction Table</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        body{
+            background-color: #FFFAE6;
+        }
         .sidebar {
             height: 100%;
-            width: 0;
+            width: 250px;
+            /* Lebar awal sidebar */
             position: fixed;
             z-index: 1000;
             top: 0;
@@ -74,6 +97,7 @@ $result = mysqli_query($conn, $query_view);
             background-color: #111;
             color: white;
             padding: 25px;
+            justify-content: space-between;
         }
 
         .header-container h1 {
@@ -84,6 +108,20 @@ $result = mysqli_query($conn, $query_view);
         .hamburger {
             cursor: pointer;
             font-size: 30px;
+            margin-right: 500px;
+        }
+
+        /* Media queries untuk sidebar responsif */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                /* Lebar sidebar menjadi 0 ketika tampilan di layar kecil */
+            }
+
+            #main {
+                margin-left: 0;
+                /* Margin utama dihapus untuk mengakomodasi lebar sidebar yang berubah */
+            }
         }
     </style>
 </head>
@@ -95,135 +133,66 @@ $result = mysqli_query($conn, $query_view);
         <a href="dashboard-admin.php">List Games</a>
         <a href="#" onclick="confirmLogout()">Logout</a>
     </div>
-    <!-- Modal for Logout Confirmation -->
-    <div class="modal fade" id="confirmLogoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true" style="z-index: 1050;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmLogoutModalLabel">Konfirmasi Logout</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin logout?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div id="main">
-        <div class="header-container">
-            <h1>Transaction</h1>
-            <div class="hamburger" onclick="openNav()">&#9776;</div>
-        </div>
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID Transaction</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Game</th>
-                    <th>Company</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>" . $row['transaction_id'] . "</td>";
-                        echo "<td>" . $row['email'] . "</td>";
-                        echo "<td>" . $row['username'] . "</td>";
-                        echo "<td>" . $row['game_name'] . "</td>";
-                        echo "<td>" . $row['game_company'] . "</td>";
-                        echo "<td>" . $row['game_price'] . "</td>";
-                        echo "<td>" . $row['status'] . "</td>";
-                        echo '<td>
-                                <form class="status-form" method="POST" action="update_status_admin.php">
-                                    <input type="hidden" name="transaction_id" value="' . $row['transaction_id'] . '">
-                                    <input type="checkbox" name="status" value="Verified" class="status-checkbox" ' . ($row['status'] == 'Verified' ? 'checked disabled' : '') . '>
-                                </form>
-                              </td>';
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='8'>No records found</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
+        <button class="openbtn" onclick="openNav()">&#9776;</button><i class="bi bi-list"></i>
+        <div class="container">
+            <h1>Transaction Table</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Game Name</th>
+                        <th>Game Company</th>
+                        <th>Game Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (mysqli_num_rows($result) > 0) : ?>
+                        <?php while ($row = $result->fetch_assoc()) : ?>
+                            <tr>
+                                <td><?= htmlspecialchars($row['transaction_id']) ?></td>
+                                <td><?= htmlspecialchars($row['email']) ?></td>
+                                <td><?= htmlspecialchars($row['username']) ?></td>
+                                <td><?= htmlspecialchars($row['game_name']) ?></td>
+                                <td><?= htmlspecialchars($row['game_company']) ?></td>
+                                <td><?= htmlspecialchars($row['game_price']) ?></td>
+                                <td><?= htmlspecialchars($row['Status']) ?></td>
+                                <td>
+                                    <form method="POST" action="">
+                                        <input type="hidden" name="transaction_id" value="<?= htmlspecialchars($row['transaction_id']) ?>">
+                                        <button type="submit" name="confirm_refund" class="btn btn-warning" value="Confirm Refund">Confirm Refund</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td colspan="8">No records found</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
 
-    <!-- Modal HTML -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmModalLabel">Confirm Status Change</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to change the status to "Verified"?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="confirmBtn">Confirm</button>
-                </div>
-            </div>
+            <!-- Pagination -->
+            <ul class="pagination">
+                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                    <li class="page-item <?php if ($i === $page) echo 'active'; ?>">
+                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
         </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
-        $(document).ready(function() {
-            var currentForm;
-            var currentCheckbox;
-
-            $('.status-checkbox').change(function() {
-                if (this.checked) {
-                    currentForm = $(this).closest('form');
-                    currentCheckbox = this;
-                    $('#confirmModal').modal('show');
-                }
-            });
-
-            $('#confirmBtn').click(function() {
-                $('#confirmModal').modal('hide');
-                if (currentForm) {
-                    currentForm.submit();
-                }
-            });
-
-            $('#confirmModal').on('hidden.bs.modal', function() {
-                if (!$('#confirmBtn').data('confirmed')) {
-                    $(currentCheckbox).prop('checked', false);
-                }
-            });
-
-            $('#confirmBtn').click(function() {
-                $(this).data('confirmed', true);
-                if (currentForm) {
-                    currentForm.submit();
-                }
-            });
-
-            $('#confirmModal').on('hidden.bs.modal', function() {
-                $('#confirmBtn').data('confirmed', false);
-            });
-        });
-
         function openNav() {
             document.getElementById("mySidebar").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
@@ -242,6 +211,7 @@ $result = mysqli_query($conn, $query_view);
             window.location.href = 'login-admin.php';
         }
     </script>
+
 </body>
 
 </html>
