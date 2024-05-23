@@ -18,14 +18,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
     $game_price = $_POST['game_price'];
 
     // Handle file uploads
-    $header = handleFileUpload('header', '../images/game-images/header/', $_POST['existing_header']);
-    $photo1 = handleFileUpload('photo1', '../images/game-images/photo1/', $_POST['existing_photo1']);
-    $photo2 = handleFileUpload('photo2', '../images/game-images/photo2/', $_POST['existing_photo2']);
-    $photo3 = handleFileUpload('photo3', '../images/game-images/photo3/', $_POST['existing_photo3']);
-    $video = handleFileUpload('video', '../images/game-images/video/', $_POST['existing_video']);
+    // Check if the array keys exist before accessing them
+    $header = isset($_POST['existing_header']) ? handleFileUpload('header', '../images/game-images/header/', $_POST['existing_header']) : '';
+    $photo1 = isset($_POST['existing_photo1']) ? handleFileUpload('photo1', '../images/game-images/photo1/', $_POST['existing_photo1']) : '';
+    $photo2 = isset($_POST['existing_photo2']) ? handleFileUpload('photo2', '../images/game-images/photo2/', $_POST['existing_photo2']) : '';
+    $photo3 = isset($_POST['existing_photo3']) ? handleFileUpload('photo3', '../images/game-images/photo3/', $_POST['existing_photo3']) : '';
+    $video = isset($_POST['existing_video']) ? handleFileUpload('video', '../images/game-images/video/', $_POST['existing_video']) : '';
 
-    $stmt = $conn->prepare("UPDATE game SET game_name=?, game_desc=?, game_category=?, game_company=?, size=?, release_date=?, rating=?, header=?, photo1=?, photo2=?, photo3=?, video=?, sector=?, game_price=? WHERE game_id=?");
-    $stmt->bind_param("ssssssssssssssi", $game_name, $game_desc, $game_category, $game_company, $size, $release_date, $rating, $header, $photo1, $photo2, $photo3, $video, $sector, $game_price, $id);
+    // Update the bind_param statement with placeholders for file paths
+    $stmt = $conn->prepare("UPDATE game SET game_name=?, 
+                                   game_desc=?, 
+                                   game_category=?, 
+                                   game_company=?, 
+                                   size=?, 
+                                   release_date=?, 
+                                   rating=?, 
+                                   header=?, 
+                                   photo1=?, 
+                                   photo2=?, 
+                                   photo3=?, 
+                                   video=?, 
+                                   Sector=?, 
+                                   game_price=? 
+                                   WHERE game_id=?");
+    $stmt->bind_param("sssssssssssssii", $game_name, $game_desc, $game_category, $game_company, $size, $release_date, $rating, $header, $photo1, $photo2, $photo3, $video, $sector, $game_price, $id);
 
     if ($stmt->execute()) {
         header("Location: ../admin/dashboard-admin.php?update_success=1");
