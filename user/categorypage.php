@@ -1,20 +1,33 @@
 <?php
 include('../server/connection.php');
 
-if (isset($_GET['game_category'])) {
-    $category = $_GET['game_category'];
-    $query_get_game = "SELECT * FROM game WHERE game_category LIKE '%$category%'";
-    $game = $conn->query($query_get_game);
-}
+$category = isset($_GET['game_category']) ? $_GET['game_category'] : '';
+$sorting = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$items_per_page = 10;
+$offset = ($page - 1) * $items_per_page;
 
-if (isset($_GET['game_category'])) {
-    $category = $_GET['game_category'];
-    $sorting = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
-    $query_get_game = "SELECT * FROM game WHERE game_category LIKE '%$category%' ORDER BY game_price $sorting";
-    $game = $conn->query($query_get_game);
-}
+// Count total items for pagination
+$query_count = "SELECT COUNT(*) as total FROM game WHERE game_category LIKE '%$category%'";
+$result_count = $conn->query($query_count);
+$total_items = $result_count->fetch_assoc()['total'];
+$total_pages = ceil($total_items / $items_per_page);
 
+// Fetch games with limit and offset
+$query_get_game = "SELECT * FROM game WHERE game_category LIKE '%$category%' ORDER BY game_price $sorting LIMIT $items_per_page OFFSET $offset";
+$game = $conn->query($query_get_game);
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/categorypage.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
 
 
 <!DOCTYPE html>
@@ -40,7 +53,8 @@ if (isset($_GET['game_category'])) {
         <i class='bx bxs-user-circle' id="user"></i>
         <div class="sub-menu-wrap" id="sub-menu-wrap">
             <a href="profile-user.php">Manage Account</a>
-            <a href="sign-up.php" id="logout">Sign out</a>
+            <a href="history-transaction-user.php">History Transaction</a>
+            <a href="sign-up.php" id="logout">Logout</a>
         </div>
     </nav>
     <!-- Javascript dropdown -->
@@ -121,8 +135,8 @@ if (isset($_GET['game_category'])) {
             <section class="line"></section>
             <?php if (isset($_GET['game_category'])) { ?>
                 <select id="sort-select">
-                    <option value="asc">Lowest Price</option>
-                    <option value="desc">Highest Price</option>
+                    <option value="asc" <?php if ($sorting == 'asc') echo 'selected'; ?>>Lowest Price</option>
+                    <option value="desc" <?php if ($sorting == 'desc') echo 'selected'; ?>>Highest Price</option>
                 </select>
             <?php } ?>
         </div>
@@ -136,12 +150,23 @@ if (isset($_GET['game_category'])) {
                             </div>
                             <div class="card-content">
                                 <h5><?php echo $row['game_name'] ?></h5>
-                                    <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
+                                <p class="price">Rp. <?php echo number_format($row['game_price'], 2, ',', '.'); ?></p>
                             </div>
                         </a>
                     </div>
                 <?php } ?>
             </div>
+        </div>
+        <div class="pagination">
+            <?php if ($page > 1) { ?>
+                <a href="?game_category=<?php echo urlencode($category); ?>&sort=<?php echo $sorting; ?>&page=<?php echo $page - 1; ?>">Previous</a>
+            <?php } ?>
+            <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+                <a href="?game_category=<?php echo urlencode($category); ?>&sort=<?php echo $sorting; ?>&page=<?php echo $i; ?>" <?php if ($page == $i) echo 'class="active"'; ?>><?php echo $i; ?></a>
+            <?php } ?>
+            <?php if ($page < $total_pages) { ?>
+                <a href="?game_category=<?php echo urlencode($category); ?>&sort=<?php echo $sorting; ?>&page=<?php echo $page + 1; ?>">Next</a>
+            <?php } ?>
         </div>
     </section>
 

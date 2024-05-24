@@ -46,6 +46,7 @@ if (mysqli_num_rows($result) == 1) {
             <i class='bx bxs-user-circle' id="user"></i>
             <div class="sub-menu-wrap" id="sub-menu-wrap">
                 <a href="profile-user.php">Manage Account</a>
+                <a href="history-transaction-user.php">History Transaction</a>
                 <a href="sign-up.php" onclick='confirmLogout()'>Logout</a>
             </div>
         </nav>
