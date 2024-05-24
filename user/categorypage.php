@@ -53,7 +53,8 @@ $game = $conn->query($query_get_game);
         <i class='bx bxs-user-circle' id="user"></i>
         <div class="sub-menu-wrap" id="sub-menu-wrap">
             <a href="profile-user.php">Manage Account</a>
-            <a href="sign-up.php" id="logout">Sign out</a>
+            <a href="history-transaction-user.php">History Transaction</a>
+            <a href="sign-up.php" id="logout">Logout</a>
         </div>
     </nav>
     <!-- Javascript dropdown -->

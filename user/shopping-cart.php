@@ -50,6 +50,7 @@ $stmt_cart = $conn->prepare($query_cart);
 $stmt_cart->execute();
 $game = $stmt_cart->get_result();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +76,7 @@ $game = $stmt_cart->get_result();
         <i class='bx bxs-user-circle' id="user"></i>
         <div class="sub-menu-wrap" id="sub-menu-wrap">
             <a href="profile-user.php">Manage Account</a>
+            <a href="history-transaction-user.php">History Transaction</a>
             <a href="sign-up.php" id="logout">Sign out</a>
         </div>
     </nav>
@@ -195,10 +197,188 @@ $game = $stmt_cart->get_result();
                     <span>Saldo:</span>
                     <span>Rp. <?php echo number_format($saldo, 2, ',', '.'); ?></span>
                 </div>
-                <button class="checkout-btn"><strong>CHECK OUT</strong></button>
+                <button class="checkout-btn" id="checkout-btn"><strong>CHECK OUT</strong></button>
             </div>
         </div>
     </div>
+
+    <div id="confirm-modal" class="modal2">
+        <div class="modal-content2">
+            <i class='bx bx-wallet' id="confirm"></i>
+            <span class="close">&times;</span>
+            <p>Confirm Shopping?</p>
+            <button id="buy-btn" class="ok-btn">Buy</button>
+            <button id="cancel-btn" class="no-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="modal2">
+        <div class="modal-content2">
+            <i class='bx bx-error' id="error"></i>
+            <span class="close">&times;</span>
+            <p>Saldo tidak mencukupi.</p>
+            <button id="error-ok-btn" class="ok-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal2">
+        <div class="modal-content2">
+            <i class='bx bx-check' id="success"></i>
+            <span class="close">&times;</span>
+            <p>Pembelian berhasil!</p>
+            <button id="success-ok-btn" class="ok-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- Cart Empty Modal -->
+    <div id="cart-empty-modal" class="modal2">
+        <div class="modal-content2">
+            <i class='bx bx-x' id="empty"></i>
+            <span class="close">&times;</span>
+            <p>Keranjang belanja kosong.</p>
+            <button id="cart-empty-ok-btn" class="ok-btn">OK</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Document is ready.");
+
+            // Function to show the modal
+            function showModal(modalId) {
+                var modal = document.getElementById(modalId);
+                console.log("Showing modal: " + modalId);
+                modal.style.display = "block";
+            }
+
+            // Function to close the modal
+            function closeModal(modalId) {
+                var modal = document.getElementById(modalId);
+                console.log("Closing modal: " + modalId);
+                modal.style.display = "none";
+            }
+
+            // Event listener for the checkout button to show the confirm modal
+            document.getElementById("checkout-btn").addEventListener("click", function() {
+                console.log("Checkout button clicked.");
+                showModal("confirm-modal");
+            });
+
+            // Event listener to close the modal when the close button is clicked
+            var closeButtons = document.getElementsByClassName("close");
+            for (var i = 0; i < closeButtons.length; i++) {
+                closeButtons[i].addEventListener("click", function() {
+                    console.log("Close button clicked.");
+                    var modals = document.getElementsByClassName("modal2");
+                    for (var j = 0; j < modals.length; j++) {
+                        modals[j].style.display = "none";
+                    }
+                });
+            }
+
+            // Event listener to close the modal when the user clicks anywhere outside of it
+            window.addEventListener("click", function(event) {
+                var modals = document.getElementsByClassName("modal2");
+                for (var i = 0; i < modals.length; i++) {
+                    if (event.target == modals[i]) {
+                        console.log("Outside modal clicked.");
+                        modals[i].style.display = "none";
+                    }
+                }
+            });
+
+            // Event listener for the Buy button
+            document.getElementById("buy-btn").addEventListener("click", function() {
+                console.log("Buy button clicked.");
+                var subtotal = <?php echo $subtotal; ?>;
+                var saldo = <?php echo $saldo; ?>;
+
+                console.log("Subtotal: " + subtotal);
+                console.log("Saldo: " + saldo);
+
+                if (saldo >= subtotal) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "process_purchase.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            console.log("XHR request completed with status: " + xhr.status);
+                            if (xhr.status === 200) {
+                                var response = JSON.parse(xhr.responseText);
+                                if (response.status === 'success') {
+                                    console.log("Purchase successful.");
+                                    closeModal("confirm-modal");
+                                    showModal("success-modal");
+                                    // Update saldo if it's defined
+                                    if (typeof saldo !== 'undefined') {
+                                        console.log("New saldo: " + response.new_saldo);
+                                    } else {
+                                        console.error("Saldo is not defined.");
+                                    }
+                                    // Remove game_id parameter from URL
+                                    removeGameIdFromUrl();
+                                } else if (response.message === 'Cart is empty') {
+                                    console.log("Cart is empty.");
+                                    closeModal("confirm-modal");
+                                    showModal("cart-empty-modal"); // Menampilkan modal "Cart is empty"
+                                } else {
+                                    console.log("Purchase failed: " + response.message);
+                                    closeModal("confirm-modal");
+                                    showModal("error-modal");
+                                }
+                            } else {
+                                console.log("XHR request failed with status: " + xhr.status);
+                                closeModal("confirm-modal");
+                                showModal("error-modal");
+                            }
+                        }
+                    };
+                    xhr.send("subtotal=" + subtotal);
+                } else {
+                    console.log("Insufficient balance.");
+                    closeModal("confirm-modal");
+                    showModal("error-modal");
+                }
+            });
+
+            // Function to remove game_id from URL
+            function removeGameIdFromUrl() {
+                var url = new URL(window.location.href);
+                url.searchParams.delete('game_id');
+                window.history.replaceState({}, document.title, url.toString());
+                console.log("Removed game_id from URL.");
+            }
+
+            // Event listener for the error OK button
+            document.getElementById("error-ok-btn").addEventListener("click", function() {
+                console.log("Error OK button clicked.");
+                closeModal("error-modal");
+            });
+
+            // Event listener for the success OK button
+            document.getElementById("success-ok-btn").addEventListener("click", function() {
+                console.log("Success OK button clicked.");
+                closeModal("success-modal");
+                // Refresh the page
+                location.reload();
+                console.log("Success modal closed");
+            });
+
+            // Event listener for the Cancel button in the confirm modal
+            document.getElementById("cancel-btn").addEventListener("click", function() {
+                console.log("Cancel button clicked.");
+                closeModal("confirm-modal");
+            });
+
+            document.getElementById("cart-empty-ok-btn").addEventListener("click", function() {
+                console.log("Cart Empty OK button clicked.");
+                closeModal("cart-empty-modal");
+            });
+        });
+    </script>
+
 </body>
 
 </html>

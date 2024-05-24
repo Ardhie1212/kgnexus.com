@@ -77,11 +77,10 @@ if (isset($_GET['transaction_id'])) {
 
                     // Fetch games associated with transactions of a specific user
                     $userId = $_SESSION['id_user']; // Assuming you have user ID in session
-                    $query = "SELECT DISTINCT g.* 
-                      FROM game g 
-                      INNER JOIN cart c ON g.game_id = c.game_id 
-                      INNER JOIN transaction t ON c.cart_id = t.cart_id 
-                      WHERE t.id_user = $userId";
+                    $query = "SELECT * FROM game
+                    JOIN transaction ON game.game_id = transaction.game_id
+                    JOIN user ON transaction.id_user = user.id_user
+                    WHERE user.id_user = $userId";
                     $result = mysqli_query($conn, $query);
 
                     while ($row = mysqli_fetch_assoc($result)) {
