@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -203,18 +204,112 @@ img {
     width: 300px;
 }
 
-/* Player reviews */
-
+/* Player ratings */
 .player-ratings {
-    width: 100%;
+    width: 80%;
     margin: 80px auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .player-ratings .title .line {
     margin-left: 0px auto;
+}
+
+.player-ratings .title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.review-box {
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.write-review {
+    margin-bottom: 40px;
+}
+
+.write-review p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.write-review form {
+    display: flex;
+    flex-direction: column;
+}
+
+.write-review textarea, 
+.write-review input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.write-review button {
+    align-self: flex-end;
+    padding: 10px 20px 10px 15px;
+    background: #284ee6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    align-items: center;
+}
+
+.write-review button:hover {
+    background: #03ce28;
+}
+
+.reviews-list {
+    margin-top: 20px;
+}
+
+.review-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.review-item:last-child {
+    border-bottom: none;
+}
+
+#Profile-picture {
+    font-size: 3rem;
+    color: #202020;
+    margin-right: 20px;
+}
+
+.review-content {
+    flex: 1;
+}
+
+.review-content .username {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-content .review-text {
+    margin-bottom: 10px;
+}
+
+.review-content .rating {
+    font-size: 1rem;
+    color: #ffba00;
+    font-weight: bold;
 }
 
 /* Footer */

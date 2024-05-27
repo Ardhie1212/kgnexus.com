@@ -23,7 +23,15 @@ if (isset($_GET['transaction_id'])) {
     $check_query = "SELECT * FROM transaction WHERE game_id = $gameId AND id_user = $id_user";
     $check_result = mysqli_query($conn, $check_query);
 }
+// Fetch games associated with transactions of a specific user
+$userId = $_SESSION['id_user']; // Assuming you have user ID in session
+$query = "SELECT * FROM game
+    JOIN transaction ON game.game_id = transaction.game_id
+    JOIN user ON transaction.id_user = user.id_user
+    WHERE user.id_user = $userId";
 
+// Assuming $conn is 
+$result = mysqli_query($conn, $query);
 ?>
 
 
@@ -55,48 +63,30 @@ if (isset($_GET['transaction_id'])) {
         </div>
     </nav>
 
+
     <!-- Main -->
     <main class="library">
-        <div class="search-bar">
-            <input type="text" placeholder="Search your library">
-            <select>
-                <option value="">Category</option>
-                <option value="action">Action</option>
-                <option value="role-playing">Role-Playing</option>
-                <option value="strategy">Strategy</option>
-                <option value="sports-racing">Sports & Racing</option>
-                <option value="simulation">Simulation</option>
-                <option value="adventure">Adventure</option>
-            </select>
-        </div>
-        <main class="library">
-            <div class="library-content">
-                <div class="games-grid">
-                    <?php
-                    // Assuming $conn is your database connection
-
-                    // Fetch games associated with transactions of a specific user
-                    $userId = $_SESSION['id_user']; // Assuming you have user ID in session
-                    $query = "SELECT * FROM game
-                    JOIN transaction ON game.game_id = transaction.game_id
-                    JOIN user ON transaction.id_user = user.id_user
-                    WHERE user.id_user = $userId";
-                    $result = mysqli_query($conn, $query);
-
-                    while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
+        <h2>LIBRARY</h2>
+        <div class="line"></div>
+        <div class="library-container">
+                <div class="card-grid">
+                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                         <!-- Game card -->
                         <div class="game-card">
-                            <img class="game-header" src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
-                            <div class="game-info">
-                                <h2><?php echo $row['game_name']; ?></h2>
-                                <p><?php echo $row['game_category']; ?></p>
-                            </div>
+                            <a href="gamepage.php?game_id=<?php echo $row['game_id'] ?>">
+                                <div class="card-image">
+                                    <img src="../images/game-images/header/<?php echo $row['header'] ?>" alt="">
+                                </div>
+                                <div class="card-content">
+                                    <h5><?php echo $row['game_name'] ?></h5>
+                                </div>
+                            </a>
                         </div>
                     <?php } ?>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
         <!-- End of Main -->
 
 

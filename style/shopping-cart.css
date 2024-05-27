@@ -411,7 +411,7 @@ button#cancelLogout:hover {
 
 .modal-content2 i {
     font-size: 48px;
-    margin-bottom: 20px;
+    margin:20px;
 }
 
 .modal-content2 p {
@@ -434,20 +434,14 @@ div.modal-content2 i#confirm {
 
 div.modal-content2 i#error {
     color: #dc3545;
-    border: 4px solid #dc3545;
-    border-radius: 100%;
 }
 
 div.modal-content2 i#success {
     color: #28a745;
-    border: 4px solid #28a745;
-    border-radius: 100%;
 }
 
 div.modal-content2 i#empty {
     color: #dc3545;
-    border: 4px solid #dc3545;
-    border-radius: 100%;
 }
 
 .close {
