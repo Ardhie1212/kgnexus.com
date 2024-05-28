@@ -8,7 +8,7 @@ $items_per_page = 10; // Ubah sesuai kebutuhan Anda
 // Hitung offset untuk query database
 $offset = ($page - 1) * $items_per_page;
 
-$query_view = "SELECT SQL_CALC_FOUND_ROWS t.transaction_id, u.email, u.username, g.game_name, g.game_company, g.game_price, t.Status 
+$query_view = "SELECT SQL_CALC_FOUND_ROWS t.transaction_id, u.email, u.username, g.game_name, g.game_company, g.game_price, t.status 
                FROM transaction t 
                JOIN game g ON g.game_id = t.game_id
                JOIN user u ON u.id_user = t.id_user
@@ -160,9 +160,9 @@ $total_pages = ceil($total_rows / $items_per_page);
                                 <td><?= htmlspecialchars($row['game_name']) ?></td>
                                 <td><?= htmlspecialchars($row['game_company']) ?></td>
                                 <td><?= htmlspecialchars($row['game_price']) ?></td>
-                                <td><?= htmlspecialchars($row['Status']) ?></td>
+                                <td><?= htmlspecialchars($row['status']) ?></td>
                                 <td>
-                                    <form method="POST" action="">
+                                    <form method="POST" action="../Action/update_status_admin.php">
                                         <input type="hidden" name="transaction_id" value="<?= htmlspecialchars($row['transaction_id']) ?>">
                                         <button type="submit" name="confirm_refund" class="btn btn-warning" value="Confirm Refund">Confirm Refund</button>
                                     </form>

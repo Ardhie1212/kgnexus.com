@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm_refund'])) {
     $transaction_id = $_POST['transaction_id'];
 
     // Update the status to "Verified Refund"
-    $query_update = "UPDATE transaction SET Status = 'Verified Refund' WHERE transaction_id = $transaction_id";
+    $query_update = "UPDATE transaction SET status = 'Verified Refund' WHERE transaction_id = $transaction_id";
     $result = mysqli_query($conn, $query_update);
 
     if ($result) {
