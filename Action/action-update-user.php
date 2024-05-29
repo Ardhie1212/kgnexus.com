@@ -1,5 +1,6 @@
 <?php
 include '../server/connection.php';
+session_start();
 
 if (isset($_POST['id_user'])) {
     $id_user = $_POST['id_user'];
@@ -26,7 +27,18 @@ if (isset($_POST['id_user'])) {
     if (!empty($updates)) {
         $query = "UPDATE user SET " . implode(', ', $updates) . " WHERE id_user = $id_user";
 
+        
         if (mysqli_query($conn, $query)) {
+            // Update berhasil, perbarui $_SESSION
+            if (!empty($_POST['email'])) {
+                $_SESSION['email'] = $email;
+            }
+            if (!empty($_POST['username'])) {
+                $_SESSION['username'] = $username;
+            }
+            if (!empty($_POST['rekening'])) {
+                $_SESSION['rekening'] = $rekening;
+            }
             mysqli_close($conn);
             header('location: ../user/profile-user.php?success=Data telah diperbarui!');
             exit(); // Ensure to exit after redirecting

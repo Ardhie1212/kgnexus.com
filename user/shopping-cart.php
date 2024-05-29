@@ -155,6 +155,10 @@ $game = $stmt_cart->get_result();
     <div class="cart-container">
         <h1>My Cart</h1>
         <section class="line"></section>
+        <div class="summary-item">
+                    <span>Saldo:</span>
+                    <span>Rp. <?php echo number_format($saldo, 2, ',', '.'); ?></span>
+                </div>
         <div class="cart-content">
             <table class="cart-table">
                 <thead>
@@ -193,11 +197,8 @@ $game = $stmt_cart->get_result();
                     <span>Subtotal:</span>
                     <span>Rp. <?php echo number_format($subtotal, 2, ',', '.'); ?></span>
                 </div>
-                <div class="summary-item">
-                    <span>Saldo:</span>
-                    <span>Rp. <?php echo number_format($saldo, 2, ',', '.'); ?></span>
-                </div>
                 <button class="checkout-btn" id="checkout-btn"><strong>CHECK OUT</strong></button>
+
             </div>
         </div>
     </div>

@@ -1,51 +1,361 @@
-.bi.bi-arrow-left-circle-fill {
-    font-size: 30px;
-    margin-right: 5px;
-    color: #FF2E63 ; 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-    background-color: #252A34;
-    color: #fff;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #dcdada;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+    height: 100%;
+    margin: 0;
 }
 
-.form-group {
+li {
+    list-style: none;
+}
+
+a{ 
+    text-decoration: none;
+}
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    color: #f5f5f5;
+    align-items: center;
+    background-color: #121212;
+}
+
+.navbar i {
+    margin-top: -3px;
+    color: #f5f5f5;
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links {
     display: flex;
     align-items: center;
 }
 
-label {
-    width: 120px; /* Atur lebar label sesuai kebutuhan */
-    margin-right: 10px; /* Berikan jarak antara label dan input */
+.nav-links li a {
+    color: #f5f5f5;
+    transition: .3s ease;
 }
 
-input,
-textarea {
-    flex: 1; /* Biarkan input mengisi sisa ruang yang tersedia */
-}
-
-.btn.btn-primary {
-    background-color: #FF2E63; /* Warna tombol asli */
-    border-color: #FF2E63; /* Warna border asli */
-}
-
-.btn.btn-primary:hover,
-.btn.btn-primary:focus {
-    background-color: #FF2E63; /* Warna tombol saat dihover */
-    border-color: #FF2E63; /* Warna border saat dihover */
-}
-
-.btn.btn-primary:active,
-.btn.btn-primary.active,
-.show > .btn.btn-primary.dropdown-toggle {
-    background-color: #FF2E63; /* Warna tombol saat diklik */
-    border-color: #FF2E63; /* Warna border saat diklik */
-}
-
-.input-group-text {
+.nav-links li a:hover,
+.navbar i:hover {
+    color: #FF2E63;
     cursor: pointer;
 }
 
-.modal-body, .modal-title{
+.nav-links li {
+    margin: 0 30px;
+}
+
+.nav-links li a.onpage {
+    color: #FF2E63;
+}
+
+.sub-menu-wrap {
+    visibility: hidden;
+    position: absolute;
+    display: none;
+    top: 80%;
+    right: 0%;
+    width: 10rem;
+    background: #fff;
+    padding: 0.5rem;
+    /* Tambahkan padding untuk memberi ruang di sekitar konten */
+    margin: 5px;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.sub-menu-wrap a {
+    position: relative;
     color: #000;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+    display: block;
+    /* Mengubah tampilan elemen anchor menjadi block */
+    padding: 0.5rem 0;
+    /* Tambahkan padding di atas dan bawah untuk memberi jarak vertikal */
+}
+
+.sub-menu-wrap a:hover {
+    color: #FF2E63;
+}
+
+.sub-menu-show {
+    visibility: visible;
+    display: block;
+}
+/* End of Navbar */
+
+/* Form */
+
+.container {
+    margin: 150px auto;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    width: 50%;
+    height: 80%; 
+    background-color: #f5f5f5;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+
+.container .bx-user-circle {
+    font-size: 10rem;
+}
+
+.container .bx-user-circle {
+    font-size: 6rem;
+    color: #343a40;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.input-group .form-control, 
+.input-group .input-group-text {
+    flex: 1;
+}
+
+.input-group .input-group-append {
+    margin-left: 10px;
+}
+
+.input-group-text.edit-icon {
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.input-group-text.edit-icon:hover {
+    background-color: #e9ecef;
+}
+
+input {
+    width: 600px;
+    height: 50px;
+}
+button.btn.btn-primary {
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 95.7%;
+    transition: .3s ease;
+}
+
+button.btn.btn-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+/* Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content1 {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-header, .modal-footer {
+    padding: 10px;
+    text-align: center;
+}
+
+.modal-header {
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-footer {
+    border-top: 1px solid #ddd;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.modal-button:hover {
+    background-color: #0056b3;
+}
+
+/* Modal Logout */
+
+.modal-content {
+    font-family: 'Poppins';
+    display: none;
+    background-color: #f5f5f5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    width: 450px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease;
+    justify-content: center;
+}
+
+.icon {
+    margin-left: 147px;
+    border: 1px solid #000;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    color: #FF2E63;
+    border: 3px solid #FF2E63;
+    border-radius: 50%;
+    line-height: 110px;
+    font-size: 50px;
+}
+.modal-content h2 {
+    font-size: 35px;
+    font-weight: 500;
+    margin: 10px 10px 10px 10px;
+    color: #121212;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 3px;
+    right: 13px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover{
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #121212;
+}
+
+button#confirmLogout {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border: 0.1px solid #FF2E63;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #dcdada;
+}
+
+button#cancelLogout {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border: 0.1px solid #121212;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #dcdada;
+    color: #000000;
+}
+
+button#confirmLogout:hover {
+    opacity: 0.8;
+    background-color: #FF2E63;
+    font-weight: bold;
+    color: #fff;
+}
+
+button#cancelLogout:hover {
+    opacity: 0.8;
+    background-color: #121212;
+    color: #fff;
+    font-weight: bold;
 }

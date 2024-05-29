@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins';
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -59,7 +59,7 @@ ul {
 .nav-links li a {
     color: #eaeaea;
     transition: .3s ease;
-    font-family: 'Times New Roman', Times, serif;
+    
 }
 
 .nav-links li a:hover,
