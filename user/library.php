@@ -87,7 +87,7 @@ $result = mysqli_query($conn, $query);
             </div>
         </div>
     </main>
-        <!-- End of Main -->
+    <!-- End of Main -->
 
 
         <!-- Footer -->
