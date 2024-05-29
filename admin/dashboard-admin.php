@@ -20,6 +20,7 @@ $query_visual = "SELECT g.game_name, COUNT(t.transaction_id) as count
 FROM transaction t
 JOIN game g ON t.game_id = g.game_id
 GROUP BY g.game_name";
+
 $result = $conn->query($query_visual);
 $dataPoints = [];
 if ($result) {
@@ -36,12 +37,14 @@ if ($result_users) {
     $total_users = $row['total_users'];
 }
 
-$query_income = "
-SELECT
-  SUM(g.game_price * COUNT(DISTINCT t.user_id)) AS total_income
-FROM transactions t
-INNER JOIN game g ON t.game_id = g.game_id
-WHERE t.status NOT IN ('refund', 'Verified Refund', 'claimed')";
+$query_income = "SELECT SUM(total_income) AS total_income
+FROM (
+    SELECT SUM(g.game_price) AS total_income
+    FROM transaction t
+    INNER JOIN game g ON t.game_id = g.game_id
+    WHERE t.status NOT IN ('refund', 'Verified Refund', 'claimed')
+    GROUP BY t.id_user
+) AS income_per_user";
 
 
 $result_income = $conn->query($query_income);
@@ -212,7 +215,6 @@ $conn->close();
     <span>
         <h1 style="background-color: #111; color: white; padding: 25px;">Dashboard Admin</h1>
     </span>
-    <div class="hamburger" style="color: white; position: fixed;" onclick="openNav()">&#9776;</div>
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>

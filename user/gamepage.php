@@ -11,13 +11,15 @@ $stmt_game->bind_param("i", $game_id);
 $stmt_game->execute();
 $result_game = $stmt_game->get_result();
 
-$stmt_transaction = $conn->prepare("SELECT * FROM transaction WHERE game_id = ? AND id_user = ?");
+$stmt_transaction = $conn->prepare("SELECT * FROM transaction WHERE game_id = ? AND id_user = ? AND
+status = 'Completed'");
+
 $stmt_transaction->bind_param("ii", $game_id, $id_user);
 $stmt_transaction->execute();
 $result_transaction = $stmt_transaction->get_result();
 
 
-$stmt_transaction = $conn->prepare("SELECT * FROM transaction WHERE game_id = ? AND id_user = ?");
+$stmt_transaction = $conn->prepare("SELECT * FROM transaction WHERE game_id = ? AND id_user = ? AND status = 'Completed'");
 $stmt_transaction->bind_param("ii", $game_id, $id_user);
 $stmt_transaction->execute();
 $result_transaction = $stmt_transaction->get_result();
