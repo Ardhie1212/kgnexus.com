@@ -38,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['claim_refund'])) {
             $query_update_balance = "UPDATE user SET saldo=? WHERE id_user=?";
             $stmt = $conn->prepare($query_update_balance);
             $stmt->bind_param('di', $new_balance, $user_id);
+            $_SESSION['saldo'] = $new_balance;
+
             if ($stmt->execute()) {
                 $stmt->close();
 

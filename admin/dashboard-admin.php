@@ -215,7 +215,6 @@ $conn->close();
     <span>
         <h1 style="background-color: #111; color: white; padding: 25px;">Dashboard Admin</h1>
     </span>
-    <div class="hamburger" style="color: white; position: fixed;" onclick="openNav()">&#9776;</div>
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
