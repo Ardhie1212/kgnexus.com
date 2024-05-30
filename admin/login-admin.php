@@ -12,25 +12,29 @@ if (isset($_POST['submit-field'])) {
 	$username = $_POST['username'];
 	$passkey = $_POST['passkey'];
 
-	$query = "SELECT * FROM admin WHERE username = ? AND passkey = ? LIMIT 1";
+	$query = "SELECT * FROM admin WHERE username = ? LIMIT 1";
 	$stmt_login = $conn->prepare($query);
-	$stmt_login->bind_param('ss', $username, $passkey);
+	$stmt_login->bind_param('s', $username);
 
 	if ($stmt_login->execute()) {
-		$stmt_login->bind_result($id_admin, $username, $passkey);
+		$stmt_login->bind_result($id_admin, $username_db, $passkey_db);
 		$stmt_login->store_result();
 
 		if ($stmt_login->num_rows() == 1) {
 			$stmt_login->fetch();
+			if ($passkey_db === $passkey) {
+				$_SESSION['id_admin'] = $id_admin;
+				$_SESSION['username'] = $username_db;
+				$_SESSION['passkey'] = $passkey_db;
 
-			$_SESSION['id_admin'] = $id_admin;
-			$_SESSION['username'] = $username;
-			$_SESSION['passkey'] = $passkey;
-
-			header('location: dashboard-admin.php?message=Logged in successfully');
-			exit;
+				header('location: dashboard-admin.php?message=Logged in successfully');
+				exit;
+			} else {
+				header('location: login-admin.php?error=invalid_password');
+				exit;
+			}
 		} else {
-			header('location: login-admin.php?error=Could not verify your account');
+			header('location: login-admin.php?error=invalid_username');
 			exit;
 		}
 	} else {
@@ -79,7 +83,95 @@ if (isset($_POST['submit-field'])) {
 			</form>
 		</div>
 	</div>
+
+	<!-- Modals -->
+	<div id="invalidUsernameModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>Invalid Username</h2>
+			<p>The username you have entered does not exist. Please try again.</p>
+			<button id="invalidUsernameOkButton">OK</button>
+		</div>
+	</div>
+
+	<div id="invalidPasswordModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>Invalid Password</h2>
+			<p>The password you have entered is incorrect. Please try again.</p>
+			<button id="invalidPasswordOkButton">OK</button>
+		</div>
+	</div>
+
+	<div id="dataErrorModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>Data Error</h2>
+			<p>There was an error with the data you entered. Please try again.</p>
+			<button id="dataErrorOkButton">OK</button>
+		</div>
+	</div>
+
 	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var invalidUsernameModal = document.getElementById("invalidUsernameModal");
+			var invalidPasswordModal = document.getElementById("invalidPasswordModal");
+			var dataErrorModal = document.getElementById("dataErrorModal");
+			var closeButtons = document.getElementsByClassName("close");
+
+			const urlParams = new URLSearchParams(window.location.search);
+			if (urlParams.has('error')) {
+				var errorType = urlParams.get('error');
+				switch (errorType) {
+					case 'invalid_username':
+						invalidUsernameModal.style.display = "flex";
+						break;
+					case 'invalid_password':
+						invalidPasswordModal.style.display = "flex";
+						break;
+					default:
+						dataErrorModal.style.display = "flex";
+				}
+			}
+
+			for (let i = 0; i < closeButtons.length; i++) {
+				closeButtons[i].onclick = function() {
+					invalidUsernameModal.style.display = "none";
+					invalidPasswordModal.style.display = "none";
+					dataErrorModal.style.display = "none";
+					window.location.href = window.location.pathname;
+				}
+			}
+
+			document.getElementById("invalidUsernameOkButton").onclick = function() {
+				invalidUsernameModal.style.display = "none";
+				window.location.href = window.location.pathname;
+			}
+
+			document.getElementById("invalidPasswordOkButton").onclick = function() {
+				invalidPasswordModal.style.display = "none";
+				window.location.href = window.location.pathname;
+			}
+
+			document.getElementById("dataErrorOkButton").onclick = function() {
+				dataErrorModal.style.display = "none";
+				window.location.href = window.location.pathname;
+			}
+
+			window.onclick = function(event) {
+				if (event.target == invalidUsernameModal) {
+					invalidUsernameModal.style.display = "none";
+					window.location.href = window.location.pathname;
+				} else if (event.target == invalidPasswordModal) {
+					invalidPasswordModal.style.display = "none";
+					window.location.href = window.location.pathname;
+				} else if (event.target == dataErrorModal) {
+					dataErrorModal.style.display = "none";
+					window.location.href = window.location.pathname;
+				}
+			}
+		});
+
 		const inputs = document.querySelectorAll('.input');
 
 		function focusFunc() {
@@ -100,4 +192,5 @@ if (isset($_POST['submit-field'])) {
 		});
 	</script>
 </body>
+
 </html>
