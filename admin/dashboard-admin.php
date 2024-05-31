@@ -36,13 +36,14 @@ if ($result_users) {
     $total_users = $row['total_users'];
 }
 
-$query_income = "
-SELECT
-  SUM(g.game_price * COUNT(DISTINCT t.user_id)) AS total_income
-FROM transaction t
-INNER JOIN game g ON t.game_id = g.game_id
-WHERE t.status NOT IN ('refund', 'Verified Refund', 'claimed')";
-
+$query_income = "SELECT SUM(g.game_price * t.user_count) AS total_income
+FROM (
+    SELECT game_id, COUNT(DISTINCT id_user) AS user_count
+    FROM transaction
+    WHERE status NOT IN ('refund', 'Verified Refund', 'claimed')
+    GROUP BY game_id
+) t
+INNER JOIN game g ON t.game_id = g.game_id";
 
 $result_income = $conn->query($query_income);
 $total_income = 0.0; // Inisialisasi default total income ke 0.0
