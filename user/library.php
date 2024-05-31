@@ -20,7 +20,7 @@ if (isset($_SESSION['id_user']) && isset($_SESSION['email']) && isset($_SESSION[
 
 if (isset($_GET['transaction_id'])) {
     $gameId = $_GET['game_id'];
-    $check_query = "SELECT * FROM transaction WHERE game_id = $gameId AND id_user = $id_user";
+    $check_query = "SELECT * FROM transaction WHERE game_id = $gameId AND id_user = $id_user AND status = 'Completed'";
     $check_result = mysqli_query($conn, $check_query);
 }
 // Fetch games associated with transactions of a specific user
@@ -28,7 +28,7 @@ $userId = $_SESSION['id_user']; // Assuming you have user ID in session
 $query = "SELECT * FROM game
     JOIN transaction ON game.game_id = transaction.game_id
     JOIN user ON transaction.id_user = user.id_user
-    WHERE user.id_user = $userId";
+    WHERE user.id_user = $userId AND transaction.status = 'completed'";
 
 // Assuming $conn is 
 $result = mysqli_query($conn, $query);
