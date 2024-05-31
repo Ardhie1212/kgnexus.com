@@ -63,6 +63,39 @@ if ($result_games) {
     }
 }
 
+// average rating algorithm
+
+$query = "
+    SELECT 
+        g.game_id, 
+        g.game_name, 
+        g.game_category, 
+        g.game_company, 
+        g.size, 
+        g.release_date, 
+        g.Sector, 
+        g.game_price,
+        COALESCE(AVG(r.rating), 0) AS avg_rating
+    FROM 
+        game g
+    LEFT JOIN 
+        review r ON g.game_id = r.game_id
+    GROUP BY 
+        g.game_id
+";
+$result = mysqli_query($conn, $query);
+
+$games = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $games[] = $row;
+}
+
+// End of average rating
+
+
+
+
+
 $conn->close();
 ?>
 <!DOCTYPE HTML>
@@ -405,7 +438,7 @@ $conn->close();
                 <th>Game Company</th>
                 <th>Size</th>
                 <th>Release Date</th>
-                <th>Rating</th>
+                <th>Average Rating</th>
                 <th>Sector</th>
                 <th>Game Price</th>
                 <th>Actions</th>
@@ -420,7 +453,7 @@ $conn->close();
                     <td><?php echo $game['game_company']; ?></td>
                     <td><?php echo $game['size']; ?></td>
                     <td><?php echo $game['release_date']; ?></td>
-                    <td><?php echo $game['rating']; ?></td>
+                    <td><?php echo number_format($game['avg_rating'], 2); ?></td> <!-- Displaying Average Rating -->
                     <td><?php echo $game['Sector']; ?></td>
                     <td>Rp <?php echo number_format($game['game_price'], 2, ',', '.'); ?></td>
                     <td>
