@@ -8,7 +8,6 @@ if (isset($_SESSION['logged_in'])) {
 }
 
 if (isset($_POST['submit-btn'])) {
-    //
     if (strlen($_POST['email']) == 0 && strlen($_POST['rekening']) == 0) {
         $username = $_POST['username'];
         $passkey = $_POST['passkey'];
@@ -35,11 +34,11 @@ if (isset($_POST['submit-btn'])) {
                 header('location: homepage.php?login_success=1&username=' . urlencode($username));
                 exit();
             } else {
-                header('location: sign-up.php?error=Could not verify your account');
+                header('location: sign-up.php?error=invalid_credentials');
                 exit();
             }
         } else {
-            header('location: sign-up.php?error=Something went wrong!');
+            header('location: sign-up.php?error=something_went_wrong');
         }
     } else {
         $email = $_POST['email'];
@@ -56,10 +55,10 @@ if (isset($_POST['submit-btn'])) {
         $result = mysqli_stmt_get_result($stmt);
 
         if (mysqli_num_rows($result) > 0) {
-            header('location: sign-up.php?error=1');
+            header('location: sign-up.php?error=username_taken');
             exit();
         } else {
-            $query = "INSERT INTO user (email, username, passkey, rekening,saldo) VALUES (?, ?, ?, ?,?)";
+            $query = "INSERT INTO user (email, username, passkey, rekening, saldo) VALUES (?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($conn, $query);
             mysqli_stmt_bind_param($stmt, "sssii", $email, $username, $hashedPassword, $rekening, $saldo);
             if (mysqli_stmt_execute($stmt)) {
@@ -179,27 +178,85 @@ if (isset($_POST['submit-btn'])) {
     </div>
     <!-- End of Error Modal -->
 
+    <!-- Invalid Credentials Modal -->
+    <div id="invalidCredentialsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Invalid Credentials!</h2>
+            <p>Username or password is incorrect!</p>
+            <button id="invalidCredentialsOkButton">OK</button>
+        </div>
+    </div>
+    <!-- End of Invalid Credentials Modal -->
+
+    <!-- Username Taken Modal -->
+    <div id="usernameTakenModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Username Taken!</h2>
+            <p>The username you have entered is already taken. Please choose another one.</p>
+            <button id="usernameTakenOkButton">OK</button>
+        </div>
+    </div>
+    <!-- End of Username Taken Modal -->
+
+    <!-- Data Error Modal -->
+    <div id="dataErrorModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Data Error!</h2>
+            <p>There was an error with the data you entered, or your account is not registered.</p>
+            <button id="dataErrorOkButton">OK</button>
+        </div>
+    </div>
+    <!-- End of Data Error Modal -->
 
     <!-- Javascript Error Modal Logic -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var successModal = document.getElementById("successModal");
             var errorModal = document.getElementById("errorModal");
+            var invalidCredentialsModal = document.getElementById("invalidCredentialsModal");
+            var usernameTakenModal = document.getElementById("usernameTakenModal");
+            var dataErrorModal = document.getElementById("dataErrorModal");
+
             var closeButtons = document.getElementsByClassName("close");
             var modalOkButton = document.getElementById("modalOkButton");
             var errorOkButton = document.getElementById("errorOkButton");
+            var invalidCredentialsOkButton = document.getElementById("invalidCredentialsOkButton");
+            var usernameTakenOkButton = document.getElementById("usernameTakenOkButton");
+            var dataErrorOkButton = document.getElementById("dataErrorOkButton");
 
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('success')) {
                 successModal.style.display = "flex";
             } else if (urlParams.has('error')) {
-                errorModal.style.display = "flex";
+                var errorType = urlParams.get('error');
+                switch (errorType) {
+                    case 'invalid_credentials':
+                        invalidCredentialsModal.style.display = "flex";
+                        break;
+                    case 'username_taken':
+                        usernameTakenModal.style.display = "flex";
+                        break;
+                    case 'something_went_wrong':
+                        errorModal.style.display = "flex";
+                        break;
+                    case 'data_error':
+                        dataErrorModal.style.display = "flex";
+                        break;
+                    default:
+                        errorModal.style.display = "flex";
+                }
             }
 
             for (let i = 0; i < closeButtons.length; i++) {
                 closeButtons[i].onclick = function() {
                     successModal.style.display = "none";
                     errorModal.style.display = "none";
+                    invalidCredentialsModal.style.display = "none";
+                    usernameTakenModal.style.display = "none";
+                    dataErrorModal.style.display = "none";
                     window.location.href = window.location.pathname;
                 }
             }
@@ -214,12 +271,36 @@ if (isset($_POST['submit-btn'])) {
                 window.location.href = window.location.pathname;
             }
 
+            invalidCredentialsOkButton.onclick = function() {
+                invalidCredentialsModal.style.display = "none";
+                window.location.href = window.location.pathname;
+            }
+
+            usernameTakenOkButton.onclick = function() {
+                usernameTakenModal.style.display = "none";
+                window.location.href = window.location.pathname;
+            }
+
+            dataErrorOkButton.onclick = function() {
+                dataErrorModal.style.display = "none";
+                window.location.href = window.location.pathname;
+            }
+
             window.onclick = function(event) {
                 if (event.target == successModal) {
                     successModal.style.display = "none";
                     window.location.href = window.location.pathname;
                 } else if (event.target == errorModal) {
                     errorModal.style.display = "none";
+                    window.location.href = window.location.pathname;
+                } else if (event.target == invalidCredentialsModal) {
+                    invalidCredentialsModal.style.display = "none";
+                    window.location.href = window.location.pathname;
+                } else if (event.target == usernameTakenModal) {
+                    usernameTakenModal.style.display = "none";
+                    window.location.href = window.location.pathname;
+                } else if (event.target == dataErrorModal) {
+                    dataErrorModal.style.display = "none";
                     window.location.href = window.location.pathname;
                 }
             }
